@@ -1,0 +1,76 @@
+en:
+  graphql:
+    types:
+      connection_base_type:
+        node_ids: 'List of connected node identifiers'
+        total_count: "Total # of objects returned from query"
+        total_page_count: "Total # of pages, based on total count and pagesize"
+        current_page: 'Number of current page'
+      common:
+        fields:
+          id: ID
+          created_at: Created at
+          updated_at: Updated at
+          placed_at: Placed at
+      sign_out:
+        desc: User sign out
+      auth_token:
+        desc: Auth token provider
+        fields:
+          csrf: CSRF protection token
+          access: Access JWT token
+          refresh: JWT token for refreshing access token
+      user_account_type:
+        desc: User account
+        fields:
+          email: Email of user account
+          user_profile: User account's profile
+          lists: User account's movie lists
+          favorite_movies_list: User account's favorite movies
+          watchlist_movies_list: User account's watchlist movies
+      user_profile_type:
+        desc: User profile
+        fields:
+          first_name: User's first name
+          last_name: User's last name
+          full_name: User's full name
+      refreshed_access_payload_type:
+        desc: Payload with refreshed access tokens
+        fields:
+          csrf: Token for signed cookies
+          access: JWT access token
+          access_expires_at: Expiration of access tokens
+      movie_image_type:
+        desc: Movie image type
+      poster_type:
+        desc: Movie poster type
+      movie_type:
+        desc: Movie type
+        fields:
+          title: Movie's title
+          budget: Movie's budget
+          images: Movie's images
+          original_language: Original movie original_language
+          original_title: Original movie original_title
+          overview: Movie's overview
+          poster: Movie's poster image
+          revenue: Movie's revenue
+          runtime: Movie's runtime in seconds
+      image_type:
+        desc: Image type
+        fields:
+          id: Image id
+          filepath: Image file path
+      list_item_delete_type:
+        desc: Delete list item type
+      list_type:
+        desc: List type
+        fields:
+          id: Id
+          description: Description
+          name: Name
+          items: Movies in list
+      delete_list_type:
+        desc: Represents info about deleted User's list
+        fields:
+          deleted_list_id: Deleted list id

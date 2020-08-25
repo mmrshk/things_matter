@@ -1,0 +1,6 @@
+en:
+  graphql:
+    queries:
+      me: Get current user
+      movies_search: Query to search movies by title
+      movie: Query to get the movie by id

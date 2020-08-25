@@ -1,0 +1,12 @@
+en:
+  graphql:
+    enums:
+      direction_enum:
+        desc: Order direction enum
+        values:
+          asc: Ascending ordering
+          desc: Descending ordering
+      movie_sort_enum:
+        desc: Order field enum
+        values:
+          title: Order by title

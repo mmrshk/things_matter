@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: graphql_meetup_development
+
+test:
+  <<: *default
+  database: graphql_meetup_test
+
+production:
+  <<: *default
+  database: graphql_meetup_production
+  username: graphql_meetup
+  password: <%= ENV['GRAPHQL_MEETUP_DATABASE_PASSWORD'] %>

@@ -1,0 +1,715 @@
+"""
+Auth token provider
+"""
+type AuthTokenType {
+  """
+  Access JWT token
+  """
+  access: String!
+
+  """
+  CSRF protection token
+  """
+  csrf: String!
+
+  """
+  JWT token for refreshing access token
+  """
+  refresh: String!
+}
+
+"""
+Input for removing entity
+"""
+input DeleteInput {
+  """
+  List id
+  """
+  id: ID!
+}
+
+"""
+Represents info about deleted User's list
+"""
+type DeleteListType {
+  """
+  Deleted list id
+  """
+  deletedListId: ID!
+}
+
+"""
+Order direction enum
+"""
+enum DirectionEnum {
+  """
+  Ascending ordering
+  """
+  ASC
+
+  """
+  Descending ordering
+  """
+  DESC
+}
+
+"""
+Interface for images
+"""
+interface ImageInterface {
+  """
+  Image file path
+  """
+  filePath: String
+}
+
+"""
+Input for adding the new movie to the list
+"""
+input ListAddItemInput {
+  """
+  List id
+  """
+  listId: ID!
+
+  """
+  Movie id
+  """
+  movieId: ID!
+}
+
+"""
+The connection type for ListType.
+"""
+type ListConnectionType {
+  """
+  Number of current page
+  """
+  currentPage: Int!
+
+  """
+  A list of edges.
+  """
+  edges: [ListEdgeType]
+
+  """
+  List of connected node identifiers
+  """
+  nodeIds: [ID!]!
+
+  """
+  A list of nodes.
+  """
+  nodes: [ListType]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total # of objects returned from query
+  """
+  totalCount: Int!
+
+  """
+  Total # of pages, based on total count and pagesize
+  """
+  totalPageCount: Int!
+}
+
+"""
+An edge in a connection.
+"""
+type ListEdgeType {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: ListType
+}
+
+"""
+Delete list item type
+"""
+type ListItemDelete {
+  """
+  ID
+  """
+  deletedListItemId: ID!
+}
+
+"""
+Input for removing the movie from the list
+"""
+input ListRemoveItemInput {
+  """
+  List id
+  """
+  listId: ID!
+
+  """
+  Movie id
+  """
+  movieId: ID!
+}
+
+"""
+List type
+"""
+type ListType {
+  """
+  Description
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Movies in list
+  """
+  items: [MovieType!]!
+
+  """
+  Name
+  """
+  name: String!
+}
+
+"""
+The connection type for MovieType.
+"""
+type MovieConnectionType {
+  """
+  Number of current page
+  """
+  currentPage: Int!
+
+  """
+  A list of edges.
+  """
+  edges: [MovieEdgeType]
+
+  """
+  List of connected node identifiers
+  """
+  nodeIds: [ID!]!
+
+  """
+  A list of nodes.
+  """
+  nodes: [MovieType]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total # of objects returned from query
+  """
+  totalCount: Int!
+
+  """
+  Total # of pages, based on total count and pagesize
+  """
+  totalPageCount: Int!
+}
+
+"""
+An edge in a connection.
+"""
+type MovieEdgeType {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: MovieType
+}
+
+"""
+Movie image type
+"""
+type MovieImageType implements ImageInterface {
+  """
+  Image file path
+  """
+  filePath: String
+}
+
+"""
+Inptut for movie ordering
+"""
+input MovieOrderingInput {
+  """
+  Direction of sorting. Can be ASC or DESC
+  """
+  direction: DirectionEnum!
+
+  """
+  Movie field sort by
+  """
+  sort: MovieSortEnum!
+}
+
+"""
+Order field enum
+"""
+enum MovieSortEnum {
+  """
+  Order by title
+  """
+  TITLE
+}
+
+"""
+Movie type
+"""
+type MovieType implements NodeInterface {
+  """
+  Movie's budget
+  """
+  budget: Int
+
+  """
+  Globally unique identifier
+  """
+  id: ID!
+
+  """
+  Movie's images
+  """
+  images: [MovieImageType!]
+
+  """
+  Original movie original_language
+  """
+  originalLanguage: String
+
+  """
+  Original movie original_title
+  """
+  originalTitle: String
+
+  """
+  Movie's overview
+  """
+  overview: String
+
+  """
+  Movie's poster image
+  """
+  poster: PosterType
+
+  """
+  Movie's revenue
+  """
+  revenue: Int
+
+  """
+  Movie's runtime in seconds
+  """
+  runtime: Int
+
+  """
+  Movie's title
+  """
+  title: String!
+}
+
+type Mutation {
+  """
+  Updating current access token with refresh token
+  """
+  refreshToken: RefreshedAccessPayloadType!
+
+  """
+  Add movie to favorite
+  """
+  userAddFavoriteMovie(input: UserAddFavoriteMovieInput!): MovieType!
+
+  """
+  Add movie to watchlist
+  """
+  userAddWatchlistMovie(input: UserAddWatchlistMovieInput!): MovieType!
+
+  """
+  Create new list for User
+  """
+  userCreateList(input: UserCreateListInput!): UserAccountType!
+
+  """
+  Remove the list from user
+  """
+  userDeleteList(input: DeleteInput!): DeleteListType!
+
+  """
+  Add the new movie to the current user's list
+  """
+  userListAddItem(input: ListAddItemInput!): ListType!
+
+  """
+  Remove the movie from the current user's list
+  """
+  userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
+
+  """
+  Sign in a user
+  """
+  userSignIn(input: UserSignInInput!): AuthTokenType!
+
+  """
+  Sign out a user
+  """
+  userSignOut: SignOutType
+
+  """
+  Sign up a user
+  """
+  userSignUp(input: UserSignUpInput!): AuthTokenType!
+}
+
+"""
+An object with an ID to support global identification
+"""
+interface Node {
+  """
+  Globally unique identifier
+  """
+  id: ID!
+}
+
+"""
+An object with an ID to support global identification
+"""
+interface NodeInterface {
+  """
+  Globally unique identifier
+  """
+  id: ID!
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+}
+
+"""
+Movie poster type
+"""
+type PosterType implements ImageInterface {
+  """
+  Image file path
+  """
+  filePath: String
+}
+
+type Query {
+  """
+  Get current user
+  """
+  me: UserAccountType!
+
+  """
+  Query to get the movie by id
+  """
+  movie(id: ID!): MovieType!
+
+  """
+  Query to search movies by title
+  """
+  moviesSearch(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+    filter: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): MovieConnectionType!
+}
+
+"""
+Payload with refreshed access tokens
+"""
+type RefreshedAccessPayloadType {
+  """
+  JWT access token
+  """
+  access: String!
+
+  """
+  Expiration of access tokens
+  """
+  accessExpiresAt: String!
+
+  """
+  Token for signed cookies
+  """
+  csrf: String!
+}
+
+"""
+User sign out
+"""
+type SignOutType {
+  """
+  will return true if the user log out
+  """
+  completed: Boolean
+}
+
+"""
+User account
+"""
+type UserAccountType implements Node {
+  """
+  Email of user account
+  """
+  email: String!
+
+  """
+  User account's favorite movies
+  """
+  favoriteMoviesList(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+    orderBy: MovieOrderingInput
+  ): MovieConnectionType!
+
+  """
+  Globally unique identifier
+  """
+  id: ID!
+
+  """
+  User account's movie lists
+  """
+  lists(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): ListConnectionType!
+
+  """
+  User account's profile
+  """
+  userProfile: UserProfileType
+
+  """
+  User account's watchlist movies
+  """
+  watchlistMoviesList(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): MovieConnectionType!
+}
+
+"""
+Add movie to favorite input
+"""
+input UserAddFavoriteMovieInput {
+  """
+  ID of movie to add
+  """
+  movieId: ID!
+
+  """
+  ID of user to which favorite movie is added
+  """
+  userAccountId: ID!
+}
+
+"""
+Add movie to watchlist input
+"""
+input UserAddWatchlistMovieInput {
+  """
+  ID of movie to add
+  """
+  movieId: ID!
+
+  """
+  ID of user to which watchlist movie is added
+  """
+  userAccountId: ID!
+}
+
+"""
+Input for creating new User's list
+"""
+input UserCreateListInput {
+  """
+  Description of the new list
+  """
+  description: String
+
+  """
+  Name of the new list
+  """
+  name: String!
+}
+
+"""
+User profile
+"""
+type UserProfileType implements Node {
+  """
+  User's first name
+  """
+  firstName: String!
+
+  """
+  User's full name
+  """
+  fullName: String!
+
+  """
+  Globally unique identifier
+  """
+  id: ID!
+
+  """
+  User's last name
+  """
+  lastName: String!
+}
+
+"""
+Sign in user via email
+"""
+input UserSignInInput {
+  """
+  User's account email
+  """
+  email: String!
+
+  """
+  User's account password
+  """
+  password: String!
+}
+
+"""
+Sign up user via email
+"""
+input UserSignUpInput {
+  """
+  User's account email
+  """
+  email: String!
+
+  """
+  User's first name
+  """
+  firstName: String!
+
+  """
+  User's last name
+  """
+  lastName: String!
+
+  """
+  User's account password
+  """
+  password: String!
+
+  """
+  User's account password confirmation
+  """
+  passwordConfirmation: String!
+}

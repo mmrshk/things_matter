@@ -1,0 +1,8 @@
+en:
+  graphql:
+    errors:
+      messages:
+        not_found: Node not found
+        not_authorized: Not authorized
+        not_authenticated: Not authenticated
+        user_input: Validation error

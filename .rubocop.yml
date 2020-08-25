@@ -1,0 +1,58 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+
+Lint/UnreachableCode:
+  Exclude:
+    - 'app/concepts/**/*.rb'    
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/concepts/**/*'
+    - 'spec/requests/**/*'
+    - 'spec/factories/**/*'
+    - 'app/graphql/errors.rb'
+    - 'app/graphql/graphql_meetup_schema.rb'
+    - 'config/environments/*'
+    - 'spec/support/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'spec/support/graphql/mutation_helpers/*'
+    - 'spec/support/graphql/query_helpers/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: nested
+  SupportedStyles:
+    - nested
+    - compact
+
+Style/Documentation:
+  Enabled: false
+
+Style/SignalException:
+  Exclude:
+    - 'app/concepts/**/*'
+
+# RSpec cops
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/concepts/**/*'
+    - 'spec/requests/**/*'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/concepts/**/*'
+    - 'spec/requests/**/*'
