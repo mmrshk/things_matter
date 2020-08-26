@@ -7,6 +7,9 @@ en:
           id: ID
           uuid: UUID
       user:
+        area:
+          create:
+            desc: Add Area to current user's areas
         sign_up:
           desc: Sign up a user
         sign_out:
@@ -32,4 +35,3 @@ en:
       auth:
         refresh_token:
           desc: Updating current access token with refresh token
-      

@@ -19,6 +19,18 @@ module Types
           null: true,
           description: I18n.t("#{I18N_PATH}.fields.user_profile")
 
+    field :task_areas,
+          [Types::AreaType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.task_areas")
+
+    field :note_areas,
+          [Types::AreaType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.note_areas")
+
+    # REDUNDUNT
+
     field :lists,
           resolver: Resolvers::Lists,
           connection: true,
@@ -33,5 +45,21 @@ module Types
           connection: true,
           resolver: Resolvers::WatchlistMovies,
           description: I18n.t("#{I18N_PATH}.fields.watchlist_movies_list")
+
+    def task_areas
+      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_account_ids, loader|
+        TaskArea.where(user_account_id: user_account_ids).each do |area|
+          loader.call(object.id) { |memo| memo << area }
+        end
+      end
+    end
+
+    def note_areas
+      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_account_ids, loader|
+        NoteArea.where(user_account_id: user_account_ids).each do |area|
+          loader.call(object.id) { |memo| memo << area }
+        end
+      end
+    end
   end
 end

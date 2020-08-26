@@ -8,7 +8,7 @@ module User::Movie
       property :user_account_id
       property :movie_id
 
-      validation :default do
+      validation do
         configure do
           option :form
 

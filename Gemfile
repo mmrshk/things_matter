@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.5'
 
 gem 'bcrypt', '~> 3.1.13'
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -15,6 +15,9 @@ gem 'batch-loader'
 gem 'graphql', '1.9.14'
 gem 'graphql-errors'
 gem 'rack-cors'
+
+# Authorization
+gem 'action_policy-graphql', '~> 0.1'
 
 # business logic
 gem 'trailblazer', '2.1.0.rc1'

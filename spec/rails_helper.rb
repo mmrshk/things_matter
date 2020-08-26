@@ -24,6 +24,7 @@ RSpec.configure do |config|
   config.include GraphQL::RequestHelpers, type: :request
   config.include GraphQL::MutationHelpers, type: :request
   config.include GraphQL::QueryHelpers, type: :request
+  config.include SessionHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

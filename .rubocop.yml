@@ -9,9 +9,13 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/*'
 
+Naming/MethodName:
+  Exclude:
+    - 'lib/macro/**/*.rb'
+
 Lint/UnreachableCode:
   Exclude:
-    - 'app/concepts/**/*.rb'    
+    - 'app/concepts/**/*.rb'
 
 Metrics/BlockLength:
   Exclude:

@@ -7,7 +7,7 @@ module UserAuth::Contract
     property :email, virtual: true
     property :password, virtual: true
 
-    validation :default do
+    validation do
       required(:email).filled(
         :str?, max_size?: Constants::STRING_MAX_LENGTH,
                format?: URI::MailTo::EMAIL_REGEXP

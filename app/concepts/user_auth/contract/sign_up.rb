@@ -10,7 +10,7 @@ module UserAuth::Contract
     property :password
     property :password_confirmation
 
-    validation :default do
+    validation do
       configure do
         def unique_user_account_email?(email)
           !UserAccount.exists?(email: email)

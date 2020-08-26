@@ -4,6 +4,14 @@ module GraphQL
   module RequestHelpers
     include ActionDispatch::Integration::RequestHelpers
 
+    def authorized_graphql_post(query:, variables: {}, auth_token:, headers: {})
+      graphql_post(
+        query: query,
+        variables: variables,
+        headers: headers.merge('Authorization': "Bearer #{auth_token}")
+      )
+    end
+
     def graphql_post(query:, variables: {}, headers: nil, **kwargs)
       post(
         '/graphql',

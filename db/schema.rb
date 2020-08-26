@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_14_170123) do
+ActiveRecord::Schema.define(version: 2020_08_25_150331) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,56 +38,61 @@ ActiveRecord::Schema.define(version: 2020_03_14_170123) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "favorite_movies", force: :cascade do |t|
+  create_table "areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "type", null: false
+    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_account_id", null: false
-    t.bigint "movie_id", null: false
-    t.index ["movie_id"], name: "index_favorite_movies_on_movie_id"
-    t.index ["user_account_id", "movie_id"], name: "index_favorite_movies_on_user_account_id_and_movie_id", unique: true
-    t.index ["user_account_id"], name: "index_favorite_movies_on_user_account_id"
+    t.index ["user_account_id"], name: "index_areas_on_user_account_id"
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "description"
-    t.string "name", null: false
-    t.bigint "user_account_id"
+  create_table "notes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "default", default: false
+    t.uuid "areas_id"
+    t.uuid "projects_id"
+    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name", "user_account_id"], name: "index_lists_on_name_and_user_account_id", unique: true
-    t.index ["user_account_id"], name: "index_lists_on_user_account_id"
+    t.index ["areas_id"], name: "index_notes_on_areas_id"
+    t.index ["projects_id"], name: "index_notes_on_projects_id"
+    t.index ["user_account_id"], name: "index_notes_on_user_account_id"
   end
 
-  create_table "lists_movies", force: :cascade do |t|
-    t.bigint "list_id"
-    t.bigint "movie_id"
+  create_table "projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.datetime "deadline"
+    t.string "type", null: false
+    t.uuid "area_id"
+    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["list_id", "movie_id"], name: "index_lists_movies_on_list_id_and_movie_id", unique: true
-    t.index ["list_id"], name: "index_lists_movies_on_list_id"
-    t.index ["movie_id"], name: "index_lists_movies_on_movie_id"
+    t.index ["area_id"], name: "index_projects_on_area_id"
+    t.index ["user_account_id"], name: "index_projects_on_user_account_id"
   end
 
-  create_table "movie_images", force: :cascade do |t|
+  create_table "schema_extensions", force: :cascade do |t|
+  end
+
+  create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "done", default: false
+    t.boolean "deleted", default: false
+    t.datetime "deadline"
+    t.datetime "to_do_day"
+    t.uuid "areas_id"
+    t.uuid "projects_id"
+    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "movie_id", null: false
-    t.index ["movie_id"], name: "index_movie_images_on_movie_id"
+    t.index ["areas_id"], name: "index_tasks_on_areas_id"
+    t.index ["projects_id"], name: "index_tasks_on_projects_id"
+    t.index ["user_account_id"], name: "index_tasks_on_user_account_id"
   end
 
-  create_table "movies", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "original_title"
-    t.string "overview"
-    t.integer "revenue"
-    t.integer "budget"
-    t.integer "runtime"
-    t.string "original_language"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_accounts", force: :cascade do |t|
+  create_table "user_accounts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -93,33 +100,24 @@ ActiveRecord::Schema.define(version: 2020_03_14_170123) do
     t.index ["email"], name: "index_user_accounts_on_email", unique: true
   end
 
-  create_table "user_profiles", force: :cascade do |t|
+  create_table "user_profiles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_account_id", null: false
+    t.uuid "user_account_id", null: false
     t.index ["user_account_id"], name: "index_user_profiles_on_user_account_id"
   end
 
-  create_table "watchlist_movies", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_account_id", null: false
-    t.bigint "movie_id", null: false
-    t.index ["movie_id"], name: "index_watchlist_movies_on_movie_id"
-    t.index ["user_account_id", "movie_id"], name: "index_watchlist_movies_on_user_account_id_and_movie_id", unique: true
-    t.index ["user_account_id"], name: "index_watchlist_movies_on_user_account_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorite_movies", "movies"
-  add_foreign_key "favorite_movies", "user_accounts"
-  add_foreign_key "lists", "user_accounts"
-  add_foreign_key "lists_movies", "lists"
-  add_foreign_key "lists_movies", "movies"
-  add_foreign_key "movie_images", "movies"
+  add_foreign_key "areas", "user_accounts"
+  add_foreign_key "notes", "areas", column: "areas_id"
+  add_foreign_key "notes", "projects", column: "projects_id"
+  add_foreign_key "notes", "user_accounts"
+  add_foreign_key "projects", "areas"
+  add_foreign_key "projects", "user_accounts"
+  add_foreign_key "tasks", "areas", column: "areas_id"
+  add_foreign_key "tasks", "projects", column: "projects_id"
+  add_foreign_key "tasks", "user_accounts"
   add_foreign_key "user_profiles", "user_accounts"
-  add_foreign_key "watchlist_movies", "movies"
-  add_foreign_key "watchlist_movies", "user_accounts"
 end

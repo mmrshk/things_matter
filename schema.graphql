@@ -1,4 +1,54 @@
 """
+Input for creating area
+"""
+input AreaCreateInput {
+  """
+  Area name (not required)
+  """
+  name: String
+
+  """
+  Type of Area (note, task)
+  """
+  type: AreaTypeEnum!
+}
+
+"""
+Area type
+"""
+type AreaType {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Area name
+  """
+  name: String
+
+  """
+  Area type (notes, tasks)
+  """
+  type: String
+}
+
+"""
+Area type enum
+"""
+enum AreaTypeEnum {
+  """
+  Note area
+  """
+  NOTE_AREA
+
+  """
+  Task area
+  """
+  TASK_AREA
+}
+
+"""
 Auth token provider
 """
 type AuthTokenType {
@@ -345,6 +395,11 @@ type Mutation {
   userAddWatchlistMovie(input: UserAddWatchlistMovieInput!): MovieType!
 
   """
+  Add Area to current user's areas
+  """
+  userAreaCreate(input: AreaCreateInput!): UserAccountType!
+
+  """
   Create new list for User
   """
   userCreateList(input: UserCreateListInput!): UserAccountType!
@@ -567,6 +622,16 @@ type UserAccountType implements Node {
     """
     last: Int
   ): ListConnectionType!
+
+  """
+  User account's note areas
+  """
+  noteAreas: [AreaType!]!
+
+  """
+  User account's task areas
+  """
+  taskAreas: [AreaType!]!
 
   """
   User account's profile
