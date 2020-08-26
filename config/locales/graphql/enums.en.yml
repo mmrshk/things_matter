@@ -1,6 +1,11 @@
 en:
   graphql:
     enums:
+      area_type_enum:
+        desc: Area type enum
+        values:
+          note_area: Note area
+          task_area: Task area
       direction_enum:
         desc: Order direction enum
         values:

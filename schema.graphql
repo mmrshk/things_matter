@@ -14,7 +14,7 @@ input AreaCreateInput {
 }
 
 """
-translation missing: en.graphql.types.area_type.desc
+Area type
 """
 type AreaType {
   """
@@ -23,27 +23,27 @@ type AreaType {
   id: ID!
 
   """
-  translation missing: en.graphql.types.area_type.fields.name
+  Area name
   """
   name: String
 
   """
-  translation missing: en.graphql.types.area_type.fields.name
+  Area type (notes, tasks)
   """
   type: String
 }
 
 """
-translation missing: en.graphql.enums.area_type_enum.desc
+Area type enum
 """
 enum AreaTypeEnum {
   """
-  translation missing: en.graphql.enums.area_type_enum.values.note_area
+  Note area
   """
   NOTE_AREA
 
   """
-  translation missing: en.graphql.enums.area_type_enum.values.task_area
+  Task area
   """
   TASK_AREA
 }
@@ -624,12 +624,12 @@ type UserAccountType implements Node {
   ): ListConnectionType!
 
   """
-  translation missing: en.graphql.types.user_account_type.fields.note_areas
+  User account's note areas
   """
   noteAreas: [AreaType!]!
 
   """
-  translation missing: en.graphql.types.user_account_type.fields.task_areas
+  User account's task areas
   """
   taskAreas: [AreaType!]!
 

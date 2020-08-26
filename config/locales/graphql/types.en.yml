@@ -1,6 +1,11 @@
 en:
   graphql:
     types:
+      area_type:
+        desc: Area type
+        fields:
+          name: Area name
+          type: Area type (notes, tasks)
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"
@@ -28,6 +33,8 @@ en:
           lists: User account's movie lists
           favorite_movies_list: User account's favorite movies
           watchlist_movies_list: User account's watchlist movies
+          note_areas: User account's note areas
+          task_areas: User account's task areas
       user_profile_type:
         desc: User profile
         fields:
