@@ -17,5 +17,10 @@ module Types
     field :user_list_remove_item, mutation: Mutations::User::List::RemoveItem
     field :user_create_list, mutation: Mutations::User::List::Create
     field :user_delete_list, mutation: Mutations::User::List::Delete
+
+    # areas mutations
+    field :user_area_create, mutation: Mutations::User::Area::Create
+    # field :user_area_delete, mutation: Mutations::User::Area::Delete
+    # field :user_area_update, mutation: Mutations::User::Area::Update
   end
 end

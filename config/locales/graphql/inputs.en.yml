@@ -2,6 +2,11 @@ en:
   graphql:
     inputs:
       user:
+        area_create_input:
+          desc: Input for creating area
+          args:
+            name: Area name (not required)
+            type: Type of Area (note, task)
         sign_up_input:
           desc: Sign up user via email
           args:

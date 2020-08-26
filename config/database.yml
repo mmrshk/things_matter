@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: graphql_meetup_development
+  database: things_matter_development
 
 test:
   <<: *default
-  database: graphql_meetup_test
+  database: things_matter_test
 
 production:
   <<: *default
-  database: graphql_meetup_production
-  username: graphql_meetup
+  database: things_matter_production
+  username: things_matter
   password: <%= ENV['GRAPHQL_MEETUP_DATABASE_PASSWORD'] %>

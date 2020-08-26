@@ -4,12 +4,12 @@
 #
 # Table name: user_profiles
 #
-#  id              :bigint           not null, primary key
+#  id              :uuid             not null, primary key
 #  first_name      :string           not null
 #  last_name       :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  user_account_id :bigint           not null
+#  user_account_id :uuid             not null
 #
 
 FactoryBot.define do
