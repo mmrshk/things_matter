@@ -8,7 +8,7 @@ module Api::V1
 
         property :name
 
-        validation :default do
+        validation do
           optional(:name).maybe(:str?)
         end
       end

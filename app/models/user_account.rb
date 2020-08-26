@@ -16,5 +16,12 @@ class UserAccount < ApplicationRecord
 
   has_one :user_profile, dependent: :destroy
 
-  has_many :areas
+  has_many :task_areas, dependent: :destroy
+  has_many :note_areas, dependent: :destroy
+
+  has_many :task_projects, dependent: :destroy
+  has_many :note_projects, dependent: :destroy
+
+  has_many :tasks, dependent: :destroy
+  has_many :notes, dependent: :destroy
 end

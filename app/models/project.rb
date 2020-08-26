@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: projects
@@ -12,8 +14,8 @@
 #
 
 class Project < ApplicationRecord
-  has_one :user_account
+  belongs_to :user_account
+  belongs_to :area
 
-  has_many :areas
   has_many :tasks, dependent: :destroy
 end

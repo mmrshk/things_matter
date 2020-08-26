@@ -8,7 +8,7 @@ module User::List
       property :list_id
       property :movie_id
 
-      validation :default do
+      validation do
         configure do
           option :form
 

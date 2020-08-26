@@ -8,7 +8,7 @@ module User::List
       property :name
       property :description
 
-      validation :default do
+      validation do
         configure do
           option :form
 

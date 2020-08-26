@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tasks
@@ -17,7 +19,7 @@
 #
 
 class Task < ApplicationRecord
-  has_one :user_account
+  belongs_to :user_account
 
   belongs_to :area
   belongs_to :project

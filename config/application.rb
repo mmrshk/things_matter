@@ -43,3 +43,7 @@ module GraphQLMeetup
     config.eager_load_paths << Rails.root.join('lib')
   end
 end
+
+# Trailblazers Macroses not loaded via Zeitwerk
+
+Rails.autoloaders.main.ignore(Rails.root.join('lib', 'macro', '**', '*.rb'))

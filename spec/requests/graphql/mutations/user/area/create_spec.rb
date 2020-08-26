@@ -2,7 +2,7 @@
 
 describe 'mutation userAreaCreate', type: :request do
   let(:user_account) { create(:user_account) }
-  let(:token) { generate_token(account_id: user_account.id )}
+  let(:token) { generate_token(account_id: user_account.id) }
   let(:name) { FFaker::Lorem.word }
   let(:variables) { { input: { name: name, type: 'TASK_AREA' } } }
 
@@ -36,7 +36,9 @@ describe 'mutation userAreaCreate', type: :request do
     end
 
     context 'when raise ActiveRecord::ActiveRecordError' do
+      # rubocop:disable RSpec/AnyInstance
       before { allow_any_instance_of(TaskArea).to receive(:save).and_raise(ActiveRecord::ActiveRecordError) }
+      # rubocop:enable RSpec/AnyInstance
 
       it 'returns execution error data' do
         authorized_graphql_post(

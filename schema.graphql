@@ -1,4 +1,54 @@
 """
+Input for creating area
+"""
+input AreaCreateInput {
+  """
+  Area name (not required)
+  """
+  name: String
+
+  """
+  Type of Area (note, task)
+  """
+  type: AreaTypeEnum!
+}
+
+"""
+translation missing: en.graphql.types.area_type.desc
+"""
+type AreaType {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  translation missing: en.graphql.types.area_type.fields.name
+  """
+  name: String
+
+  """
+  translation missing: en.graphql.types.area_type.fields.name
+  """
+  type: String
+}
+
+"""
+translation missing: en.graphql.enums.area_type_enum.desc
+"""
+enum AreaTypeEnum {
+  """
+  translation missing: en.graphql.enums.area_type_enum.values.note_area
+  """
+  NOTE_AREA
+
+  """
+  translation missing: en.graphql.enums.area_type_enum.values.task_area
+  """
+  TASK_AREA
+}
+
+"""
 Auth token provider
 """
 type AuthTokenType {
@@ -345,6 +395,11 @@ type Mutation {
   userAddWatchlistMovie(input: UserAddWatchlistMovieInput!): MovieType!
 
   """
+  Add Area to current user's areas
+  """
+  userAreaCreate(input: AreaCreateInput!): UserAccountType!
+
+  """
   Create new list for User
   """
   userCreateList(input: UserCreateListInput!): UserAccountType!
@@ -567,6 +622,16 @@ type UserAccountType implements Node {
     """
     last: Int
   ): ListConnectionType!
+
+  """
+  translation missing: en.graphql.types.user_account_type.fields.note_areas
+  """
+  noteAreas: [AreaType!]!
+
+  """
+  translation missing: en.graphql.types.user_account_type.fields.task_areas
+  """
+  taskAreas: [AreaType!]!
 
   """
   User account's profile

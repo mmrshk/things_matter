@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notes
@@ -14,7 +16,7 @@
 #
 
 class Note < ApplicationRecord
-  has_one :user_account
+  belongs_to :user_account
 
   belongs_to :area
   belongs_to :project

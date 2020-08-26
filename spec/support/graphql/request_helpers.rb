@@ -8,7 +8,7 @@ module GraphQL
       graphql_post(
         query: query,
         variables: variables,
-        headers: headers.merge({ 'Authorization': "Bearer #{auth_token}" })
+        headers: headers.merge('Authorization': "Bearer #{auth_token}")
       )
     end
 
