@@ -29,5 +29,15 @@ module GraphQL
         }
       )
     end
+
+    def user_area_delete_mutation
+      %(
+        mutation userAreaDelete($input: DeleteInput!) {
+          userAreaDelete(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end

@@ -5,8 +5,8 @@ x-app: &app
     context: .
     dockerfile: ./docker/Dockerfile
     args:
-      RUBY_VERSION: '2.6.3'
-      BUNDLER_VERSION: '2.0.2'
+      RUBY_VERSION: '2.6.5'
+      BUNDLER_VERSION: '2.1.4'
       PG_MAJOR: '11'
       NODE_MAJOR: '12'
       YARN_VERSION: '1.19.2-1'

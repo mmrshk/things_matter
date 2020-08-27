@@ -5,8 +5,8 @@ class CreateNotes < ActiveRecord::Migration[6.0]
       t.text :description
       t.boolean :default, default: false
 
-      t.belongs_to :areas, type: :uuid, foreign_key: true, null: true
-      t.belongs_to :projects, type: :uuid, foreign_key: true, null: true
+      t.belongs_to :area, type: :uuid, foreign_key: true, null: true
+      t.belongs_to :project, type: :uuid, foreign_key: true, null: true
       t.belongs_to :user_account, type: :uuid, foreign_key: true, index: true
 
       t.timestamps

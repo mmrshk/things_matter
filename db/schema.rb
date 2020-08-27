@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.string "name"
     t.text "description"
     t.boolean "default", default: false
-    t.uuid "areas_id"
-    t.uuid "projects_id"
+    t.uuid "area_id"
+    t.uuid "project_id"
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["areas_id"], name: "index_notes_on_areas_id"
-    t.index ["projects_id"], name: "index_notes_on_projects_id"
+    t.index ["area_id"], name: "index_notes_on_area_id"
+    t.index ["project_id"], name: "index_notes_on_project_id"
     t.index ["user_account_id"], name: "index_notes_on_user_account_id"
   end
 
@@ -82,13 +82,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.boolean "deleted", default: false
     t.datetime "deadline"
     t.datetime "to_do_day"
-    t.uuid "areas_id"
-    t.uuid "projects_id"
+    t.uuid "area_id"
+    t.uuid "project_id"
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["areas_id"], name: "index_tasks_on_areas_id"
-    t.index ["projects_id"], name: "index_tasks_on_projects_id"
+    t.index ["area_id"], name: "index_tasks_on_area_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["user_account_id"], name: "index_tasks_on_user_account_id"
   end
 
@@ -111,13 +111,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "areas", "user_accounts"
-  add_foreign_key "notes", "areas", column: "areas_id"
-  add_foreign_key "notes", "projects", column: "projects_id"
+  add_foreign_key "notes", "areas"
+  add_foreign_key "notes", "projects"
   add_foreign_key "notes", "user_accounts"
   add_foreign_key "projects", "areas"
   add_foreign_key "projects", "user_accounts"
-  add_foreign_key "tasks", "areas", column: "areas_id"
-  add_foreign_key "tasks", "projects", column: "projects_id"
+  add_foreign_key "tasks", "areas"
+  add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "user_accounts"
   add_foreign_key "user_profiles", "user_accounts"
 end

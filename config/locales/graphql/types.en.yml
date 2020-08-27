@@ -12,6 +12,10 @@ en:
         total_page_count: "Total # of pages, based on total count and pagesize"
         current_page: 'Number of current page'
       common:
+        completition_status:
+          desc: Completition status
+          fields:
+            completed: Indicates if operation is successfully completed
         fields:
           id: ID
           created_at: Created at
