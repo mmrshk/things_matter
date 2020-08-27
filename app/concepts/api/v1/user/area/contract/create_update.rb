@@ -3,7 +3,7 @@
 module Api::V1
   module User::Area
     module Contract
-      class Create < Reform::Form
+      class CreateUpdate < Reform::Form
         feature Reform::Form::Dry
 
         property :name

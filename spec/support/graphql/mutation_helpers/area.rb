@@ -15,5 +15,19 @@ module GraphQL
         }
       )
     end
+
+    def user_area_update_mutation
+      %(
+        mutation userAreaUpdate($input: AreaUpdateInput!) {
+          userAreaUpdate(input: $input) {
+            email
+            taskAreas {
+              name
+              type
+            }
+          }
+        }
+      )
+    end
   end
 end
