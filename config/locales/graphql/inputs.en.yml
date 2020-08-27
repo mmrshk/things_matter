@@ -7,6 +7,10 @@ en:
           args:
             name: Area name (not required)
             type: Type of Area (note, task)
+        area_update_input:
+          desc: Input for updating area
+          args:
+            name: Area name (not required)
         sign_up_input:
           desc: Sign up user via email
           args:

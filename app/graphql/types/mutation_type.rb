@@ -20,7 +20,7 @@ module Types
 
     # areas mutations
     field :user_area_create, mutation: Mutations::User::Area::Create
+    field :user_area_update, mutation: Mutations::User::Area::Update
     # field :user_area_delete, mutation: Mutations::User::Area::Delete
-    # field :user_area_update, mutation: Mutations::User::Area::Update
   end
 end

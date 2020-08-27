@@ -49,6 +49,21 @@ enum AreaTypeEnum {
 }
 
 """
+Input for updating area
+"""
+input AreaUpdateInput {
+  """
+  translation missing: en.graphql.inputs.user.area_update_input.args.id
+  """
+  id: ID!
+
+  """
+  Area name (not required)
+  """
+  name: String
+}
+
+"""
 Auth token provider
 """
 type AuthTokenType {
@@ -398,6 +413,11 @@ type Mutation {
   Add Area to current user's areas
   """
   userAreaCreate(input: AreaCreateInput!): UserAccountType!
+
+  """
+  Update Area current user's area
+  """
+  userAreaUpdate(input: AreaUpdateInput!): UserAccountType!
 
   """
   Create new list for User
