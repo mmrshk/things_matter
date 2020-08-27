@@ -11,7 +11,9 @@ en:
           create:
             desc: Add Area to current user's areas
           update:
-            desc: Update Area current user's area
+            desc: Update current user's Area
+          delete:
+            desc: Delete current user's Area
         sign_up:
           desc: Sign up a user
         sign_out:

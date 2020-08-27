@@ -84,6 +84,16 @@ type AuthTokenType {
 }
 
 """
+Completition status
+"""
+type CompletionStatusType {
+  """
+  Indicates if operation is successfully completed
+  """
+  completed: Boolean!
+}
+
+"""
 Input for removing entity
 """
 input DeleteInput {
@@ -415,7 +425,12 @@ type Mutation {
   userAreaCreate(input: AreaCreateInput!): UserAccountType!
 
   """
-  Update Area current user's area
+  Delete current user's Area
+  """
+  userAreaDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
+  Update current user's Area
   """
   userAreaUpdate(input: AreaUpdateInput!): UserAccountType!
 
