@@ -53,7 +53,7 @@ Input for updating area
 """
 input AreaUpdateInput {
   """
-  translation missing: en.graphql.inputs.user.area_update_input.args.id
+  ID
   """
   id: ID!
 

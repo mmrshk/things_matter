@@ -1,6 +1,9 @@
 en:
   graphql:
     inputs:
+      common:
+        fields:
+          id: ID
       user:
         area_create_input:
           desc: Input for creating area

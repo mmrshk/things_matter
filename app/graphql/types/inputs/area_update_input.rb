@@ -9,7 +9,7 @@ module Types
 
       description I18n.t("#{I18N_PATH}.desc")
 
-      argument :id, ID, required: true, description: I18n.t("#{I18N_PATH}.args.id")
+      argument :id, ID, required: true, description: I18n.t('graphql.inputs.common.fields.id')
 
       argument :name,
                String,

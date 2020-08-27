@@ -10,7 +10,7 @@ describe Api::V1::User::Area::Operation::Update, type: :operation do
   let(:params) { { id: area.id, name: name } }
 
   context 'when user updates area' do
-    it 'updates NoteArea' do
+    it 'updates area' do
       expect { execute_operation && area.reload }.to change(area, :name).from(area.name).to(name)
     end
 
@@ -26,7 +26,7 @@ describe Api::V1::User::Area::Operation::Update, type: :operation do
   context 'when area id NOT exist' do
     let(:params) { { id: SecureRandom.uuid, name: name } }
 
-    it 'NOT updates NoteArea' do
+    it 'NOT updates area' do
       expect { execute_operation && area.reload }.not_to change(area, :name)
     end
 
@@ -38,7 +38,7 @@ describe Api::V1::User::Area::Operation::Update, type: :operation do
   context 'when user not authorized to action' do
     let(:area) { create(:area, type: 'TaskArea') }
 
-    it 'NOT updates NoteArea' do
+    it 'NOT updates area' do
       expect { execute_operation && area.reload }.not_to change(area, :name)
     end
 
