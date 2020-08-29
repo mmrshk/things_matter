@@ -5,7 +5,7 @@
 # Table name: tasks
 #
 #  id              :uuid             not null, primary key
-#  name            :string
+#  name            :string           default("")
 #  description     :text
 #  done            :boolean          default(FALSE)
 #  deleted         :boolean          default(FALSE)

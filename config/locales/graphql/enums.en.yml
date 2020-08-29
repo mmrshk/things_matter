@@ -6,6 +6,11 @@ en:
         values:
           note_area: Note area
           task_area: Task area
+      project_type_enum:
+        desc: Project type enum
+        values:
+          task_project: Task project
+          note_project: Note project
       direction_enum:
         desc: Order direction enum
         values:

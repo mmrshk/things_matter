@@ -5,6 +5,7 @@
 # Table name: projects
 #
 #  id              :uuid             not null, primary key
+#  name            :string           default("")
 #  deadline        :datetime
 #  type            :string           not null
 #  area_id         :uuid

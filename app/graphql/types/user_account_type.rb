@@ -29,25 +29,51 @@ module Types
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.note_areas")
 
+    field :task_projects,
+          [Types::ProjectType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.task_projects")
+
+    field :note_projects,
+          [Types::ProjectType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.note_projects")
+
     # REDUNDUNT
 
-    field :lists,
-          resolver: Resolvers::Lists,
-          connection: true,
-          description: I18n.t("#{I18N_PATH}.fields.lists")
+    # field :lists,
+    #       resolver: Resolvers::Lists,
+    #       connection: true,
+    #       description: I18n.t("#{I18N_PATH}.fields.lists")
+    #
+    # field :favorite_movies_list,
+    #       connection: true,
+    #       resolver: Resolvers::FavoriteMovies,
+    #       description: I18n.t("#{I18N_PATH}.fields.favorite_movies_list")
+    #
+    # field :watchlist_movies_list,
+    #       connection: true,
+    #       resolver: Resolvers::WatchlistMovies,
+    #       description: I18n.t("#{I18N_PATH}.fields.watchlist_movies_list")
 
-    field :favorite_movies_list,
-          connection: true,
-          resolver: Resolvers::FavoriteMovies,
-          description: I18n.t("#{I18N_PATH}.fields.favorite_movies_list")
+    def task_projects
+      BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |user_account_ids, loader|
+        TaskProject.where(user_account_id: user_account_ids).each do |project|
+          loader.call(object.id) { |memo| memo << project }
+        end
+      end
+    end
 
-    field :watchlist_movies_list,
-          connection: true,
-          resolver: Resolvers::WatchlistMovies,
-          description: I18n.t("#{I18N_PATH}.fields.watchlist_movies_list")
+    def note_projects
+      BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |user_account_ids, loader|
+        NoteProject.where(user_account_id: user_account_ids).each do |project|
+          loader.call(object.id) { |memo| memo << project }
+        end
+      end
+    end
 
     def task_areas
-      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_account_ids, loader|
+      BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |user_account_ids, loader|
         TaskArea.where(user_account_id: user_account_ids).each do |area|
           loader.call(object.id) { |memo| memo << area }
         end
@@ -55,7 +81,7 @@ module Types
     end
 
     def note_areas
-      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |user_account_ids, loader|
+      BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |user_account_ids, loader|
         NoteArea.where(user_account_id: user_account_ids).each do |area|
           loader.call(object.id) { |memo| memo << area }
         end

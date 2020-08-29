@@ -6,6 +6,13 @@ en:
         fields:
           name: Area name
           type: Area type (notes, tasks)
+          projects: Area projects
+      project_type:
+        desc: Proejct type
+        fields:
+          deadline: Project deadline
+          name: Project name
+          type: Project type (notes, tasks)
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"
@@ -39,6 +46,8 @@ en:
           watchlist_movies_list: User account's watchlist movies
           note_areas: User account's note areas
           task_areas: User account's task areas
+          task_projects: User account's task projects
+          note_projects: User account's note projects
       user_profile_type:
         desc: User profile
         fields:

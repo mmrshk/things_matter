@@ -14,6 +14,8 @@ en:
             desc: Update current user's Area
           delete:
             desc: Delete current user's Area
+        project:
+          create: Add Project to current user's projects
         sign_up:
           desc: Sign up a user
         sign_out:

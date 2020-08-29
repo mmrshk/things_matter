@@ -76,6 +76,12 @@ en:
 
     type?: "must be %{type}"
 
+    uuid_v4?: uuid not valid
+
+    valid_deadline?: "deadline time is incorrect"
+    area_belongs_to_user?: "area not belongs to user"
+    area_existence?: area doesn't exist
+
     size?:
       arg:
         default: "size must be %{size}"
