@@ -5,7 +5,7 @@
 # Table name: notes
 #
 #  id              :uuid             not null, primary key
-#  name            :string
+#  name            :string           default("")
 #  description     :text
 #  default         :boolean          default(FALSE)
 #  area_id         :uuid

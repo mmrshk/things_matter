@@ -22,5 +22,10 @@ module Types
     field :user_area_create, mutation: Mutations::User::Area::Create
     field :user_area_update, mutation: Mutations::User::Area::Update
     field :user_area_delete, mutation: Mutations::User::Area::Delete
+
+    # projects mutations
+    field :user_project_create, mutation: Mutations::User::Project::Create
+    # field :user_project_update, mutation: Mutations::User::Project::Update
+    # field :user_project_delete, mutation: Mutations::User::Project::Delete
   end
 end

@@ -28,6 +28,11 @@ type AreaType {
   name: String
 
   """
+  Movies in list
+  """
+  projects: [ProjectType!]!
+
+  """
   Area type (notes, tasks)
   """
   type: String
@@ -114,19 +119,9 @@ type DeleteListType {
 }
 
 """
-Order direction enum
+An ISO 8601-encoded datetime
 """
-enum DirectionEnum {
-  """
-  Ascending ordering
-  """
-  ASC
-
-  """
-  Descending ordering
-  """
-  DESC
-}
+scalar ISO8601DateTime
 
 """
 Interface for images
@@ -151,61 +146,6 @@ input ListAddItemInput {
   Movie id
   """
   movieId: ID!
-}
-
-"""
-The connection type for ListType.
-"""
-type ListConnectionType {
-  """
-  Number of current page
-  """
-  currentPage: Int!
-
-  """
-  A list of edges.
-  """
-  edges: [ListEdgeType]
-
-  """
-  List of connected node identifiers
-  """
-  nodeIds: [ID!]!
-
-  """
-  A list of nodes.
-  """
-  nodes: [ListType]
-
-  """
-  Information to aid in pagination.
-  """
-  pageInfo: PageInfo!
-
-  """
-  Total # of objects returned from query
-  """
-  totalCount: Int!
-
-  """
-  Total # of pages, based on total count and pagesize
-  """
-  totalPageCount: Int!
-}
-
-"""
-An edge in a connection.
-"""
-type ListEdgeType {
-  """
-  A cursor for use in pagination.
-  """
-  cursor: String!
-
-  """
-  The item at the end of the edge.
-  """
-  node: ListType
 }
 
 """
@@ -324,31 +264,6 @@ type MovieImageType implements ImageInterface {
 }
 
 """
-Inptut for movie ordering
-"""
-input MovieOrderingInput {
-  """
-  Direction of sorting. Can be ASC or DESC
-  """
-  direction: DirectionEnum!
-
-  """
-  Movie field sort by
-  """
-  sort: MovieSortEnum!
-}
-
-"""
-Order field enum
-"""
-enum MovieSortEnum {
-  """
-  Order by title
-  """
-  TITLE
-}
-
-"""
 Movie type
 """
 type MovieType implements NodeInterface {
@@ -455,6 +370,11 @@ type Mutation {
   userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
+  translation missing: en.graphql.mutations.user.project.create.desc
+  """
+  userProjectCreate(input: ProjectCreateInput!): UserAccountType!
+
+  """
   Sign in a user
   """
   userSignIn(input: UserSignInInput!): AuthTokenType!
@@ -523,6 +443,71 @@ type PosterType implements ImageInterface {
   Image file path
   """
   filePath: String
+}
+
+"""
+translation missing: en.graphql.inputs.user.project_create_input.desc
+"""
+input ProjectCreateInput {
+  """
+  translation missing: en.graphql.inputs.user.project_create_input.args.area_id
+  """
+  areaId: ID!
+
+  """
+  translation missing: en.graphql.inputs.user.project_create_input.args.deadline
+  """
+  deadline: ISO8601DateTime
+
+  """
+  translation missing: en.graphql.inputs.user.project_create_input.args.name
+  """
+  name: String
+
+  """
+  translation missing: en.graphql.inputs.user.project_create_input.args.deadline
+  """
+  type: ProjectTypeEnum!
+}
+
+"""
+translation missing: en.graphql.types.project_type.desc
+"""
+type ProjectType {
+  """
+  translation missing: en.graphql.types.project_typee.fields.deadline
+  """
+  deadline: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  translation missing: en.graphql.types.project_type.fields.name
+  """
+  name: String
+
+  """
+  translation missing: en.graphql.types.project_type.fields.type
+  """
+  type: String
+}
+
+"""
+translation missing: en.graphql.enums.project_type_enum.desc
+"""
+enum ProjectTypeEnum {
+  """
+  translation missing: en.graphql.enums.project_type_enum.values.note_project
+  """
+  NOTE_PROJECT
+
+  """
+  translation missing: en.graphql.enums.project_type_enum.values.task_project
+  """
+  TASK_PROJECT
 }
 
 type Query {
@@ -603,60 +588,9 @@ type UserAccountType implements Node {
   email: String!
 
   """
-  User account's favorite movies
-  """
-  favoriteMoviesList(
-    """
-    Returns the elements in the list that come after the specified cursor.
-    """
-    after: String
-
-    """
-    Returns the elements in the list that come before the specified cursor.
-    """
-    before: String
-
-    """
-    Returns the first _n_ elements from the list.
-    """
-    first: Int
-
-    """
-    Returns the last _n_ elements from the list.
-    """
-    last: Int
-    orderBy: MovieOrderingInput
-  ): MovieConnectionType!
-
-  """
   Globally unique identifier
   """
   id: ID!
-
-  """
-  User account's movie lists
-  """
-  lists(
-    """
-    Returns the elements in the list that come after the specified cursor.
-    """
-    after: String
-
-    """
-    Returns the elements in the list that come before the specified cursor.
-    """
-    before: String
-
-    """
-    Returns the first _n_ elements from the list.
-    """
-    first: Int
-
-    """
-    Returns the last _n_ elements from the list.
-    """
-    last: Int
-  ): ListConnectionType!
 
   """
   User account's note areas
@@ -664,39 +598,24 @@ type UserAccountType implements Node {
   noteAreas: [AreaType!]!
 
   """
+  translation missing: en.graphql.types.user_account_type.fields.note_projects
+  """
+  noteProjects: [ProjectType!]!
+
+  """
   User account's task areas
   """
   taskAreas: [AreaType!]!
 
   """
+  translation missing: en.graphql.types.user_account_type.fields.task_projects
+  """
+  taskProjects: [ProjectType!]!
+
+  """
   User account's profile
   """
   userProfile: UserProfileType
-
-  """
-  User account's watchlist movies
-  """
-  watchlistMoviesList(
-    """
-    Returns the elements in the list that come after the specified cursor.
-    """
-    after: String
-
-    """
-    Returns the elements in the list that come before the specified cursor.
-    """
-    before: String
-
-    """
-    Returns the first _n_ elements from the list.
-    """
-    first: Int
-
-    """
-    Returns the last _n_ elements from the list.
-    """
-    last: Int
-  ): MovieConnectionType!
 }
 
 """
