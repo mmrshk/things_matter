@@ -15,12 +15,12 @@ module Types
 
     field :name,
           String,
-          null: true,
+          null: false,
           description: I18n.t("#{I18N_PATH}.fields.name")
 
     field :type,
           String,
-          null: true,
+          null: false,
           description: I18n.t("#{I18N_PATH}.fields.type")
 
     field :deadline,
