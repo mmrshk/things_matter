@@ -24,7 +24,7 @@ module Types
     field :projects,
           [Types::ProjectType],
           null: false,
-          description: I18n.t('graphql.types.list_type.fields.items')
+          description: I18n.t('graphql.types.area_type.fields.projects')
 
     def projects
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |area_ids, loader|

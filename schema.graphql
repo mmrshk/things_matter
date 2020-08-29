@@ -28,7 +28,7 @@ type AreaType {
   name: String
 
   """
-  Movies in list
+  Area projects
   """
   projects: [ProjectType!]!
 
@@ -446,36 +446,36 @@ type PosterType implements ImageInterface {
 }
 
 """
-translation missing: en.graphql.inputs.user.project_create_input.desc
+Input for creating area
 """
 input ProjectCreateInput {
   """
-  translation missing: en.graphql.inputs.user.project_create_input.args.area_id
+  Area id (not required)
   """
   areaId: ID!
 
   """
-  translation missing: en.graphql.inputs.user.project_create_input.args.deadline
+  Deadline for project
   """
   deadline: ISO8601DateTime
 
   """
-  translation missing: en.graphql.inputs.user.project_create_input.args.name
+  Project name (not required)
   """
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.project_create_input.args.deadline
+  Deadline for project
   """
   type: ProjectTypeEnum!
 }
 
 """
-translation missing: en.graphql.types.project_type.desc
+Proejct type
 """
 type ProjectType {
   """
-  translation missing: en.graphql.types.project_typee.fields.deadline
+  Project deadline
   """
   deadline: ISO8601DateTime
 
@@ -485,27 +485,27 @@ type ProjectType {
   id: ID!
 
   """
-  translation missing: en.graphql.types.project_type.fields.name
+  Project name
   """
   name: String
 
   """
-  translation missing: en.graphql.types.project_type.fields.type
+  Project type (notes, tasks)
   """
   type: String
 }
 
 """
-translation missing: en.graphql.enums.project_type_enum.desc
+Project type enum
 """
 enum ProjectTypeEnum {
   """
-  translation missing: en.graphql.enums.project_type_enum.values.note_project
+  Note project
   """
   NOTE_PROJECT
 
   """
-  translation missing: en.graphql.enums.project_type_enum.values.task_project
+  Task project
   """
   TASK_PROJECT
 }
@@ -598,7 +598,7 @@ type UserAccountType implements Node {
   noteAreas: [AreaType!]!
 
   """
-  translation missing: en.graphql.types.user_account_type.fields.note_projects
+  User account's note projects
   """
   noteProjects: [ProjectType!]!
 
@@ -608,7 +608,7 @@ type UserAccountType implements Node {
   taskAreas: [AreaType!]!
 
   """
-  translation missing: en.graphql.types.user_account_type.fields.task_projects
+  User account's task projects
   """
   taskProjects: [ProjectType!]!
 

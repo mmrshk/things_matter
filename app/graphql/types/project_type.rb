@@ -26,7 +26,7 @@ module Types
     field :deadline,
           GraphQL::Types::ISO8601DateTime,
           null: true,
-          description: I18n.t("#{I18N_PATH}e.fields.deadline")
+          description: I18n.t("#{I18N_PATH}.fields.deadline")
 
 
     # field :tasks

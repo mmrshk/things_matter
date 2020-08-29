@@ -5,6 +5,13 @@ en:
         fields:
           id: ID
       user:
+        project_create_input:
+          desc: Input for creating area
+          args:
+            name: Project name (not required)
+            type: Type of Project (note, task)
+            area_id: Area id (not required)
+            deadline: Deadline for project
         area_create_input:
           desc: Input for creating area
           args:
