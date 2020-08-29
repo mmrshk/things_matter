@@ -452,7 +452,7 @@ input ProjectCreateInput {
   """
   Area id (not required)
   """
-  areaId: ID!
+  areaId: ID
 
   """
   Deadline for project
@@ -487,12 +487,12 @@ type ProjectType {
   """
   Project name
   """
-  name: String
+  name: String!
 
   """
   Project type (notes, tasks)
   """
-  type: String
+  type: String!
 }
 
 """

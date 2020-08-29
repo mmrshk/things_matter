@@ -26,7 +26,7 @@ module Types
 
       argument :area_id,
                ID,
-               required: true,
+               required: false,
                description: I18n.t("#{I18N_PATH}.args.area_id")
     end
   end
