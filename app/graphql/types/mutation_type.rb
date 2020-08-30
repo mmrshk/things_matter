@@ -25,7 +25,7 @@ module Types
 
     # projects mutations
     field :user_project_create, mutation: Mutations::User::Project::Create
-    # field :user_project_update, mutation: Mutations::User::Project::Update
+    field :user_project_update, mutation: Mutations::User::Project::Update
     # field :user_project_delete, mutation: Mutations::User::Project::Delete
   end
 end

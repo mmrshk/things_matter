@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Api::V1::User::Project::Contract::Create, type: :contract do
+describe Api::V1::User::Project::Contract::CreateUpdate, type: :contract do
   subject(:contract) do
     contract = described_class.new(Project.new)
     contract.validate(params)
@@ -32,6 +32,14 @@ describe Api::V1::User::Project::Contract::Create, type: :contract do
 
     context 'when WITHOUT area' do
       let(:params) { default_params.except(:area_id) }
+
+      it 'returns valid' do
+        expect(contract).to be_valid
+      end
+    end
+
+    context 'when area passed as nil' do
+      let(:params) { default_params.merge(area_id: nil) }
 
       it 'returns valid' do
         expect(contract).to be_valid

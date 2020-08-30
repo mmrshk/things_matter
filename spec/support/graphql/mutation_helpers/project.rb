@@ -16,5 +16,25 @@ module GraphQL
         }
       )
     end
+
+    def user_project_update_mutation
+      %(
+        mutation userProjectUpdate($input: ProjectUpdateInput!) {
+          userProjectUpdate(input: $input) {
+            email
+            taskProjects {
+              name
+              type
+              deadline
+            }
+            noteProjects {
+              name
+              type
+              deadline
+            }
+          }
+        }
+      )
+    end
   end
 end

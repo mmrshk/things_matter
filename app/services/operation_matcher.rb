@@ -28,7 +28,10 @@ OperationMatcher = Dry::Matcher.new(
     resolve: ->(result) { result }
   ),
   not_authorized: Dry::Matcher::Case.new(
-    match: ->(result) { result['result.policy.default'] && result['result.policy.default'].failure? },
+    match: lambda do |result|
+      result['result.policy.default'] && result['result.policy.default'].failure? ||
+        result['operation_status'] == :not_authorized
+    end,
     resolve: ->(result) { result }
   ),
   execution_error: Dry::Matcher::Case.new(

@@ -375,6 +375,11 @@ type Mutation {
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
 
   """
+  translation missing: en.graphql.mutations.user.project.update.desc
+  """
+  userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!
+
+  """
   Sign in a user
   """
   userSignIn(input: UserSignInInput!): AuthTokenType!
@@ -508,6 +513,31 @@ enum ProjectTypeEnum {
   Task project
   """
   TASK_PROJECT
+}
+
+"""
+Input for updating area
+"""
+input ProjectUpdateInput {
+  """
+  Area id (not required)
+  """
+  areaId: ID
+
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
 }
 
 type Query {
