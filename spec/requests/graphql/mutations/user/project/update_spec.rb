@@ -6,7 +6,7 @@ describe 'mutation userProjectUpdate', type: :request do
   let(:project) { create(:project, user_account: user_account) }
   let(:name) { FFaker::Lorem.word }
 
-  let(:another_area) { create(:area) }
+  let(:another_area) { create(:area, user_account: user_account) }
 
   let(:variables) { { input: { id: project.id, area_id: another_area.id, name: name } } }
 
