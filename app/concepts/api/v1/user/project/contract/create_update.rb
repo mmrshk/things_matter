@@ -3,12 +3,12 @@
 module Api::V1
   module User::Project
     module Contract
-      class Create < Reform::Form
+      class CreateUpdate < Reform::Form
         feature Reform::Form::Dry
 
         property :name
         property :deadline
-        property :area_id
+        property :area_id, empty: true
         property :user_account_id
 
         validation do

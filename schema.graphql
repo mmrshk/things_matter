@@ -370,9 +370,14 @@ type Mutation {
   userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
-  translation missing: en.graphql.mutations.user.project.create.desc
+  Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
+
+  """
+  Update current user's Project
+  """
+  userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!
 
   """
   Sign in a user
@@ -508,6 +513,31 @@ enum ProjectTypeEnum {
   Task project
   """
   TASK_PROJECT
+}
+
+"""
+Input for updating area
+"""
+input ProjectUpdateInput {
+  """
+  Area id (not required)
+  """
+  areaId: ID
+
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
 }
 
 type Query {

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: projects
@@ -13,10 +11,20 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+FactoryBot.define do
+  factory :project do
+    transient do
+      with_area { true }
+    end
 
-class Project < ApplicationRecord
-  belongs_to :user_account
-  belongs_to :area, optional: true
+    name { FFaker::Lorem.word }
+    type { 'TaskProject' }
+    deadline { Time.zone.now + 1.day }
 
-  has_many :tasks, dependent: :destroy
+    user_account
+
+    after(:build) do |project, evaluator|
+      project.area_id = create(:area, user_account: project.user_account).id if evaluator.with_area
+    end
+  end
 end
