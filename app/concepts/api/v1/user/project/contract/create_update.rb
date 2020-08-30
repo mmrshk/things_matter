@@ -15,8 +15,6 @@ module Api::V1
           configure do
             predicates(::CustomPredicates)
 
-            option :form
-
             def area_existence?(area_id)
               Area.exists?(id: area_id)
             end

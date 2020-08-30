@@ -17,11 +17,11 @@ FactoryBot.define do
       with_area { true }
     end
 
-    user_account
-
     name { FFaker::Lorem.word }
     type { 'TaskProject' }
     deadline { Time.zone.now + 1.day }
+
+    user_account
 
     after(:build) do |project, evaluator|
       project.area_id = create(:area, user_account: project.user_account).id if evaluator.with_area

@@ -23,7 +23,7 @@ describe Api::V1::User::Project::Operation::Update, type: :operation do
     end
   end
 
-  context 'when user updates project and removes area' do
+  context 'when user removes project from area' do
     let(:params) { { id: project.id, area_id: nil } }
 
     it 'updates project' do

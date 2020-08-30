@@ -11,7 +11,7 @@ describe 'mutation userProjectUpdate', type: :request do
   let(:variables) { { input: { id: project.id, area_id: another_area.id, name: name } } }
 
   context 'when success' do
-    it 'returns updated project of current_user' do
+    it 'returns updated project of current user' do
       authorized_graphql_post(
         query: user_project_update_mutation,
         variables: variables,

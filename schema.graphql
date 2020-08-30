@@ -370,12 +370,12 @@ type Mutation {
   userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
-  translation missing: en.graphql.mutations.user.project.create.desc
+  Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
 
   """
-  translation missing: en.graphql.mutations.user.project.update.desc
+  Update current user's Project
   """
   userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!
 
