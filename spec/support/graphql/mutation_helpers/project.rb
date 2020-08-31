@@ -36,5 +36,15 @@ module GraphQL
         }
       )
     end
+
+    def user_project_delete_mutation
+      %(
+        mutation userProjectDelete($input: DeleteInput!) {
+          userProjectDelete(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end
