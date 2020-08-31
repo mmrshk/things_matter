@@ -375,6 +375,11 @@ type Mutation {
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
 
   """
+  Delete current user's Project
+  """
+  userProjectDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
   Update current user's Project
   """
   userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!

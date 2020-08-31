@@ -19,6 +19,8 @@ en:
             desc: Add Project to current user's projects
           update:
             desc: Update current user's Project
+          delete:
+            desc: Delete current user's Project
         sign_up:
           desc: Sign up a user
         sign_out:
