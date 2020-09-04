@@ -17,6 +17,4 @@
 class Project < ApplicationRecord
   belongs_to :user_account
   belongs_to :area, optional: true
-
-  has_many :tasks, dependent: :destroy
 end

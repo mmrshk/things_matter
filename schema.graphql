@@ -370,6 +370,11 @@ type Mutation {
   userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
+  translation missing: en.graphql.mutations.user.note.create.desc
+  """
+  userNoteCreate(input: NoteCreateInput!): UserAccountType!
+
+  """
   Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
@@ -418,6 +423,56 @@ interface NodeInterface {
   Globally unique identifier
   """
   id: ID!
+}
+
+"""
+translation missing: en.graphql.inputs.user.note_create_input.desc
+"""
+input NoteCreateInput {
+  """
+  translation missing: en.graphql.inputs.user.note_create_input.args.default
+  """
+  default: Boolean!
+
+  """
+  translation missing: en.graphql.inputs.user.note_create_input.args.description
+  """
+  description: String
+
+  """
+  translation missing: en.graphql.inputs.user.note_create_input.args.name
+  """
+  name: String
+
+  """
+  translation missing: en.graphql.inputs.user.note_create_input.args.project_id
+  """
+  projectId: ID!
+}
+
+"""
+translation missing: en.graphql.types.note_type.desc
+"""
+type NoteType {
+  """
+  translation missing: en.graphql.types.note_type.note_type.fields.name
+  """
+  default: Boolean!
+
+  """
+  translation missing: en.graphql.types.note_type.note_type.fields.description
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  translation missing: en.graphql.types.note_type.note_type.fields.name
+  """
+  name: String!
 }
 
 """
@@ -498,6 +553,11 @@ type ProjectType {
   Project name
   """
   name: String!
+
+  """
+  translation missing: en.graphql.types.project_type.fields.notes
+  """
+  notes: [NoteType!]!
 
   """
   Project type (notes, tasks)

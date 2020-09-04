@@ -51,14 +51,10 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.string "name", default: ""
     t.text "description"
     t.boolean "default", default: false
-    t.uuid "area_id"
     t.uuid "project_id"
-    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["area_id"], name: "index_notes_on_area_id"
     t.index ["project_id"], name: "index_notes_on_project_id"
-    t.index ["user_account_id"], name: "index_notes_on_user_account_id"
   end
 
   create_table "projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -83,14 +79,10 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.boolean "deleted", default: false
     t.datetime "deadline"
     t.datetime "to_do_day"
-    t.uuid "area_id"
     t.uuid "project_id"
-    t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["area_id"], name: "index_tasks_on_area_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
-    t.index ["user_account_id"], name: "index_tasks_on_user_account_id"
   end
 
   create_table "user_accounts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -112,13 +104,9 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "areas", "user_accounts"
-  add_foreign_key "notes", "areas"
   add_foreign_key "notes", "projects"
-  add_foreign_key "notes", "user_accounts"
   add_foreign_key "projects", "areas"
   add_foreign_key "projects", "user_accounts"
-  add_foreign_key "tasks", "areas"
   add_foreign_key "tasks", "projects"
-  add_foreign_key "tasks", "user_accounts"
   add_foreign_key "user_profiles", "user_accounts"
 end

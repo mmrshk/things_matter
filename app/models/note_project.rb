@@ -14,4 +14,6 @@
 #  updated_at      :datetime         not null
 #
 
-class NoteProject < Project; end
+class NoteProject < Project
+  has_many :notes, dependent: :destroy
+end
