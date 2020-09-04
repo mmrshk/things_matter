@@ -5,7 +5,7 @@ module Shared
     class UpdateDefaultNote < Api::V1::ApplicationOperation
       step :update_note
 
-      def update_note(ctx, params:, **)
+      def update_note(_ctx, params:, **)
         return unless params[:default]
 
         default_note = Note.find_by(default: true)

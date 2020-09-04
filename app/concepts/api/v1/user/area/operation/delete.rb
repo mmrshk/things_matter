@@ -15,7 +15,7 @@ module Api::V1
         step :set_result
 
         def set_result(ctx, model:, **)
-          ctx['result'] = { completed: !!model.destroy }
+          ctx['result'] = { completed: !!model.destroy } # rubocop:disable Style/DoubleNegation
         end
       end
     end

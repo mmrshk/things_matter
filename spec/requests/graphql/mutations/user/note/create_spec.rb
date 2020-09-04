@@ -16,7 +16,7 @@ describe 'mutation userNoteCreate', type: :request do
         default: true,
         project_id: project.id
       }
-     }
+    }
   end
 
   context 'when success' do
