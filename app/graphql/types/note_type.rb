@@ -15,16 +15,16 @@ module Types
     field :description,
           String,
           null: true,
-          description: I18n.t("#{I18N_PATH}.note_type.fields.description")
+          description: I18n.t("#{I18N_PATH}.fields.description")
 
     field :name,
           String,
           null: false,
-          description: I18n.t("#{I18N_PATH}.note_type.fields.name")
+          description: I18n.t("#{I18N_PATH}.fields.name")
 
     field :default,
           Boolean,
           null: false,
-          description: I18n.t("#{I18N_PATH}.note_type.fields.name")
+          description: I18n.t("#{I18N_PATH}.fields.name")
   end
 end

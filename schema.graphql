@@ -455,12 +455,12 @@ Note type
 """
 type NoteType {
   """
-  translation missing: en.graphql.types.note_type.note_type.fields.name
+  translation missing: en.graphql.types.note_type.fields.name
   """
   default: Boolean!
 
   """
-  translation missing: en.graphql.types.note_type.note_type.fields.description
+  translation missing: en.graphql.types.note_type.fields.description
   """
   description: String
 
@@ -470,7 +470,7 @@ type NoteType {
   id: ID!
 
   """
-  translation missing: en.graphql.types.note_type.note_type.fields.name
+  translation missing: en.graphql.types.note_type.fields.name
   """
   name: String!
 }
