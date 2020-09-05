@@ -8,6 +8,8 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
+  let(:default_note) { create(:note, default: true) }
+
   let(:token) { generate_token(account_id: current_user.id) }
 
   let(:params) do
@@ -22,6 +24,10 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   context 'when user creates note' do
     it 'creates Note' do
       expect { execute_operation }.to change(Note, :count).from(0).to(1)
+    end
+
+    it 'changes previous default Note' do
+      expect { execute_operation && default_note.reload }.to change(default_note, :default).from(true).to(false)
     end
 
     it 'returns user_account' do

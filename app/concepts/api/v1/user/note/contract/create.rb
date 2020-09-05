@@ -22,8 +22,8 @@ module Api::V1
 
           optional(:name).maybe(:str?)
           optional(:description).maybe(:str?)
-          required(:default).filled(:bool?)
 
+          required(:default).filled(:bool?)
           required(:project_id).filled(:uuid_v4?, :project_existence?)
         end
       end
