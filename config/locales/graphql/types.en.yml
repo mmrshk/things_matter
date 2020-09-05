@@ -3,7 +3,7 @@ en:
     types:
       note_type:
         desc: Note type
-        feilds:
+        fields:
           name: Note name
           description: Note description
           default: Note default
