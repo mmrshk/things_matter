@@ -370,6 +370,11 @@ type Mutation {
   userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
+  Add Note to current user's project
+  """
+  userNoteCreate(input: NoteCreateInput!): UserAccountType!
+
+  """
   Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
@@ -418,6 +423,56 @@ interface NodeInterface {
   Globally unique identifier
   """
   id: ID!
+}
+
+"""
+Input for creating note
+"""
+input NoteCreateInput {
+  """
+  Note default (required)
+  """
+  default: Boolean!
+
+  """
+  Note description (not required)
+  """
+  description: String
+
+  """
+  Note name (not required)
+  """
+  name: String
+
+  """
+  Project id (required)
+  """
+  projectId: ID!
+}
+
+"""
+Note type
+"""
+type NoteType {
+  """
+  Note name
+  """
+  default: Boolean!
+
+  """
+  Note description
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Note name
+  """
+  name: String!
 }
 
 """
@@ -498,6 +553,11 @@ type ProjectType {
   Project name
   """
   name: String!
+
+  """
+  Project notes
+  """
+  notes: [NoteType!]!
 
   """
   Project type (notes, tasks)

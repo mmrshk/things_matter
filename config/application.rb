@@ -46,4 +46,4 @@ end
 
 # Trailblazers Macroses not loaded via Zeitwerk
 
-Rails.autoloaders.main.ignore(Rails.root.join('lib', 'macro', '**', '*.rb'))
+Rails.autoloaders.main.ignore(Rails.root.join('lib/macro/**/*.rb'))

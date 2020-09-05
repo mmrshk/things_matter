@@ -52,7 +52,7 @@ describe Api::V1::User::Project::Contract::CreateUpdate, type: :contract do
       let(:params) { default_params.merge(area_id: SecureRandom.uuid) }
       let(:expected_errors) do
         {
-          area_id: [ I18n.t('errors.area_existence?') ]
+          area_id: [I18n.t('errors.area_existence?')]
         }
       end
 
@@ -69,7 +69,7 @@ describe Api::V1::User::Project::Contract::CreateUpdate, type: :contract do
       let(:params) { default_params.merge(deadline: Time.zone.now) }
       let(:expected_errors) do
         {
-          deadline: [ I18n.t('errors.valid_deadline?') ]
+          deadline: [I18n.t('errors.valid_deadline?')]
         }
       end
 
@@ -87,7 +87,7 @@ describe Api::V1::User::Project::Contract::CreateUpdate, type: :contract do
 
       let(:expected_errors) do
         {
-          user_account_id: [ I18n.t('errors.uuid_v4?') ]
+          user_account_id: [I18n.t('errors.uuid_v4?')]
         }
       end
 

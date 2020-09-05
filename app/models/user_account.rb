@@ -22,6 +22,6 @@ class UserAccount < ApplicationRecord
   has_many :task_projects, dependent: :destroy
   has_many :note_projects, dependent: :destroy
 
-  has_many :tasks, dependent: :destroy
-  has_many :notes, dependent: :destroy
+  has_many :tasks, through: :task_projects, dependent: :destroy
+  has_many :notes, through: :note_projects, dependent: :destroy
 end

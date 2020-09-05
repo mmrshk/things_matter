@@ -1,6 +1,12 @@
 en:
   graphql:
     types:
+      note_type:
+        desc: Note type
+        fields:
+          name: Note name
+          description: Note description
+          default: Note default
       area_type:
         desc: Area type
         fields:
@@ -13,6 +19,7 @@ en:
           deadline: Project deadline
           name: Project name
           type: Project type (notes, tasks)
+          notes: Project notes
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"

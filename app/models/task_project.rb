@@ -14,4 +14,6 @@
 #  updated_at      :datetime         not null
 #
 
-class TaskProject < Project; end
+class TaskProject < Project
+  has_many :tasks, dependent: :destroy
+end

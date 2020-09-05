@@ -7,6 +7,9 @@ en:
           id: ID
           uuid: UUID
       user:
+        note:
+          create:
+            desc: Add Note to current user's project
         area:
           create:
             desc: Add Area to current user's areas

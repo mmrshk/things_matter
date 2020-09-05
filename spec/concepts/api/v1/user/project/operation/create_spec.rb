@@ -8,7 +8,7 @@ describe Api::V1::User::Project::Operation::Create, type: :operation do
   let(:name) { FFaker::Lorem.word }
   let(:deadline) { Time.zone.now + 1.day }
 
-  let(:params) { { name: name, type: 'task_project', area_id: area.id, deadline: deadline  } }
+  let(:params) { { name: name, type: 'task_project', area_id: area.id, deadline: deadline } }
 
   context 'when user creates project' do
     it 'creates TaskProject' do
@@ -53,7 +53,7 @@ describe Api::V1::User::Project::Operation::Create, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:params) { { name: name, type: 'task_project', area_id: area, deadline: deadline  } }
+    let(:params) { { name: name, type: 'task_project', area_id: area, deadline: deadline } }
     let(:current_user) { nil }
     let(:area) { nil }
 

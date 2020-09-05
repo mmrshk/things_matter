@@ -1,4 +1,4 @@
- # frozen_string_literal: true
+# frozen_string_literal: true
 
 describe 'mutation userProjectUpdate', type: :request do
   let(:user_account) { create(:user_account) }

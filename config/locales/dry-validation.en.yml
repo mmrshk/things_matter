@@ -78,10 +78,6 @@ en:
 
     uuid_v4?: uuid not valid
 
-    valid_deadline?: "deadline time is incorrect"
-    area_belongs_to_user?: "area not belongs to user"
-    area_existence?: area doesn't exist
-
     size?:
       arg:
         default: "size must be %{size}"
@@ -100,4 +96,8 @@ en:
     movie_in_watchlist?: "Movie already in watchlist list"
 
     # custom predicates
+    valid_deadline?: "deadline time is incorrect"
+    area_belongs_to_user?: "area not belongs to user"
+    area_existence?: area doesn't exist
+
     unique_user_account_email?:  "That email address is being used by another account"
