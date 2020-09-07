@@ -19,5 +19,23 @@ module GraphQL
         }
       )
     end
+
+    def user_note_update_mutation
+      %(
+        mutation userNoteUpdate($input: NoteUpdateInput!) {
+          userNoteUpdate(input: $input) {
+            noteProjects {
+              name
+              notes {
+                id
+                name
+                description
+                default
+              }
+            }
+          }
+        }
+      )
+    end
   end
 end

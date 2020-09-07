@@ -375,6 +375,11 @@ type Mutation {
   userNoteCreate(input: NoteCreateInput!): UserAccountType!
 
   """
+  translation missing: en.graphql.mutations.user.note.update.desc
+  """
+  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
+
+  """
   Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
@@ -473,6 +478,36 @@ type NoteType {
   Note name
   """
   name: String!
+}
+
+"""
+translation missing: en.graphql.inputs.user.note_update_input.desc
+"""
+input NoteUpdateInput {
+  """
+  translation missing: en.graphql.inputs.user.note_update_input.args.default
+  """
+  default: Boolean
+
+  """
+  translation missing: en.graphql.inputs.user.note_update_input.args.description
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  translation missing: en.graphql.inputs.user.note_update_input.args.name
+  """
+  name: String
+
+  """
+  translation missing: en.graphql.inputs.user.note_update_input.args.project_id
+  """
+  projectId: ID
 }
 
 """
