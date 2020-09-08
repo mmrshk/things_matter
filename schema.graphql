@@ -375,7 +375,7 @@ type Mutation {
   userNoteCreate(input: NoteCreateInput!): UserAccountType!
 
   """
-  translation missing: en.graphql.mutations.user.note.update.desc
+  Update current user's Note
   """
   userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
 
@@ -481,16 +481,16 @@ type NoteType {
 }
 
 """
-translation missing: en.graphql.inputs.user.note_update_input.desc
+Input for updating note
 """
 input NoteUpdateInput {
   """
-  translation missing: en.graphql.inputs.user.note_update_input.args.default
+  Note default (not required)
   """
   default: Boolean
 
   """
-  translation missing: en.graphql.inputs.user.note_update_input.args.description
+  Note description (not required)
   """
   description: String
 
@@ -500,12 +500,12 @@ input NoteUpdateInput {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.user.note_update_input.args.name
+  Note name (not required)
   """
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.note_update_input.args.project_id
+  Project id (not required)
   """
   projectId: ID
 }

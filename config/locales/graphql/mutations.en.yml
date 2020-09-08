@@ -10,6 +10,8 @@ en:
         note:
           create:
             desc: Add Note to current user's project
+          update:
+            desc: Update current user's Note
         area:
           create:
             desc: Add Area to current user's areas

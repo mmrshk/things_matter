@@ -6,8 +6,8 @@ module Api::V1
       class Update < Reform::Form
         feature Reform::Form::Dry
 
-        property :name, empty: true
-        property :description, empty: true
+        property :name
+        property :description
         property :default
         property :project_id
 
@@ -23,9 +23,8 @@ module Api::V1
 
           optional(:name).maybe(:str?)
           optional(:description).maybe(:str?)
-
-          required(:default).filled(:bool?)
-          required(:project_id).filled(:uuid_v4?, :project_existence?)
+          optional(:project_id).maybe(:uuid_v4?, :project_existence?)
+          optional(:default).maybe(:bool?)
         end
       end
     end
