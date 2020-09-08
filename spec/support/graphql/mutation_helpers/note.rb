@@ -37,5 +37,15 @@ module GraphQL
         }
       )
     end
+
+    def user_note_delete_mutation
+      %(
+        mutation userNoteDelete($input: DeleteInput!) {
+          userNoteDelete(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end
