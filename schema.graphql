@@ -375,6 +375,11 @@ type Mutation {
   userNoteCreate(input: NoteCreateInput!): UserAccountType!
 
   """
+  Delete current user's Note
+  """
+  userNoteDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
   Update current user's Note
   """
   userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
