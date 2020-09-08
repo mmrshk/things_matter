@@ -5,6 +5,13 @@ en:
         fields:
           id: ID
       user:
+        note_update_input:
+          desc: Input for updating note
+          args:
+            name: Note name (not required)
+            description: Note description (not required)
+            default: Note default (not required)
+            project_id: Project id (not required)
         note_create_input:
           desc: Input for creating note
           args:

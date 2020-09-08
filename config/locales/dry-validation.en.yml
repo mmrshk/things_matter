@@ -96,6 +96,7 @@ en:
     movie_in_watchlist?: "Movie already in watchlist list"
 
     # custom predicates
+    project_existence?: project not exist
     valid_deadline?: "deadline time is incorrect"
     area_belongs_to_user?: "area not belongs to user"
     area_existence?: area doesn't exist

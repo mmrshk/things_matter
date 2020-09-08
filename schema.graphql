@@ -375,6 +375,11 @@ type Mutation {
   userNoteCreate(input: NoteCreateInput!): UserAccountType!
 
   """
+  Update current user's Note
+  """
+  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
+
+  """
   Add Project to current user's projects
   """
   userProjectCreate(input: ProjectCreateInput!): UserAccountType!
@@ -473,6 +478,36 @@ type NoteType {
   Note name
   """
   name: String!
+}
+
+"""
+Input for updating note
+"""
+input NoteUpdateInput {
+  """
+  Note default (not required)
+  """
+  default: Boolean
+
+  """
+  Note description (not required)
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Note name (not required)
+  """
+  name: String
+
+  """
+  Project id (not required)
+  """
+  projectId: ID
 }
 
 """
