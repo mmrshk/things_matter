@@ -4,7 +4,7 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
   subject(:execute_operation) { described_class.call(params: params, current_user: current_user) }
 
   let(:current_user) { create(:user_account) }
-  let(:project) { create(:project, user_account: current_user, type: 'TaskProject') }
+  let(:project) { create(:task_project, user_account: current_user) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
@@ -16,7 +16,7 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
       description: description,
       to_do_day: Date.today,
       deadline: Date.today + 7.days,
-      project_id: project.id
+      task_project_id: project.id
     }
   end
 
@@ -35,7 +35,7 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
   end
 
   context 'when user creates project WITHOUT name and WITHOUT description' do
-    let(:params) { { default: true, project_id: project.id } }
+    let(:params) { { default: true, task_project_id: project.id } }
 
     it 'creates Task' do
       expect { execute_operation }.to change(Task, :count).from(0).to(1)
@@ -51,7 +51,7 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
   end
 
   context 'when user creates project WITH area that not belongs to user' do
-    let(:project) { create(:project) }
+    let(:project) { create(:task_project) }
 
     it 'NOT creates Task' do
       expect { execute_operation }.not_to change(Task, :count)
@@ -75,7 +75,7 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:project) { create(:project) }
+    let(:project) { create(:task_project) }
     let(:current_user) { nil }
 
     it 'NOT creates Task' do

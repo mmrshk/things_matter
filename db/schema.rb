@@ -38,38 +38,55 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "note_areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
-    t.string "type", null: false
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_account_id"], name: "index_areas_on_user_account_id"
+    t.index ["user_account_id"], name: "index_note_areas_on_user_account_id"
+  end
+
+  create_table "note_projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", default: ""
+    t.date "deadline"
+    t.uuid "note_area_id"
+    t.uuid "user_account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_area_id"], name: "index_note_projects_on_note_area_id"
+    t.index ["user_account_id"], name: "index_note_projects_on_user_account_id"
   end
 
   create_table "notes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
     t.text "description"
     t.boolean "default", default: false
-    t.uuid "project_id"
+    t.uuid "note_project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_notes_on_project_id"
-  end
-
-  create_table "projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name", default: ""
-    t.date "deadline"
-    t.string "type", null: false
-    t.uuid "area_id"
-    t.uuid "user_account_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["area_id"], name: "index_projects_on_area_id"
-    t.index ["user_account_id"], name: "index_projects_on_user_account_id"
+    t.index ["note_project_id"], name: "index_notes_on_note_project_id"
   end
 
   create_table "schema_extensions", force: :cascade do |t|
+  end
+
+  create_table "task_areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", default: ""
+    t.uuid "user_account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_account_id"], name: "index_task_areas_on_user_account_id"
+  end
+
+  create_table "task_projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", default: ""
+    t.date "deadline"
+    t.uuid "task_area_id"
+    t.uuid "user_account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_area_id"], name: "index_task_projects_on_task_area_id"
+    t.index ["user_account_id"], name: "index_task_projects_on_user_account_id"
   end
 
   create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -79,10 +96,10 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.boolean "deleted", default: false
     t.date "deadline"
     t.date "to_do_day"
-    t.uuid "project_id"
+    t.uuid "task_project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["task_project_id"], name: "index_tasks_on_task_project_id"
   end
 
   create_table "user_accounts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -103,10 +120,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "areas", "user_accounts"
-  add_foreign_key "notes", "projects"
-  add_foreign_key "projects", "areas"
-  add_foreign_key "projects", "user_accounts"
-  add_foreign_key "tasks", "projects"
+  add_foreign_key "note_areas", "user_accounts"
+  add_foreign_key "note_projects", "note_areas"
+  add_foreign_key "note_projects", "user_accounts"
+  add_foreign_key "notes", "note_projects"
+  add_foreign_key "task_areas", "user_accounts"
+  add_foreign_key "task_projects", "task_areas"
+  add_foreign_key "task_projects", "user_accounts"
+  add_foreign_key "tasks", "task_projects"
   add_foreign_key "user_profiles", "user_accounts"
 end

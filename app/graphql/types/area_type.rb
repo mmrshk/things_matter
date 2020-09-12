@@ -16,11 +16,6 @@ module Types
           null: true,
           description: I18n.t('graphql.types.area_type.fields.name')
 
-    field :type,
-          String,
-          null: true,
-          description: I18n.t('graphql.types.area_type.fields.type')
-
     field :projects,
           [Types::ProjectType],
           null: false,

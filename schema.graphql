@@ -31,11 +31,6 @@ type AreaType {
   Area projects
   """
   projects: [ProjectType!]!
-
-  """
-  Area type (notes, tasks)
-  """
-  type: String
 }
 
 """
@@ -385,24 +380,24 @@ type Mutation {
   userNoteDelete(input: DeleteInput!): CompletionStatusType!
 
   """
-  Update current user's Note
-  """
-  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
-
-  """
   Add Project to current user's projects
   """
-  userProjectCreate(input: ProjectCreateInput!): UserAccountType!
+  userNoteProjectCreate(input: NoteProjectCreateInput!): UserAccountType!
 
   """
   Delete current user's Project
   """
-  userProjectDelete(input: DeleteInput!): CompletionStatusType!
+  userNoteProjectDelete(input: DeleteInput!): CompletionStatusType!
 
   """
   Update current user's Project
   """
-  userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!
+  userNoteProjectUpdate(input: NoteProjectUpdateInput!): UserAccountType!
+
+  """
+  Update current user's Note
+  """
+  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
 
   """
   Sign in a user
@@ -423,6 +418,21 @@ type Mutation {
   translation missing: en.graphql.mutations.user.task.create.desc
   """
   userTaskCreate(input: TaskCreateInput!): UserAccountType!
+
+  """
+  Add Project to current user's projects
+  """
+  userTaskProjectCreate(input: TaskProjectCreateInput!): UserAccountType!
+
+  """
+  Delete current user's Project
+  """
+  userTaskProjectDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
+  Update current user's Project
+  """
+  userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
 }
 
 """
@@ -467,7 +477,52 @@ input NoteCreateInput {
   """
   Project id (required)
   """
-  projectId: ID!
+  noteProjectId: ID!
+}
+
+"""
+Input for creating area
+"""
+input NoteProjectCreateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  noteAreaId: ID
+}
+
+"""
+Input for updating area
+"""
+input NoteProjectUpdateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  noteAreaId: ID
 }
 
 """
@@ -561,38 +616,13 @@ type PosterType implements ImageInterface {
 }
 
 """
-Input for creating area
-"""
-input ProjectCreateInput {
-  """
-  Area id (not required)
-  """
-  areaId: ID
-
-  """
-  Deadline for project
-  """
-  deadline: ISO8601DateTime
-
-  """
-  Project name (not required)
-  """
-  name: String
-
-  """
-  Deadline for project
-  """
-  type: ProjectTypeEnum!
-}
-
-"""
 Proejct type
 """
 type ProjectType {
   """
   Project deadline
   """
-  deadline: ISO8601DateTime
+  deadline: ISO8601Date
 
   """
   ID
@@ -618,46 +648,6 @@ type ProjectType {
   Project type (notes, tasks)
   """
   type: String!
-}
-
-"""
-Project type enum
-"""
-enum ProjectTypeEnum {
-  """
-  Note project
-  """
-  NOTE_PROJECT
-
-  """
-  Task project
-  """
-  TASK_PROJECT
-}
-
-"""
-Input for updating area
-"""
-input ProjectUpdateInput {
-  """
-  Area id (not required)
-  """
-  areaId: ID
-
-  """
-  Deadline for project
-  """
-  deadline: ISO8601DateTime
-
-  """
-  ID
-  """
-  id: ID!
-
-  """
-  Project name (not required)
-  """
-  name: String
 }
 
 type Query {
@@ -750,12 +740,57 @@ input TaskCreateInput {
   """
   translation missing: en.graphql.inputs.user.task_create_input.args.project_id
   """
-  projectId: ID!
+  taskProjectId: ID!
 
   """
   translation missing: en.graphql.inputs.user.task_create_input.args.to_do_day
   """
   toDoDay: ISO8601DateTime!
+}
+
+"""
+Input for creating area
+"""
+input TaskProjectCreateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  taskAreaId: ID
+}
+
+"""
+Input for updating area
+"""
+input TaskProjectUpdateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601Date
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  taskAreaId: ID
 }
 
 """

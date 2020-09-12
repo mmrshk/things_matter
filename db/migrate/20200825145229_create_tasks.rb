@@ -8,7 +8,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.date :deadline
       t.date :to_do_day
 
-      t.belongs_to :project, type: :uuid, foreign_key: true, null: true
+      t.belongs_to :task_project, type: :uuid, foreign_key: true, null: true
 
       t.timestamps
     end

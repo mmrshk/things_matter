@@ -2,7 +2,7 @@
 
 describe 'mutation userNoteCreate', type: :request do
   let(:user_account) { create(:user_account) }
-  let(:project) { create(:project, user_account: user_account, type: 'NoteProject') }
+  let(:project) { create(:note_project, user_account: user_account) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
@@ -14,7 +14,7 @@ describe 'mutation userNoteCreate', type: :request do
         name: name,
         description: description,
         default: true,
-        project_id: project.id
+        note_project_id: project.id
       }
     }
   end
@@ -34,7 +34,7 @@ describe 'mutation userNoteCreate', type: :request do
 
   context 'when failed' do
     context 'when passed strange project_id' do
-      let(:variables) { { input: { project_id: SecureRandom.uuid } } }
+      let(:variables) { { input: { note_project_id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do
         authorized_graphql_post(

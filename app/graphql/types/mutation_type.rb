@@ -24,9 +24,13 @@ module Types
     field :user_area_delete, mutation: Mutations::User::Area::Delete
 
     # projects mutations
-    field :user_project_create, mutation: Mutations::User::Project::Create
-    field :user_project_update, mutation: Mutations::User::Project::Update
-    field :user_project_delete, mutation: Mutations::User::Project::Delete
+    field :user_task_project_create, mutation: Mutations::User::TaskProject::Create
+    field :user_task_project_update, mutation: Mutations::User::TaskProject::Update
+    field :user_task_project_delete, mutation: Mutations::User::TaskProject::Delete
+
+    field :user_note_project_create, mutation: Mutations::User::NoteProject::Create
+    field :user_note_project_update, mutation: Mutations::User::NoteProject::Update
+    field :user_note_project_delete, mutation: Mutations::User::NoteProject::Delete
 
     # notes mutations
     field :user_note_create, mutation: Mutations::User::Note::Create

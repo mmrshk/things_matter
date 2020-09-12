@@ -2,7 +2,7 @@
 
 describe 'mutation userTaskCreate', type: :request do
   let(:user_account) { create(:user_account) }
-  let(:project) { create(:project, user_account: user_account, type: 'TaskProject') }
+  let(:project) { create(:task_project, user_account: user_account) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
@@ -15,7 +15,7 @@ describe 'mutation userTaskCreate', type: :request do
         description: description,
         to_do_day: Date.today,
         deadline: Date.today + 7.days,
-        project_id: project.id
+        task_project_id: project.id
       }
     }
   end
@@ -35,7 +35,7 @@ describe 'mutation userTaskCreate', type: :request do
 
   context 'when failed' do
     context 'when passed strange project_id' do
-      let(:variables) { { input: { project_id: SecureRandom.uuid } } }
+      let(:variables) { { input: { task_project_id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do
         authorized_graphql_post(

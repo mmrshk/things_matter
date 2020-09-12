@@ -10,7 +10,7 @@ describe Api::V1::User::Task::Contract::Create, type: :contract do
   let(:errors) { contract.errors.messages }
 
   let(:user_account) { create(:user_account) }
-  let(:project) { create(:project, user_account: user_account) }
+  let(:project) { create(:task_project, user_account: user_account) }
 
   let(:default_params) do
     {
@@ -20,7 +20,7 @@ describe Api::V1::User::Task::Contract::Create, type: :contract do
       deleted: false,
       to_do_day: Date.today,
       deadline: Date.today + 7.days,
-      project_id: project.id
+      task_project_id: project.id
     }
   end
 
@@ -36,10 +36,10 @@ describe Api::V1::User::Task::Contract::Create, type: :contract do
 
   describe 'FAILURE' do
     context 'when project not exist' do
-      let(:params) { default_params.merge(project_id: SecureRandom.uuid) }
+      let(:params) { default_params.merge(task_project_id: SecureRandom.uuid) }
       let(:expected_errors) do
         {
-          project_id: [I18n.t('errors.project_existence?')]
+          task_project_id: [I18n.t('errors.project_existence?')]
         }
       end
 

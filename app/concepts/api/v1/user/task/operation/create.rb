@@ -7,8 +7,8 @@ module Api::V1
         step Model(Task, :new)
 
         step Macro::Policy(
-          policy: ProjectPolicy,
-          record: ->(ctx) { ctx[:params][:project_id] },
+          policy: TaskProjectPolicy,
+          record: ->(ctx) { ctx[:params][:task_project_id] },
           rule: :belongs_to_user_account_through_params?
         ), fail_fast: true
 
@@ -16,7 +16,7 @@ module Api::V1
         step Trailblazer::Operation::Contract::Validate(), fail_fast: true
         step Trailblazer::Operation::Contract::Persist()
 
-        step Macro::Assign(to: 'result', path: %i[model project user_account])
+        step Macro::Assign(to: 'result', path: %i[model task_project user_account])
       end
     end
   end

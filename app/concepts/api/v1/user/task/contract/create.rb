@@ -12,14 +12,14 @@ module Api::V1
         property :deleted
         property :deadline
         property :to_do_day
-        property :project_id
+        property :task_project_id
 
         validation do
           configure do
             predicates(::CustomPredicates)
 
             def project_existence?(project_id)
-              Project.exists?(id: project_id)
+              TaskProject.exists?(id: project_id)
             end
 
             def valid_date?(day)
@@ -33,7 +33,7 @@ module Api::V1
           optional(:deadline).maybe(:date?, :valid_date?)
           optional(:to_do_day).maybe(:date?, :valid_date?)
 
-          required(:project_id).filled(:uuid_v4?, :project_existence?)
+          required(:task_project_id).filled(:uuid_v4?, :project_existence?)
         end
       end
     end

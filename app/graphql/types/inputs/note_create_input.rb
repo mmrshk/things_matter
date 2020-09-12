@@ -24,7 +24,7 @@ module Types
                required: true,
                description: I18n.t("#{I18N_PATH}.args.default")
 
-      argument :project_id,
+      argument :note_project_id,
                ID,
                required: true,
                description: I18n.t("#{I18N_PATH}.args.project_id")

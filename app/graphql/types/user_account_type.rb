@@ -39,23 +39,6 @@ module Types
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.note_projects")
 
-    # REDUNDUNT
-
-    # field :lists,
-    #       resolver: Resolvers::Lists,
-    #       connection: true,
-    #       description: I18n.t("#{I18N_PATH}.fields.lists")
-    #
-    # field :favorite_movies_list,
-    #       connection: true,
-    #       resolver: Resolvers::FavoriteMovies,
-    #       description: I18n.t("#{I18N_PATH}.fields.favorite_movies_list")
-    #
-    # field :watchlist_movies_list,
-    #       connection: true,
-    #       resolver: Resolvers::WatchlistMovies,
-    #       description: I18n.t("#{I18N_PATH}.fields.watchlist_movies_list")
-
     def task_projects
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |user_account_ids, loader|
         TaskProject.where(user_account_id: user_account_ids).each do |project|

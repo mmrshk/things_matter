@@ -4,7 +4,7 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   subject(:execute_operation) { described_class.call(params: params, current_user: current_user) }
 
   let(:current_user) { create(:user_account) }
-  let(:project) { create(:project, user_account: current_user, type: 'NoteProject') }
+  let(:project) { create(:note_project, user_account: current_user) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
@@ -17,7 +17,7 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
       name: name,
       description: description,
       default: true,
-      project_id: project.id
+      note_project_id: project.id
     }
   end
 
@@ -40,7 +40,7 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   end
 
   context 'when user creates project WITHOUT name and WITHOUT description' do
-    let(:params) { { default: true, project_id: project.id } }
+    let(:params) { { default: true, note_project_id: project.id } }
 
     it 'creates Note' do
       expect { execute_operation }.to change(Note, :count).from(0).to(1)
@@ -56,7 +56,7 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   end
 
   context 'when user creates project WITH area that not belongs to user' do
-    let(:project) { create(:project) }
+    let(:project) { create(:note_project) }
 
     it 'NOT creates Note' do
       expect { execute_operation }.not_to change(Note, :count)
@@ -80,7 +80,7 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:project) { create(:project) }
+    let(:project) { create(:note_project) }
     let(:current_user) { nil }
 
     it 'NOT creates Note' do

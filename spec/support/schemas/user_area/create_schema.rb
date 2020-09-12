@@ -9,7 +9,6 @@ module UserArea
         required(:email).filled(:str?)
         required(:taskAreas).each do
           required(:name).filled(:str?)
-          required(:type).filled(:str?)
         end
       end
     end
