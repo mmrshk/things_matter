@@ -20,7 +20,7 @@ module Api::V1
             end
 
             def valid_deadline?(deadline)
-              deadline > Time.zone.now
+              deadline >= Date.today
             end
           end
 
@@ -28,7 +28,7 @@ module Api::V1
 
           optional(:area_id).maybe(:uuid_v4?, :area_existence?)
           optional(:name).maybe(:str?)
-          optional(:deadline).maybe(:valid_deadline?)
+          optional(:deadline).maybe(:valid_deadline?, :date?)
 
           validate(
             area_belongs_to_user?: %i[area_id user_account_id]

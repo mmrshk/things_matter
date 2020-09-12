@@ -6,7 +6,7 @@
 #
 #  id              :uuid             not null, primary key
 #  name            :string           default("")
-#  deadline        :datetime
+#  deadline        :date
 #  type            :string           not null
 #  area_id         :uuid
 #  user_account_id :uuid

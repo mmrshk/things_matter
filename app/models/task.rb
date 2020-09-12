@@ -9,8 +9,8 @@
 #  description :text
 #  done        :boolean          default(FALSE)
 #  deleted     :boolean          default(FALSE)
-#  deadline    :datetime
-#  to_do_day   :datetime
+#  deadline    :date
+#  to_do_day   :date
 #  project_id  :uuid
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

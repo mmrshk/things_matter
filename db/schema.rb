@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
 
   create_table "projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
-    t.datetime "deadline"
+    t.date "deadline"
     t.string "type", null: false
     t.uuid "area_id"
     t.uuid "user_account_id"
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.text "description"
     t.boolean "done", default: false
     t.boolean "deleted", default: false
-    t.datetime "deadline"
-    t.datetime "to_do_day"
+    t.date "deadline"
+    t.date "to_do_day"
     t.uuid "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
