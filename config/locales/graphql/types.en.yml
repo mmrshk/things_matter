@@ -1,6 +1,15 @@
 en:
   graphql:
     types:
+      task_type:
+        desc: Task type
+        fields:
+          deadline: Task deadline
+          deleted: Task was deleted (for Trash)
+          name: Task name
+          description: Task description
+          to_do_day: Task to do day
+          done: Task definition of done (for Logbook)
       note_type:
         desc: Note type
         fields:

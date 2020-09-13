@@ -415,7 +415,7 @@ type Mutation {
   userSignUp(input: UserSignUpInput!): AuthTokenType!
 
   """
-  translation missing: en.graphql.mutations.user.task.create.desc
+  Add Task to current user's project
   """
   userTaskCreate(input: TaskCreateInput!): UserAccountType!
 
@@ -719,31 +719,31 @@ type SignOutType {
 }
 
 """
-translation missing: en.graphql.inputs.user.task_create_input.desc
+Input for creating note
 """
 input TaskCreateInput {
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.deadline
+  Task deadline (not required)
   """
   deadline: ISO8601DateTime!
 
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.description
+  Task description (not required)
   """
   description: String
 
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.name
+  Task name (not required)
   """
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.project_id
+  Project id (required)
   """
   taskProjectId: ID!
 
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.to_do_day
+  Day to do task (not required)
   """
   toDoDay: ISO8601DateTime!
 }
@@ -794,26 +794,26 @@ input TaskProjectUpdateInput {
 }
 
 """
-translation missing: en.graphql.types.task_type.desc
+Task type
 """
 type TaskType {
   """
-  translation missing: en.graphql.types.task_type.fields.deadline
+  Task deadline
   """
   deadline: ISO8601Date!
 
   """
-  translation missing: en.graphql.types.task_type.fields.deleted
+  Task was deleted (for Trash)
   """
   deleted: Boolean!
 
   """
-  translation missing: en.graphql.types.task_type.fields.description
+  Task description
   """
   description: String
 
   """
-  translation missing: en.graphql.types.task_type.fields.done
+  Task definition of done (for Logbook)
   """
   done: Boolean!
 
@@ -823,12 +823,12 @@ type TaskType {
   id: ID!
 
   """
-  translation missing: en.graphql.types.task_type.fields.name
+  Task name
   """
   name: String!
 
   """
-  translation missing: en.graphql.types.task_type.fields.to_do_day
+  Task to do day
   """
   toDoDay: ISO8601Date!
 }
