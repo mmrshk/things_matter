@@ -433,6 +433,11 @@ type Mutation {
   Update current user's Project
   """
   userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
+
+  """
+  Update current user's Task
+  """
+  userTaskUpdate(input: TaskUpdateInput!): UserAccountType!
 }
 
 """
@@ -725,7 +730,7 @@ input TaskCreateInput {
   """
   Task deadline (not required)
   """
-  deadline: ISO8601DateTime!
+  deadline: ISO8601Date
 
   """
   Task description (not required)
@@ -745,7 +750,7 @@ input TaskCreateInput {
   """
   Day to do task (not required)
   """
-  toDoDay: ISO8601DateTime!
+  toDoDay: ISO8601Date
 }
 
 """
@@ -831,6 +836,41 @@ type TaskType {
   Task to do day
   """
   toDoDay: ISO8601Date!
+}
+
+"""
+Input for creating note
+"""
+input TaskUpdateInput {
+  """
+  Task deadline (not required)
+  """
+  deadline: ISO8601Date
+
+  """
+  Task description (not required)
+  """
+  description: String
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Task name (not required)
+  """
+  name: String
+
+  """
+  Project id (not required)
+  """
+  taskProjectId: ID
+
+  """
+  Day to do task (not required)
+  """
+  toDoDay: ISO8601Date
 }
 
 """

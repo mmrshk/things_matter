@@ -2,12 +2,14 @@
 
 module Types
   module Inputs
-    class TaskCreateInput < Types::Base::InputObject
-      I18N_PATH = 'graphql.inputs.user.task_create_input'
+    class TaskUpdateInput < Types::Base::InputObject
+      I18N_PATH = 'graphql.inputs.user.task_update_input'
 
-      graphql_name 'TaskCreateInput'
+      graphql_name 'TaskUpdateInput'
 
       description I18n.t("#{I18N_PATH}.desc")
+
+      argument :id, ID, required: true, description: I18n.t('graphql.inputs.common.fields.id')
 
       argument :name,
                String,
@@ -31,7 +33,7 @@ module Types
 
       argument :task_project_id,
                ID,
-               required: true,
+               required: false,
                description: I18n.t("#{I18N_PATH}.args.project_id")
     end
   end

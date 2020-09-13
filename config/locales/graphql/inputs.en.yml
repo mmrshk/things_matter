@@ -5,6 +5,14 @@ en:
         fields:
           id: ID
       user:
+        task_update_input:
+          desc: Input for creating note
+          args:
+            deadline: Task deadline (not required)
+            name: Task name (not required)
+            description: Task description (not required)
+            to_do_day: Day to do task (not required)
+            project_id: Project id (not required)
         note_update_input:
           desc: Input for updating note
           args:
