@@ -10,6 +10,10 @@ en:
         task:
           create:
             desc: Add Task to current user's project
+          update:
+            desc: Update current user's Task
+          delete:
+            desc: Delete current user's Task
         note:
           create:
             desc: Add Note to current user's project

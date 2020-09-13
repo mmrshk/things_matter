@@ -39,7 +39,7 @@ module Types
 
     # notes mutations
     field :user_task_create, mutation: Mutations::User::Task::Create
-    # field :user_task_update, mutation: Mutations::User::Task::Update
+    field :user_task_update, mutation: Mutations::User::Task::Update
     # field :user_task_delete, mutation: Mutations::User::Task::Delete
   end
 end
