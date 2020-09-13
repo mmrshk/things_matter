@@ -100,5 +100,6 @@ en:
     valid_deadline?: "deadline time is incorrect"
     area_belongs_to_user?: "area not belongs to user"
     area_existence?: area doesn't exist
+    valid_date?: passed date is invalid (date must to eq today or must be bigger)
 
     unique_user_account_email?:  "That email address is being used by another account"

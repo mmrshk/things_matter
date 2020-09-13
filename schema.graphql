@@ -31,11 +31,6 @@ type AreaType {
   Area projects
   """
   projects: [ProjectType!]!
-
-  """
-  Area type (notes, tasks)
-  """
-  type: String
 }
 
 """
@@ -117,6 +112,11 @@ type DeleteListType {
   """
   deletedListId: ID!
 }
+
+"""
+An ISO 8601-encoded date
+"""
+scalar ISO8601Date
 
 """
 An ISO 8601-encoded datetime
@@ -380,24 +380,24 @@ type Mutation {
   userNoteDelete(input: DeleteInput!): CompletionStatusType!
 
   """
-  Update current user's Note
-  """
-  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
-
-  """
   Add Project to current user's projects
   """
-  userProjectCreate(input: ProjectCreateInput!): UserAccountType!
+  userNoteProjectCreate(input: NoteProjectCreateInput!): UserAccountType!
 
   """
   Delete current user's Project
   """
-  userProjectDelete(input: DeleteInput!): CompletionStatusType!
+  userNoteProjectDelete(input: DeleteInput!): CompletionStatusType!
 
   """
   Update current user's Project
   """
-  userProjectUpdate(input: ProjectUpdateInput!): UserAccountType!
+  userNoteProjectUpdate(input: NoteProjectUpdateInput!): UserAccountType!
+
+  """
+  Update current user's Note
+  """
+  userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
 
   """
   Sign in a user
@@ -413,6 +413,26 @@ type Mutation {
   Sign up a user
   """
   userSignUp(input: UserSignUpInput!): AuthTokenType!
+
+  """
+  Add Task to current user's project
+  """
+  userTaskCreate(input: TaskCreateInput!): UserAccountType!
+
+  """
+  Add Project to current user's projects
+  """
+  userTaskProjectCreate(input: TaskProjectCreateInput!): UserAccountType!
+
+  """
+  Delete current user's Project
+  """
+  userTaskProjectDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
+  Update current user's Project
+  """
+  userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
 }
 
 """
@@ -457,7 +477,52 @@ input NoteCreateInput {
   """
   Project id (required)
   """
-  projectId: ID!
+  noteProjectId: ID!
+}
+
+"""
+Input for creating area
+"""
+input NoteProjectCreateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  noteAreaId: ID
+}
+
+"""
+Input for updating area
+"""
+input NoteProjectUpdateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  noteAreaId: ID
 }
 
 """
@@ -551,38 +616,13 @@ type PosterType implements ImageInterface {
 }
 
 """
-Input for creating area
-"""
-input ProjectCreateInput {
-  """
-  Area id (not required)
-  """
-  areaId: ID
-
-  """
-  Deadline for project
-  """
-  deadline: ISO8601DateTime
-
-  """
-  Project name (not required)
-  """
-  name: String
-
-  """
-  Deadline for project
-  """
-  type: ProjectTypeEnum!
-}
-
-"""
 Proejct type
 """
 type ProjectType {
   """
   Project deadline
   """
-  deadline: ISO8601DateTime
+  deadline: ISO8601Date
 
   """
   ID
@@ -600,49 +640,14 @@ type ProjectType {
   notes: [NoteType!]!
 
   """
+  Project tasks
+  """
+  tasks: [TaskType!]!
+
+  """
   Project type (notes, tasks)
   """
   type: String!
-}
-
-"""
-Project type enum
-"""
-enum ProjectTypeEnum {
-  """
-  Note project
-  """
-  NOTE_PROJECT
-
-  """
-  Task project
-  """
-  TASK_PROJECT
-}
-
-"""
-Input for updating area
-"""
-input ProjectUpdateInput {
-  """
-  Area id (not required)
-  """
-  areaId: ID
-
-  """
-  Deadline for project
-  """
-  deadline: ISO8601DateTime
-
-  """
-  ID
-  """
-  id: ID!
-
-  """
-  Project name (not required)
-  """
-  name: String
 }
 
 type Query {
@@ -711,6 +716,121 @@ type SignOutType {
   will return true if the user log out
   """
   completed: Boolean
+}
+
+"""
+Input for creating note
+"""
+input TaskCreateInput {
+  """
+  Task deadline (not required)
+  """
+  deadline: ISO8601DateTime!
+
+  """
+  Task description (not required)
+  """
+  description: String
+
+  """
+  Task name (not required)
+  """
+  name: String
+
+  """
+  Project id (required)
+  """
+  taskProjectId: ID!
+
+  """
+  Day to do task (not required)
+  """
+  toDoDay: ISO8601DateTime!
+}
+
+"""
+Input for creating area
+"""
+input TaskProjectCreateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601DateTime
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  taskAreaId: ID
+}
+
+"""
+Input for updating area
+"""
+input TaskProjectUpdateInput {
+  """
+  Deadline for project
+  """
+  deadline: ISO8601Date
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Project name (not required)
+  """
+  name: String
+
+  """
+  Area id (not required)
+  """
+  taskAreaId: ID
+}
+
+"""
+Task type
+"""
+type TaskType {
+  """
+  Task deadline
+  """
+  deadline: ISO8601Date!
+
+  """
+  Task was deleted (for Trash)
+  """
+  deleted: Boolean!
+
+  """
+  Task description
+  """
+  description: String
+
+  """
+  Task definition of done (for Logbook)
+  """
+  done: Boolean!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Task name
+  """
+  name: String!
+
+  """
+  Task to do day
+  """
+  toDoDay: ISO8601Date!
 }
 
 """

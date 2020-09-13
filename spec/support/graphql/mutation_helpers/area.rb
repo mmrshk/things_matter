@@ -9,7 +9,6 @@ module GraphQL
             email
             taskAreas {
               name
-              type
             }
           }
         }
@@ -23,7 +22,6 @@ module GraphQL
             email
             taskAreas {
               name
-              type
             }
           }
         }

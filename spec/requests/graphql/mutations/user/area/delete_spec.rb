@@ -3,7 +3,7 @@
 describe 'mutation userAreaDelete', type: :request do
   let(:user_account) { create(:user_account) }
   let(:token) { generate_token(account_id: user_account.id) }
-  let(:area) { create(:area, user_account: user_account) }
+  let(:area) { create(:task_area, user_account: user_account) }
 
   let(:variables) { { input: { id: area.id } } }
 
@@ -37,7 +37,8 @@ describe 'mutation userAreaDelete', type: :request do
     end
 
     context 'when area not belongs to current user' do
-      let(:variables) { { input: { id: SecureRandom.uuid } } }
+      let(:area) { create(:task_area) }
+      let(:variables) { { input: { id: area.id } } }
 
       it 'returns execution error data' do
         authorized_graphql_post(
@@ -46,7 +47,7 @@ describe 'mutation userAreaDelete', type: :request do
           auth_token: token
         )
 
-        expect(response).to match_schema(ExecutionErrorSchema)
+        expect(response).to match_schema(NotAuthorizedSchema)
         expect(response.status).to be(200)
       end
     end

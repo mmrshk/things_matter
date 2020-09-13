@@ -3,8 +3,8 @@
 describe 'mutation userNoteDelete', type: :request do
   let(:user_account) { create(:user_account) }
   let(:token) { generate_token(account_id: user_account.id) }
-  let(:project) { create(:project, user_account: user_account) }
-  let(:note) { create(:note, project: project) }
+  let(:project) { create(:note_project, user_account: user_account) }
+  let(:note) { create(:note, note_project: project) }
 
   let(:variables) { { input: { id: note.id } } }
 
@@ -22,27 +22,12 @@ describe 'mutation userNoteDelete', type: :request do
   end
 
   context 'when failed' do
-    context 'when project not found' do
+    context 'when note not found' do
       let(:variables) { { input: { id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do
         authorized_graphql_post(
-          query: user_project_delete_mutation,
-          variables: variables,
-          auth_token: token
-        )
-
-        expect(response).to match_schema(ExecutionErrorSchema)
-        expect(response.status).to be(200)
-      end
-    end
-
-    context 'when project not belongs to current user' do
-      let(:variables) { { input: { id: SecureRandom.uuid } } }
-
-      it 'returns execution error data' do
-        authorized_graphql_post(
-          query: user_project_delete_mutation,
+          query: user_note_delete_mutation,
           variables: variables,
           auth_token: token
         )
@@ -55,7 +40,7 @@ describe 'mutation userNoteDelete', type: :request do
     context 'when user not authorized' do
       it 'returns error' do
         graphql_post(
-          query: user_project_delete_mutation,
+          query: user_note_delete_mutation,
           variables: variables
         )
 

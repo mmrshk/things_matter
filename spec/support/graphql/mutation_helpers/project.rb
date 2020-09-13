@@ -2,14 +2,13 @@
 
 module GraphQL
   module MutationHelpers
-    def user_project_create_mutation
+    def user_task_project_create_mutation
       %(
-        mutation userProjectCreate($input: ProjectCreateInput!) {
-          userProjectCreate(input: $input) {
+        mutation userTaskProjectCreate($input: TaskProjectCreateInput!) {
+          userTaskProjectCreate(input: $input) {
             email
             taskProjects {
               name
-              type
               deadline
             }
           }
@@ -17,19 +16,17 @@ module GraphQL
       )
     end
 
-    def user_project_update_mutation
+    def user_task_project_update_mutation
       %(
-        mutation userProjectUpdate($input: ProjectUpdateInput!) {
-          userProjectUpdate(input: $input) {
+        mutation userTaskProjectUpdate($input: TaskProjectUpdateInput!) {
+          userTaskProjectUpdate(input: $input) {
             email
             taskProjects {
               name
-              type
               deadline
             }
             noteProjects {
               name
-              type
               deadline
             }
           }
@@ -37,10 +34,10 @@ module GraphQL
       )
     end
 
-    def user_project_delete_mutation
+    def user_task_project_delete_mutation
       %(
-        mutation userProjectDelete($input: DeleteInput!) {
-          userProjectDelete(input: $input) {
+        mutation userTaskProjectDelete($input: DeleteInput!) {
+          userTaskProjectDelete(input: $input) {
             completed
           }
         }

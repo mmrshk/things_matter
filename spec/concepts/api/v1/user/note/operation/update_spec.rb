@@ -4,8 +4,8 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
   subject(:execute_operation) { described_class.call(params: params, current_user: current_user) }
 
   let(:current_user) { create(:user_account) }
-  let(:project) { create(:project, user_account: current_user) }
-  let(:note) { create(:note, project: project) }
+  let(:project) { create(:note_project, user_account: current_user) }
+  let(:note) { create(:note, note_project: project) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 
@@ -26,11 +26,13 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
   end
 
   context 'when user changes project for note' do
-    let(:new_project) { create(:project, user_account: current_user) }
-    let(:params) { { id: note.id, project_id: new_project.id } }
+    let(:new_project) { create(:note_project, user_account: current_user) }
+    let(:params) { { id: note.id, note_project_id: new_project.id } }
 
     it 'updates project' do
-      expect { execute_operation && note.reload }.to change(note, :project_id).from(note.project_id).to(new_project.id)
+      expect {
+        execute_operation && note.reload
+      }.to change(note, :note_project_id).from(note.note_project_id).to(new_project.id)
     end
 
     it 'returns user_account' do
@@ -55,7 +57,7 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:project) { create(:project) }
+    let(:project) { create(:note_project) }
 
     it 'NOT updates project' do
       expect { execute_operation && project.reload }.not_to change(project, :name)

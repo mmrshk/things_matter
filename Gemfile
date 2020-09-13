@@ -46,6 +46,7 @@ group :development do
   gem 'database_cleaner'
   gem 'fasterer'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rails-erd'
   gem 'rails_best_practices'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.75.1', require: false

@@ -6,6 +6,6 @@ FactoryBot.define do
     description { FFaker::Lorem.sentence }
     default { false }
 
-    project
+    note_project
   end
 end

@@ -16,7 +16,7 @@ module Api::V1
         step Trailblazer::Operation::Contract::Validate(), fail_fast: true
         step Trailblazer::Operation::Contract::Persist()
 
-        step Macro::Assign(to: 'result', path: %i[model project user_account])
+        step Macro::Assign(to: 'result', path: %i[model note_project user_account])
       end
     end
   end

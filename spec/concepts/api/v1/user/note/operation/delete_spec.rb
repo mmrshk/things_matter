@@ -4,8 +4,8 @@ describe Api::V1::User::Note::Operation::Delete, type: :operation do
   subject(:execute_operation) { described_class.call(params: params, current_user: current_user) }
 
   let(:current_user) { create(:user_account) }
-  let(:project) { create(:project, user_account: current_user) }
-  let(:note) { create(:note, project: project) }
+  let(:project) { create(:note_project, user_account: current_user) }
+  let(:note) { create(:note, note_project: project) }
 
   let(:params) { { id: note.id } }
 
@@ -38,7 +38,7 @@ describe Api::V1::User::Note::Operation::Delete, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:project) { create(:project) }
+    let(:project) { create(:note_project) }
 
     it 'NOT deletes note' do
       expect { execute_operation }.not_to change(Note, :count)

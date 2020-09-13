@@ -2,14 +2,18 @@
 
 # == Schema Information
 #
-# Table name: areas
+# Table name: note_areas
 #
 #  id              :uuid             not null, primary key
 #  name            :string           default("")
-#  type            :string           not null
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
-class NoteArea < Area; end
+class NoteArea < ApplicationRecord
+  belongs_to :user_account
+
+  has_many :note_projects, dependent: :destroy
+  has_many :notes, through: :note_projects, dependent: :destroy
+end

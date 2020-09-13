@@ -4,7 +4,7 @@ describe Api::V1::User::Area::Operation::Delete, type: :operation do
   subject(:execute_operation) { described_class.call(params: params, current_user: current_user) }
 
   let(:current_user) { create(:user_account) }
-  let(:area) { create(:area, user_account: current_user) }
+  let(:area) { create(:task_area, user_account: current_user) }
   let(:name) { FFaker::Lorem.word }
 
   let(:params) { { id: area.id } }
@@ -38,7 +38,7 @@ describe Api::V1::User::Area::Operation::Delete, type: :operation do
   end
 
   context 'when user not authorized to action' do
-    let(:area) { create(:area) }
+    let(:area) { create(:task_area) }
 
     it 'NOT deletes area' do
       expect { execute_operation }.not_to change(TaskArea, :count)

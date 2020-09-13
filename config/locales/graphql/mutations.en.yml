@@ -7,6 +7,9 @@ en:
           id: ID
           uuid: UUID
       user:
+        task:
+          create:
+            desc: Add Task to current user's project
         note:
           create:
             desc: Add Note to current user's project

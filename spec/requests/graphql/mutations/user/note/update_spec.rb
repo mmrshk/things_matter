@@ -2,8 +2,8 @@
 
 describe 'mutation userNoteUpdate', type: :request do
   let(:user_account) { create(:user_account) }
-  let(:project) { create(:project, user_account: user_account, type: 'NoteProject') }
-  let(:note) { create(:note, project: project) }
+  let(:project) { create(:note_project, user_account: user_account) }
+  let(:note) { create(:note, note_project: project) }
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }
 

@@ -5,10 +5,10 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.text :description
       t.boolean :done, default: false
       t.boolean :deleted, default: false
-      t.datetime :deadline
-      t.datetime :to_do_day
+      t.date :deadline
+      t.date :to_do_day
 
-      t.belongs_to :project, type: :uuid, foreign_key: true, null: true
+      t.belongs_to :task_project, type: :uuid, foreign_key: true, null: true
 
       t.timestamps
     end

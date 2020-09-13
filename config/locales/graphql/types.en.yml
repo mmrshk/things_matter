@@ -1,6 +1,15 @@
 en:
   graphql:
     types:
+      task_type:
+        desc: Task type
+        fields:
+          deadline: Task deadline
+          deleted: Task was deleted (for Trash)
+          name: Task name
+          description: Task description
+          to_do_day: Task to do day
+          done: Task definition of done (for Logbook)
       note_type:
         desc: Note type
         fields:
@@ -11,7 +20,6 @@ en:
         desc: Area type
         fields:
           name: Area name
-          type: Area type (notes, tasks)
           projects: Area projects
       project_type:
         desc: Proejct type
@@ -20,6 +28,7 @@ en:
           name: Project name
           type: Project type (notes, tasks)
           notes: Project notes
+          tasks: Project tasks
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"

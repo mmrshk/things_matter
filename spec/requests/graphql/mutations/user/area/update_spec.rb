@@ -3,7 +3,7 @@
 describe 'mutation userAreaCreate', type: :request do
   let(:user_account) { create(:user_account) }
   let(:token) { generate_token(account_id: user_account.id) }
-  let(:area) { create(:area, user_account: user_account) }
+  let(:area) { create(:task_area, user_account: user_account) }
   let(:name) { FFaker::Lorem.word }
 
   let(:variables) { { input: { id: area.id, name: name } } }
@@ -23,7 +23,7 @@ describe 'mutation userAreaCreate', type: :request do
 
   context 'when failed' do
     context 'when area not belongs to current user' do
-      let(:another_area) { create(:area) }
+      let(:another_area) { create(:task_area) }
       let(:variables) { { input: { id: another_area.id, name: name } } }
 
       it 'returns execution error data' do

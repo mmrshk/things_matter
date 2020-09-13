@@ -19,6 +19,14 @@ en:
             description: Note description (not required)
             default: Note default (required)
             project_id: Project id (required)
+        task_create_input:
+          desc: Input for creating note
+          args:
+            deadline: Task deadline (not required)
+            name: Task name (not required)
+            description: Task description (not required)
+            to_do_day: Day to do task (not required)
+            project_id: Project id (required)
         project_update_input:
           desc: Input for updating area
           args:

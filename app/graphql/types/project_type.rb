@@ -24,7 +24,7 @@ module Types
           description: I18n.t("#{I18N_PATH}.fields.type")
 
     field :deadline,
-          GraphQL::Types::ISO8601DateTime,
+          GraphQL::Types::ISO8601Date,
           null: true,
           description: I18n.t("#{I18N_PATH}.fields.deadline")
 
@@ -33,11 +33,22 @@ module Types
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.notes")
 
-    # field :tasks
+    field :tasks,
+          [Types::TaskType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.tasks")
 
     def notes
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |project_ids, loader|
-        Note.includes(:project).where(project_id: project_ids).each do |note|
+        Note.includes(:note_project).where(note_project_id: project_ids).each do |note|
+          loader.call(object.id) { |memo| memo << note }
+        end
+      end
+    end
+
+    def tasks
+      BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |project_ids, loader|
+        Task.includes(:task_project).where(task_project_id: project_ids).each do |note|
           loader.call(object.id) { |memo| memo << note }
         end
       end

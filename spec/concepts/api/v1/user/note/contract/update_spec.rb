@@ -11,14 +11,14 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
 
   let(:note) { create(:note) }
 
-  let(:new_project) { create(:project) }
+  let(:new_project) { create(:note_project) }
 
   let(:default_params) do
     {
       name: FFaker::Lorem.word,
       description: FFaker::Lorem.sentence,
       default: true,
-      project_id: new_project.id
+      note_project_id: new_project.id
     }
   end
 
@@ -56,14 +56,14 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
     end
 
     context 'when WITHOUT project_id' do
-      let(:params) { default_params.except(:project_id) }
+      let(:params) { default_params.except(:note_project_id) }
 
       it 'returns valid' do
         expect(contract).to be_valid
       end
 
       it 'not changes name' do
-        expect { contract && note.reload }.not_to change(note, :project_id)
+        expect { contract && note.reload }.not_to change(note, :note_project_id)
       end
     end
 
@@ -78,10 +78,10 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
 
   describe 'FAILURE' do
     context 'when project not exist' do
-      let(:params) { default_params.merge(project_id: SecureRandom.uuid) }
+      let(:params) { default_params.merge(note_project_id: SecureRandom.uuid) }
       let(:expected_errors) do
         {
-          project_id: [I18n.t('errors.project_existence?')]
+          note_project_id: [I18n.t('errors.project_existence?')]
         }
       end
 
@@ -130,11 +130,11 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
     end
 
     context 'when invalid project_id' do
-      let(:params) { default_params.merge(project_id: 1) }
+      let(:params) { default_params.merge(note_project_id: 1) }
 
       let(:expected_errors) do
         {
-          project_id: [I18n.t('errors.uuid_v4?'),I18n.t('errors.project_existence?')]
+          note_project_id: [I18n.t('errors.uuid_v4?'),I18n.t('errors.project_existence?')]
         }
       end
 

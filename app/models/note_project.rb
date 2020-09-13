@@ -2,18 +2,20 @@
 
 # == Schema Information
 #
-# Table name: projects
+# Table name: note_projects
 #
 #  id              :uuid             not null, primary key
 #  name            :string           default("")
-#  deadline        :datetime
-#  type            :string           not null
-#  area_id         :uuid
+#  deadline        :date
+#  note_area_id    :uuid
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
-class NoteProject < Project
+class NoteProject < ApplicationRecord
+  belongs_to :user_account
+  belongs_to :note_area, optional: true
+
   has_many :notes, dependent: :destroy
 end
