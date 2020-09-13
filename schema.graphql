@@ -640,7 +640,7 @@ type ProjectType {
   notes: [NoteType!]!
 
   """
-  translation missing: en.graphql.types.project_type.fields.tasks
+  Project tasks
   """
   tasks: [TaskType!]!
 

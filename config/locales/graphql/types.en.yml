@@ -28,6 +28,7 @@ en:
           name: Project name
           type: Project type (notes, tasks)
           notes: Project notes
+          tasks: Project tasks
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"
