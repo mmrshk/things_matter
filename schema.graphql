@@ -420,6 +420,11 @@ type Mutation {
   userTaskCreate(input: TaskCreateInput!): UserAccountType!
 
   """
+  Delete current user's Task
+  """
+  userTaskDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
   Add Project to current user's projects
   """
   userTaskProjectCreate(input: TaskProjectCreateInput!): UserAccountType!
