@@ -2,6 +2,8 @@ en:
   graphql:
     inputs:
       common:
+        move_input:
+          desc: Commom move input
         fields:
           id: ID
       user:
@@ -70,38 +72,3 @@ en:
           args:
             email: User's account email
             password: User's account password
-        add_favorite_movie_input:
-          desc: Add movie to favorite input
-          args:
-            user_id: ID of user to which favorite movie is added
-            movie_id: ID of movie to add
-        add_watchlist_movie_input:
-          desc: Add movie to watchlist input
-          args:
-            user_id: ID of user to which watchlist movie is added
-            movie_id: ID of movie to add
-      list:
-        add_item_input:
-          desc: Input for adding the new movie to the list
-          args:
-            list_id: List id
-            movie_id: Movie id
-        remove_item_input:
-          desc: Input for removing the movie from the list
-          args:
-            list_id: List id
-            movie_id: Movie id
-      delete_input:
-        desc: Input for removing entity
-        args:
-          id: List id
-      user_create_list_input:
-        desc: Input for creating new User's list
-        args:
-          name: Name of the new list
-          description: Description of the new list
-      movie_ordering_input:
-        desc: Inptut for movie ordering
-        args:
-          direction: Direction of sorting. Can be ASC or DESC
-          sort: Movie field sort by

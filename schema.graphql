@@ -94,11 +94,11 @@ type CompletionStatusType {
 }
 
 """
-Input for removing entity
+translation missing: en.graphql.inputs.delete_input.desc
 """
 input DeleteInput {
   """
-  List id
+  translation missing: en.graphql.inputs.delete_input.args.id
   """
   id: ID!
 }
@@ -124,7 +124,7 @@ interface ImageInterface {
 }
 
 """
-translation missing: en.graphql.inputs.common.move_input.desc
+Commom move input
 """
 input MoveInput {
   """
@@ -260,7 +260,7 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
-  translation missing: en.graphql.mutations.move.task.project.desc
+  Move task within project
   """
   moveTaskInProject(input: MoveInput!): CompletionStatusType!
 

@@ -5,7 +5,7 @@ module Mutations
     class InProject < AuthenticableMutation
       type Types::CompletionStatusType
 
-      description I18n.t('graphql.mutations.move.task.project.desc')
+      description I18n.t('graphql.mutations.move.task.in_project.desc')
 
       argument :input, Types::Inputs::Common::MoveInput, required: true
 
