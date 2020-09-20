@@ -98,7 +98,7 @@ translation missing: en.graphql.inputs.delete_input.desc
 """
 input DeleteInput {
   """
-  translation missing: en.graphql.inputs.delete_input.args.id
+  ID
   """
   id: ID!
 }
@@ -133,7 +133,7 @@ input MoveInput {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.common.move_input.args.position
+  Position on which task moved
   """
   position: Int!
 }
