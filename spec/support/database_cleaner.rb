@@ -10,5 +10,9 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+
+    FactoryBot.rewind_sequences do
+      example.run
+    end
   end
 end

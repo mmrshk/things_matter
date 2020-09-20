@@ -11,6 +11,7 @@
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  position        :integer
 #
 FactoryBot.define do
   factory :note_project do
@@ -20,6 +21,7 @@ FactoryBot.define do
 
     name { FFaker::Lorem.word }
     deadline { Time.zone.now + 1.day }
+    sequence(:position) { |n| n }
 
     user_account
 

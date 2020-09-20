@@ -94,23 +94,13 @@ type CompletionStatusType {
 }
 
 """
-Input for removing entity
+Delete Input
 """
 input DeleteInput {
   """
-  List id
+  ID
   """
   id: ID!
-}
-
-"""
-Represents info about deleted User's list
-"""
-type DeleteListType {
-  """
-  Deleted list id
-  """
-  deletedListId: ID!
 }
 
 """
@@ -134,68 +124,18 @@ interface ImageInterface {
 }
 
 """
-Input for adding the new movie to the list
+Commom move input
 """
-input ListAddItemInput {
-  """
-  List id
-  """
-  listId: ID!
-
-  """
-  Movie id
-  """
-  movieId: ID!
-}
-
-"""
-Delete list item type
-"""
-type ListItemDelete {
-  """
-  ID
-  """
-  deletedListItemId: ID!
-}
-
-"""
-Input for removing the movie from the list
-"""
-input ListRemoveItemInput {
-  """
-  List id
-  """
-  listId: ID!
-
-  """
-  Movie id
-  """
-  movieId: ID!
-}
-
-"""
-List type
-"""
-type ListType {
-  """
-  Description
-  """
-  description: String
-
+input MoveInput {
   """
   ID
   """
   id: ID!
 
   """
-  Movies in list
+  Position on which task moved
   """
-  items: [MovieType!]!
-
-  """
-  Name
-  """
-  name: String!
+  position: Int!
 }
 
 """
@@ -320,19 +260,14 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
+  Move task within project
+  """
+  moveTaskInProject(input: MoveInput!): CompletionStatusType!
+
+  """
   Updating current access token with refresh token
   """
   refreshToken: RefreshedAccessPayloadType!
-
-  """
-  Add movie to favorite
-  """
-  userAddFavoriteMovie(input: UserAddFavoriteMovieInput!): MovieType!
-
-  """
-  Add movie to watchlist
-  """
-  userAddWatchlistMovie(input: UserAddWatchlistMovieInput!): MovieType!
 
   """
   Add Area to current user's areas
@@ -348,26 +283,6 @@ type Mutation {
   Update current user's Area
   """
   userAreaUpdate(input: AreaUpdateInput!): UserAccountType!
-
-  """
-  Create new list for User
-  """
-  userCreateList(input: UserCreateListInput!): UserAccountType!
-
-  """
-  Remove the list from user
-  """
-  userDeleteList(input: DeleteInput!): DeleteListType!
-
-  """
-  Add the new movie to the current user's list
-  """
-  userListAddItem(input: ListAddItemInput!): ListType!
-
-  """
-  Remove the movie from the current user's list
-  """
-  userListRemoveItem(input: ListRemoveItemInput!): ListItemDelete!
 
   """
   Add Note to current user's project
@@ -916,51 +831,6 @@ type UserAccountType implements Node {
   User account's profile
   """
   userProfile: UserProfileType
-}
-
-"""
-Add movie to favorite input
-"""
-input UserAddFavoriteMovieInput {
-  """
-  ID of movie to add
-  """
-  movieId: ID!
-
-  """
-  ID of user to which favorite movie is added
-  """
-  userAccountId: ID!
-}
-
-"""
-Add movie to watchlist input
-"""
-input UserAddWatchlistMovieInput {
-  """
-  ID of movie to add
-  """
-  movieId: ID!
-
-  """
-  ID of user to which watchlist movie is added
-  """
-  userAccountId: ID!
-}
-
-"""
-Input for creating new User's list
-"""
-input UserCreateListInput {
-  """
-  Description of the new list
-  """
-  description: String
-
-  """
-  Name of the new list
-  """
-  name: String!
 }
 
 """

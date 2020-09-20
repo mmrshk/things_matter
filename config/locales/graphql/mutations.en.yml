@@ -6,6 +6,10 @@ en:
         fields:
           id: ID
           uuid: UUID
+      move:
+        task:
+          in_project:
+            desc: Move task within project
       user:
         task:
           create:
@@ -43,20 +47,6 @@ en:
             completed: will return true if the user log out
         sign_in:
           desc: Sign in a user
-        list:
-          create:
-            desc: Create new list for User
-          add_item:
-            desc: Add the new movie to the current user's list
-          remove_item:
-            desc: Remove the movie from the current user's list
-          delete:
-            desc: Remove the list from user
-        movie:
-          add_favorite:
-            desc: Add movie to favorite
-          add_watchlist:
-            desc: Add movie to watchlist
       auth:
         refresh_token:
           desc: Updating current access token with refresh token

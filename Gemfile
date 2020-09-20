@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'acts_as_list'
 gem 'bcrypt', '~> 3.1.13'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'puma', '~> 4.1'
@@ -64,6 +65,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'ruby_jard'
+  gem 'test-prof', '~> 0.12'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

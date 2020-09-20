@@ -9,9 +9,12 @@
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  position        :integer
 #
 
 class TaskArea < ApplicationRecord
+  acts_as_list
+
   belongs_to :user_account
 
   has_many :task_projects, dependent: :destroy

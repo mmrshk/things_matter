@@ -67,6 +67,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    acts_as_list (1.0.2)
+      activerecord (>= 4.2)
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
@@ -293,6 +295,10 @@ GEM
       rexml
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
+    ruby_jard (0.3.0)
+      byebug (>= 9.1, < 12.0)
+      pry (~> 0.13.0)
+      tty-screen (~> 0.8.1)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
     sexp_processor (4.15.0)
@@ -307,6 +313,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    test-prof (0.12.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     trailblazer (2.1.0.rc1)
@@ -329,6 +336,7 @@ GEM
       railties (>= 4.0.0)
       trailblazer (>= 2.1.0.beta1, < 2.2.0)
       trailblazer-loader (>= 0.1.0)
+    tty-screen (0.8.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uber (0.1.0)
@@ -344,6 +352,7 @@ PLATFORMS
 
 DEPENDENCIES
   action_policy-graphql (~> 0.1)
+  acts_as_list
   annotate (~> 3.0, >= 3.0.3)
   batch-loader
   bcrypt (~> 3.1.13)
@@ -377,8 +386,10 @@ DEPENDENCIES
   rubocop (~> 0.75.1)
   rubocop-rails
   rubocop-rspec
+  ruby_jard
   spring
   spring-watcher-listen (~> 2.0.0)
+  test-prof (~> 0.12)
   trailblazer (= 2.1.0.rc1)
   trailblazer-activity (~> 0.7.1)
   trailblazer-endpoint!

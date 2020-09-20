@@ -11,8 +11,11 @@
 #  note_project_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  position        :integer
 #
 
 class Note < ApplicationRecord
+  acts_as_list
+
   belongs_to :note_project
 end

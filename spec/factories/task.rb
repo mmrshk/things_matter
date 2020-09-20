@@ -7,6 +7,7 @@ FactoryBot.define do
 
     to_do_day { Date.today }
     deadline { Date.today + 7.days }
+    sequence(:position) { |n| n }
 
     task_project
   end
