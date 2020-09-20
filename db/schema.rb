@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_150331) do
+ActiveRecord::Schema.define(version: 2020_09_19_065245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["user_account_id"], name: "index_note_areas_on_user_account_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["note_area_id"], name: "index_note_projects_on_note_area_id"
     t.index ["user_account_id"], name: "index_note_projects_on_user_account_id"
   end
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "note_project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["note_project_id"], name: "index_notes_on_note_project_id"
   end
 
@@ -75,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["user_account_id"], name: "index_task_areas_on_user_account_id"
   end
 
@@ -85,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "user_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["task_area_id"], name: "index_task_projects_on_task_area_id"
     t.index ["user_account_id"], name: "index_task_projects_on_user_account_id"
   end
@@ -99,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_150331) do
     t.uuid "task_project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["task_project_id"], name: "index_tasks_on_task_project_id"
   end
 

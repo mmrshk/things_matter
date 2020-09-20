@@ -33,3 +33,6 @@ tags
 
 # Ignore vim swap files
 *.swp
+
+# Ignore idea files
+.idea/

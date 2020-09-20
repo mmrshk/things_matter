@@ -11,9 +11,12 @@
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  position        :integer
 #
 
 class TaskProject < ApplicationRecord
+  acts_as_list
+
   belongs_to :user_account
   belongs_to :task_area, optional: true
 

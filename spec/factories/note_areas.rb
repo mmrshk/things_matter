@@ -9,11 +9,13 @@
 #  user_account_id :uuid
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  position        :integer
 #
 FactoryBot.define do
   factory :note_area do
     user_account
 
     name { FFaker::Lorem.word }
+    sequence(:position) { |n| n }
   end
 end

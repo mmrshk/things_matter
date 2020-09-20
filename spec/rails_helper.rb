@@ -34,3 +34,5 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 end
+
+RSpec::Matchers.define_negated_matcher :avoid_changing, :change
