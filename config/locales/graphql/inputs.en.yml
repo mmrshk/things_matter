@@ -10,6 +10,9 @@ en:
             position: Position on which task moved
         fields:
           id: ID
+      move:
+        task_within_project_input:
+          desc: Input for moving task within project
       user:
         task_update_input:
           desc: Input for creating note

@@ -35,5 +35,6 @@ module Types
 
     # drug and drop
     field :move_task_in_project, mutation: Mutations::Move::Task::InProject
+    field :move_task_within_project, mutation: Mutations::Move::Task::WithinProject
   end
 end

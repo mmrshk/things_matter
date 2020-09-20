@@ -15,7 +15,7 @@
 #
 
 class TaskProject < ApplicationRecord
-  acts_as_list
+  acts_as_list scope: [:user_account, :task_area]
 
   belongs_to :user_account
   belongs_to :task_area, optional: true

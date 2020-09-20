@@ -15,7 +15,7 @@
 #
 
 class Note < ApplicationRecord
-  acts_as_list
+  acts_as_list scope: :note_project
 
   belongs_to :note_project
 end

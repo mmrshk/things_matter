@@ -63,5 +63,15 @@ module GraphQL
         }
       )
     end
+
+    def move_task_within_project_mutation
+      %(
+        mutation moveTaskWithinProject($input: TaskWithinProjectInput!) {
+          moveTaskWithinProject(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end

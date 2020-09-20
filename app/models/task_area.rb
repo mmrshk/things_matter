@@ -13,7 +13,7 @@
 #
 
 class TaskArea < ApplicationRecord
-  acts_as_list
+  acts_as_list scope: :user_account
 
   belongs_to :user_account
 
