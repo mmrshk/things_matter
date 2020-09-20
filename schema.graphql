@@ -94,7 +94,7 @@ type CompletionStatusType {
 }
 
 """
-translation missing: en.graphql.inputs.delete_input.desc
+Delete Input
 """
 input DeleteInput {
   """

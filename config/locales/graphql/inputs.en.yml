@@ -2,6 +2,8 @@ en:
   graphql:
     inputs:
       common:
+        delete_input:
+          desc: Delete Input
         move_input:
           desc: Commom move input
           args:
@@ -9,8 +11,6 @@ en:
         fields:
           id: ID
       user:
-        delete_input:
-          desc: Delete Input
         task_update_input:
           desc: Input for creating note
           args:
