@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'mutation moveTaskInProject', type: :request do
+describe 'mutation moveTaskWithinProject', type: :request do
   let_it_be(:user_account) { create(:user_account) }
   let(:project) { create(:task_project, with_tasks: true, task_count: 4, user_account: user_account) }
   let(:another_project) { create(:task_project, with_tasks: true, task_count: 4, user_account: user_account) }

@@ -36,3 +36,5 @@ tags
 
 # Ignore idea files
 .idea/
+
+jard_errors.txt
