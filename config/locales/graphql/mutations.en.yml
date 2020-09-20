@@ -9,6 +9,8 @@ en:
       move:
         task:
           in_project:
+            desc: Move task in project
+          within_project:
             desc: Move task within project
       user:
         task:

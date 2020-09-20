@@ -260,9 +260,14 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
-  Move task within project
+  Move task in project
   """
   moveTaskInProject(input: MoveInput!): CompletionStatusType!
+
+  """
+  Move task within project
+  """
+  moveTaskWithinProject(input: TaskWithinProjectInput!): CompletionStatusType!
 
   """
   Updating current access token with refresh token
@@ -791,6 +796,21 @@ input TaskUpdateInput {
   Day to do task (not required)
   """
   toDoDay: ISO8601Date
+}
+
+"""
+Input for moving task within project
+"""
+input TaskWithinProjectInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  ID
+  """
+  taskProjectId: ID!
 }
 
 """

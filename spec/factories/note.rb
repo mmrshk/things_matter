@@ -5,7 +5,6 @@ FactoryBot.define do
     name { FFaker::Lorem.word }
     description { FFaker::Lorem.sentence }
     default { false }
-    sequence(:position) { |n| n }
 
     note_project
   end

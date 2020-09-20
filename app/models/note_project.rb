@@ -15,7 +15,7 @@
 #
 
 class NoteProject < ApplicationRecord
-  acts_as_list
+  acts_as_list scope: [:user_account, :note_area]
 
   belongs_to :user_account
   belongs_to :note_area, optional: true

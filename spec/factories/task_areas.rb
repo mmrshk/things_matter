@@ -16,6 +16,5 @@ FactoryBot.define do
     user_account
 
     name { FFaker::Lorem.word }
-    sequence(:position) { |n| n }
   end
 end
