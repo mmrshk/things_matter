@@ -13,8 +13,19 @@
 #
 FactoryBot.define do
   factory :task_area do
-    user_account
+    transient do
+      with_projects { false }
+      project_count { 2 }
+    end
 
     name { FFaker::Lorem.word }
+
+    user_account
+
+    after(:create) do |area, evaluator|
+      if evaluator.with_projects
+        create_list(:task_project, evaluator.project_count, task_area: area, user_account: area.user_account)
+      end
+    end
   end
 end

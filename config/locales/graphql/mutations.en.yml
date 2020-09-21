@@ -7,6 +7,9 @@ en:
           id: ID
           uuid: UUID
       move:
+        project:
+          in_area:
+            desc: Move project in area
         task:
           in_project:
             desc: Move task in project

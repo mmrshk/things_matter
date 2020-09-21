@@ -33,8 +33,13 @@ module Types
     field :user_task_update, mutation: Mutations::User::Task::Update
     field :user_task_delete, mutation: Mutations::User::Task::Delete
 
-    # drug and drop
+    # drag and drop
+
+    # task
     field :move_task_in_project, mutation: Mutations::Move::Task::InProject
     field :move_task_within_project, mutation: Mutations::Move::Task::WithinProject
+
+    # project
+    field :move_project_in_area, mutation: Mutations::Move::Project::InArea
   end
 end
