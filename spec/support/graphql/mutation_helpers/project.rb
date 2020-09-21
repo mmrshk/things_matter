@@ -34,6 +34,16 @@ module GraphQL
       )
     end
 
+    def move_project_in_area_mutation
+      %(
+        mutation moveProjectInArea($input: MoveInput!) {
+          moveProjectInArea(input: $input) {
+            completed
+          }
+        }
+      )
+    end
+
     def user_task_project_delete_mutation
       %(
         mutation userTaskProjectDelete($input: DeleteInput!) {
