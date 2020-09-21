@@ -52,7 +52,7 @@ describe 'mutation moveProjectInTask', type: :request do
 
     context 'when raise ActiveRecord::ActiveRecordError' do
       # rubocop:disable RSpec/AnyInstance
-      before { allow_any_instance_of(TaskProject).to receive(:update!).and_raise(ActiveRecord::ActiveRecordError) }
+      before { allow_any_instance_of(TaskgProject).to receive(:update!).and_raise(ActiveRecord::ActiveRecordError) }
       # rubocop:enable RSpec/AnyInstance
 
       it 'returns execution error data' do

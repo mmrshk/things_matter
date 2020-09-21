@@ -260,7 +260,7 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
-  translation missing: en.graphql.mutations.move.project.in_area.desc
+  Move project in area
   """
   moveProjectInArea(input: MoveInput!): CompletionStatusType!
 
