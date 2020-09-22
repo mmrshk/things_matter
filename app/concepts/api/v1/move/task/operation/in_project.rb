@@ -15,7 +15,7 @@ module Api::V1
         step :update_position!
         step :set_result
 
-        def update_position!(ctx, model:, params:, **)
+        def update_position!(_ctx, model:, params:, **)
           model.update!(position: params[:position])
         end
 

@@ -23,7 +23,7 @@ module Api::V1
             end
 
             def valid_date?(day)
-              day >= Date.today
+              day >= Time.zone.today
             end
           end
 

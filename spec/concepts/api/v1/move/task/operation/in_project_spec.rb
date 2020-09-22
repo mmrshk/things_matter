@@ -16,9 +16,9 @@ describe Api::V1::Move::Task::Operation::InProject, type: :operation do
       let(:params) { { id: second_task.id, position: 3 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_task.reload && third_task.reload && fourth_task.reload && second_task.reload
-        }.to change(second_task, :position).from(2).to(3).and(
+        end.to change(second_task, :position).from(2).to(3).and(
           change(third_task, :position).from(3).to(2)
         ).and(
           avoid_changing(first_task, :position)
@@ -40,9 +40,9 @@ describe Api::V1::Move::Task::Operation::InProject, type: :operation do
       let(:params) { { id: third_task.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_task.reload && third_task.reload && fourth_task.reload && second_task.reload
-        }.to change(third_task, :position).from(3).to(4).and(
+        end.to change(third_task, :position).from(3).to(4).and(
           change(fourth_task, :position).from(4).to(3)
         ).and(
           avoid_changing(first_task, :position)
@@ -64,9 +64,9 @@ describe Api::V1::Move::Task::Operation::InProject, type: :operation do
       let(:params) { { id: first_task.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_task.reload && third_task.reload && fourth_task.reload && second_task.reload
-        }.to change(first_task, :position).from(1).to(4).and(
+        end.to change(first_task, :position).from(1).to(4).and(
           change(fourth_task, :position).from(4).to(3)
         ).and(
           change(second_task, :position).from(2).to(1)
@@ -85,7 +85,7 @@ describe Api::V1::Move::Task::Operation::InProject, type: :operation do
     end
   end
 
-  context 'Failure ' do
+  describe 'Failure ' do
     context 'when task not found' do
       let(:params) { { id: SecureRandom.uuid } }
 

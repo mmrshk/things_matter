@@ -10,6 +10,8 @@ en:
         project:
           in_area:
             desc: Move project in area
+          within_area:
+            desc: Move project within area
         task:
           in_project:
             desc: Move task in project

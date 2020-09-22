@@ -17,16 +17,16 @@ describe Api::V1::User::Task::Operation::Update, type: :operation do
       id: task.id,
       name: name,
       description: description,
-      to_do_day: Date.today + 1.day,
-      deadline: Date.today + 6.days
+      to_do_day: Time.zone.today + 1.day,
+      deadline: Time.zone.today + 6.days
     }
   end
 
   context 'when user updates task' do
     it 'updates task' do
-      expect {
+      expect do
         execute_operation && task.reload
-      }.to change(task, :name).from(task.name).to(name).and(
+      end.to change(task, :name).from(task.name).to(name).and(
         change(task, :description).from(task.description).to(description)
       ).and(
         change(task, :to_do_day).from(task.to_do_day).to(params[:to_do_day])
@@ -49,9 +49,9 @@ describe Api::V1::User::Task::Operation::Update, type: :operation do
     let(:params) { { id: task.id, task_project_id: new_project.id } }
 
     it 'updates project' do
-      expect {
+      expect do
         execute_operation && task.reload
-      }.to change(task, :task_project_id).from(task.task_project_id).to(new_project.id)
+      end.to change(task, :task_project_id).from(task.task_project_id).to(new_project.id)
     end
 
     it 'returns user_account' do
