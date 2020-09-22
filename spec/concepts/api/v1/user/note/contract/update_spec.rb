@@ -134,7 +134,7 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
 
       let(:expected_errors) do
         {
-          note_project_id: [I18n.t('errors.uuid_v4?'),I18n.t('errors.project_existence?')]
+          note_project_id: [I18n.t('errors.uuid_v4?'), I18n.t('errors.project_existence?')]
         }
       end
 

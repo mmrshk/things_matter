@@ -29,9 +29,7 @@ FactoryBot.define do
     after(:create) do |project, evaluator|
       project.task_area_id = create(:task_area, user_account: project.user_account).id if evaluator.with_area
 
-      if evaluator.with_tasks
-        create_list(:task, evaluator.task_count, task_project: project)
-      end
+      create_list(:task, evaluator.task_count, task_project: project) if evaluator.with_tasks
     end
   end
 end

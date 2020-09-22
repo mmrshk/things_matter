@@ -15,7 +15,7 @@ module Api::V1
         step :update_task!
         step :set_result
 
-        def update_task!(ctx, model:, params:, **)
+        def update_task!(_ctx, model:, params:, **)
           model.update!(task_project_id: params[:task_project_id])
         end
 

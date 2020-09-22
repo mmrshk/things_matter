@@ -12,7 +12,7 @@ module Api::V1
 
         step :update_position!
 
-        def update_position!(ctx, model:, params:, **)
+        def update_position!(_ctx, model:, params:, **)
           model.update!(position: params[:position], note_area_id: params[:area_id])
         end
       end

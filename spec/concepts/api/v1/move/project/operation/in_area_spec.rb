@@ -16,9 +16,10 @@ describe Api::V1::Move::Project::Operation::InArea, type: :operation do
       let(:params) { { id: second_project.id, position: 3 } }
 
       it 'changes positions' do
-        expect {
-          execute_operation && first_project.reload && third_project.reload && fourth_project.reload && second_project.reload
-        }.to change(second_project, :position).from(2).to(3).and(
+        expect do
+          execute_operation && first_project.reload && third_project.reload && fourth_project.reload &&
+            second_project.reload
+        end.to change(second_project, :position).from(2).to(3).and(
           change(third_project, :position).from(3).to(2)
         ).and(
           avoid_changing(first_project, :position)
@@ -40,9 +41,10 @@ describe Api::V1::Move::Project::Operation::InArea, type: :operation do
       let(:params) { { id: third_project.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
-          execute_operation && first_project.reload && third_project.reload && fourth_project.reload && second_project.reload
-        }.to change(third_project, :position).from(3).to(4).and(
+        expect do
+          execute_operation && first_project.reload && third_project.reload && fourth_project.reload &&
+            second_project.reload
+        end.to change(third_project, :position).from(3).to(4).and(
           change(fourth_project, :position).from(4).to(3)
         ).and(
           avoid_changing(first_project, :position)
@@ -64,9 +66,10 @@ describe Api::V1::Move::Project::Operation::InArea, type: :operation do
       let(:params) { { id: first_project.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
-          execute_operation && first_project.reload && third_project.reload && fourth_project.reload && second_project.reload
-        }.to change(first_project, :position).from(1).to(4).and(
+        expect do
+          execute_operation && first_project.reload && third_project.reload && fourth_project.reload &&
+            second_project.reload
+        end.to change(first_project, :position).from(1).to(4).and(
           change(fourth_project, :position).from(4).to(3)
         ).and(
           change(second_project, :position).from(2).to(1)
@@ -85,7 +88,7 @@ describe Api::V1::Move::Project::Operation::InArea, type: :operation do
     end
   end
 
-  context 'Failure ' do
+  describe 'Failure' do
     context 'when project not found' do
       let(:params) { { id: SecureRandom.uuid } }
 

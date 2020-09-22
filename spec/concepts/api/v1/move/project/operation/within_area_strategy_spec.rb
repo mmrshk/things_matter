@@ -70,7 +70,7 @@ describe Api::V1::Move::Project::Operation::WithinAreaStrategy, type: :operation
     end
   end
 
-  context 'Failure ' do
+  describe 'Failure ' do
     context 'when project not found' do
       let(:params) { { id: SecureRandom.uuid } }
 

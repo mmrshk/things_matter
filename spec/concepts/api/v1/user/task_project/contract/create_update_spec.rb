@@ -15,7 +15,7 @@ describe Api::V1::User::TaskProject::Contract::CreateUpdate, type: :contract do
   let(:default_params) do
     {
       name: FFaker::Lorem.word,
-      deadline: Date.today,
+      deadline: Time.zone.today,
       task_area_id: area.id,
       user_account_id: user_account.id
     }
