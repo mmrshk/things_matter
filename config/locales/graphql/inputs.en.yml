@@ -11,6 +11,8 @@ en:
         fields:
           id: ID
       move:
+        project_within_area_input:
+          desc: Input for moving project within area
         task_within_project_input:
           desc: Input for moving task within project
       user:

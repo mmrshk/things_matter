@@ -15,17 +15,10 @@
 #
 FactoryBot.define do
   factory :note_project do
-    transient do
-      with_area { true }
-    end
-
     name { FFaker::Lorem.word }
     deadline { Time.zone.now + 1.day }
 
+    note_area
     user_account
-
-    after(:build) do |note_project, evaluator|
-      note_project.note_area_id = create(:note_area, user_account: note_project.user_account).id if evaluator.with_area
-    end
   end
 end
