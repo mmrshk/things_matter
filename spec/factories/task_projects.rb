@@ -16,6 +16,7 @@
 FactoryBot.define do
   factory :task_project do
     transient do
+      with_area { true }
       with_tasks { false }
       task_count { 2 }
     end
@@ -23,10 +24,11 @@ FactoryBot.define do
     name { FFaker::Lorem.word }
     deadline { Time.zone.now + 1.day }
 
-    task_area
     user_account
 
     after(:create) do |project, evaluator|
+      project.task_area_id = create(:task_area, user_account: project.user_account).id if evaluator.with_area
+
       create_list(:task, evaluator.task_count, task_project: project) if evaluator.with_tasks
     end
   end
