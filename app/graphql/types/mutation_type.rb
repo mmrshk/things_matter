@@ -28,7 +28,7 @@ module Types
     field :user_note_update, mutation: Mutations::User::Note::Update
     field :user_note_delete, mutation: Mutations::User::Note::Delete
 
-    # notes mutations
+    # task mutations
     field :user_task_create, mutation: Mutations::User::Task::Create
     field :user_task_update, mutation: Mutations::User::Task::Update
     field :user_task_delete, mutation: Mutations::User::Task::Delete
@@ -38,6 +38,10 @@ module Types
     # task
     field :move_task_in_project, mutation: Mutations::Move::Task::InProject
     field :move_task_within_project, mutation: Mutations::Move::Task::WithinProject
+
+    # note
+    field :move_note_in_project, mutation: Mutations::Move::Note::InProject
+    field :move_note_within_project, mutation: Mutations::Move::Note::WithinProject
 
     # project
     field :move_project_in_area, mutation: Mutations::Move::Project::InArea

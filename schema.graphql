@@ -265,6 +265,16 @@ type Mutation {
   moveAreaWithinAreas(input: MoveInput!): CompletionStatusType!
 
   """
+  Move note in project
+  """
+  moveNoteInProject(input: MoveInput!): CompletionStatusType!
+
+  """
+  Move note within project
+  """
+  moveNoteWithinProject(input: NoteWithinProjectInput!): CompletionStatusType!
+
+  """
   Move project in area
   """
   moveProjectInArea(input: MoveInput!): CompletionStatusType!
@@ -526,6 +536,21 @@ input NoteUpdateInput {
 }
 
 """
+Input for moving note within projects
+"""
+input NoteWithinProjectInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  ID
+  """
+  noteProjectId: ID!
+}
+
+"""
 Information about pagination in a connection.
 """
 type PageInfo {
@@ -596,7 +621,7 @@ type ProjectType {
 }
 
 """
-Input for moving project within area
+Input for moving project within areas
 """
 input ProjectWithinAreaInput {
   """
@@ -829,7 +854,7 @@ input TaskUpdateInput {
 }
 
 """
-Input for moving task within project
+Input for moving task within projects
 """
 input TaskWithinProjectInput {
   """
