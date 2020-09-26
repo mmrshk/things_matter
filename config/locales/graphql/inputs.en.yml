@@ -11,10 +11,12 @@ en:
         fields:
           id: ID
       move:
+        note_within_project_input:
+          desc: Input for moving note within projects
         project_within_area_input:
-          desc: Input for moving project within area
+          desc: Input for moving project within areas
         task_within_project_input:
-          desc: Input for moving task within project
+          desc: Input for moving task within projects
       user:
         task_update_input:
           desc: Input for creating note

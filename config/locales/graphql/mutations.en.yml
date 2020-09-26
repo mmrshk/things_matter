@@ -7,6 +7,12 @@ en:
           id: ID
           uuid: UUID
       move:
+        note:
+          within_project:
+            desc:
+              Move note within project
+          in_project:
+            desc: Move note in project
         project:
           in_area:
             desc: Move project in area
