@@ -260,6 +260,11 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
+  Move area within areas
+  """
+  moveAreaWithinAreas(input: MoveInput!): CompletionStatusType!
+
+  """
   Move note in project
   """
   moveNoteInProject(input: MoveInput!): CompletionStatusType!

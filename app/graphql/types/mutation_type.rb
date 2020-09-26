@@ -46,5 +46,8 @@ module Types
     # project
     field :move_project_in_area, mutation: Mutations::Move::Project::InArea
     field :move_project_within_area, mutation: Mutations::Move::Project::WithinArea
+
+    # area
+    field :move_area_within_areas, mutation: Mutations::Move::Area::WithinArea
   end
 end
