@@ -47,5 +47,25 @@ module GraphQL
         }
       )
     end
+
+    def move_note_in_project_mutation
+      %(
+        mutation moveNoteInProject($input: MoveInput!) {
+          moveNoteInProject(input: $input) {
+            completed
+          }
+        }
+      )
+    end
+
+    def move_note_within_project_mutation
+      %(
+        mutation moveNoteWithinProject($input: NoteWithinProjectInput!) {
+          moveNoteWithinProject(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end

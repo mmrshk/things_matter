@@ -260,6 +260,16 @@ type MovieType implements NodeInterface {
 
 type Mutation {
   """
+  translation missing: en.graphql.mutations.move.note.in_project.desc
+  """
+  moveNoteInProject(input: MoveInput!): CompletionStatusType!
+
+  """
+  translation missing: en.graphql.mutations.move.note.within_project.desc
+  """
+  moveNoteWithinProject(input: NoteWithinProjectInput!): CompletionStatusType!
+
+  """
   Move project in area
   """
   moveProjectInArea(input: MoveInput!): CompletionStatusType!
@@ -518,6 +528,21 @@ input NoteUpdateInput {
   Project id (not required)
   """
   projectId: ID
+}
+
+"""
+translation missing: en.graphql.inputs.move.note_within_project_input.desc
+"""
+input NoteWithinProjectInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  ID
+  """
+  noteProjectId: ID!
 }
 
 """
