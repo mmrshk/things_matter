@@ -37,5 +37,15 @@ module GraphQL
         }
       )
     end
+
+    def move_area_within_areas_mutation
+      %(
+        mutation moveAreaWithinAreas($input: MoveInput!) {
+          moveAreaWithinAreas(input: $input) {
+            completed
+          }
+        }
+      )
+    end
   end
 end
