@@ -27,9 +27,9 @@ describe Api::V1::User::TaskProject::Operation::Update, type: :operation do
     let(:params) { { id: project.id, task_area_id: nil } }
 
     it 'updates project' do
-      expect {
+      expect do
         execute_operation && project.reload
-      }.to change(project, :task_area_id).from(project.task_area_id).to(nil)
+      end.to change(project, :task_area_id).from(project.task_area_id).to(nil)
     end
 
     it 'returns user_account' do

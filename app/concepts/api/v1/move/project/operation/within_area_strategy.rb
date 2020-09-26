@@ -3,24 +3,19 @@
 module Api::V1
   module Move::Project
     module Operation
-      class InArea < Trailblazer::Operation
+      class WithinAreaStrategy < Trailblazer::Operation
         step :set_model, fail_fast: true
-
-        step Macro::Policy(
-          policy: ProjectPolicy,
-          record: ->(ctx) { ctx[:model] },
-          rule: :belongs_to_user_account?
-        ), fail_fast: true
-
-        step :update_position!
+        step Nested(:strategy)
         step :set_result
 
         def set_model(ctx, params:, **)
           ctx[:model] = NoteProject.find_by(id: params[:id]) || TaskProject.find_by(id: params[:id])
         end
 
-        def update_position!(_ctx, model:, params:, **)
-          model.update!(position: params[:position])
+        def strategy(_ctx, model:, **)
+          return Api::V1::Move::Project::Operation::WithinNoteArea if model.is_a?(NoteProject)
+
+          Api::V1::Move::Project::Operation::WithinTaskArea
         end
 
         def set_result(ctx, **)

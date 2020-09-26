@@ -45,7 +45,7 @@ describe 'mutation moveTaskWithinProject', type: :request do
       end
     end
 
-    context 'when passed strange id' do
+    context 'when passed strange task_project_id' do
       let(:variables) { { input: { id: project.tasks.fourth.id, task_project_id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do

@@ -1,46 +1,36 @@
 # frozen_string_literal: true
 
-describe 'mutation userTaskCreate', type: :request do
-  let(:user_account) { create(:user_account) }
-  let(:project) { create(:task_project, user_account: user_account) }
-  let(:task) { create(:task, task_project: project) }
-  let(:name) { FFaker::Lorem.word }
-  let(:description) { FFaker::Lorem.sentence }
+describe 'mutation moveProjectWithinTask', type: :request do
+  let_it_be(:current_user) { create(:user_account) }
 
-  let(:token) { generate_token(account_id: user_account.id) }
+  let(:area) { create(:task_area, with_projects: true, project_count: 3, user_account: current_user) }
+  let(:another_area) { create(:task_area, with_projects: true, user_account: current_user) }
+  let(:second_project) { area.task_projects.find_by(position: 2) }
 
-  let(:variables) do
-    {
-      input: {
-        id: task.id,
-        name: name,
-        description: description,
-        to_do_day: Time.zone.today,
-        deadline: Time.zone.today + 7.days
-      }
-    }
-  end
+  let(:token) { generate_token(account_id: current_user.id) }
+
+  let(:variables) { { input: { id: second_project.id, area_id: another_area.id } } }
 
   context 'when success' do
-    it 'returns updated task of current_user' do
+    it 'returns success result' do
       authorized_graphql_post(
-        query: user_task_update_mutation,
+        query: move_project_within_area_mutation,
         variables: variables,
         auth_token: token
       )
 
-      expect(response).to match_schema(UserTask::UpdateSchema)
+      expect(response).to match_schema(Move::Project::WithinArea)
       expect(response.status).to be(200)
     end
   end
 
   context 'when failed' do
-    context 'when passed strange project_id' do
-      let(:variables) { { input: { task_project_id: SecureRandom.uuid } } }
+    context 'when passed strange id' do
+      let(:variables) { { input: { id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do
         authorized_graphql_post(
-          query: user_task_update_mutation,
+          query: move_project_within_area_mutation,
           variables: variables,
           auth_token: token
         )
@@ -52,12 +42,12 @@ describe 'mutation userTaskCreate', type: :request do
 
     context 'when raise ActiveRecord::ActiveRecordError' do
       # rubocop:disable RSpec/AnyInstance
-      before { allow_any_instance_of(Task).to receive(:save).and_raise(ActiveRecord::ActiveRecordError) }
+      before { allow_any_instance_of(TaskProject).to receive(:update!).and_raise(ActiveRecord::ActiveRecordError) }
       # rubocop:enable RSpec/AnyInstance
 
       it 'returns execution error data' do
         authorized_graphql_post(
-          query: user_task_update_mutation,
+          query: move_project_within_area_mutation,
           variables: variables,
           auth_token: token
         )
@@ -70,7 +60,7 @@ describe 'mutation userTaskCreate', type: :request do
     context 'when user not authorized' do
       it 'returns error' do
         graphql_post(
-          query: user_task_update_mutation,
+          query: move_project_within_area_mutation,
           variables: variables
         )
 

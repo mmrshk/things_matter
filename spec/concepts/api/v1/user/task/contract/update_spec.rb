@@ -18,8 +18,8 @@ describe Api::V1::User::Task::Contract::Update, type: :contract do
       description: FFaker::Lorem.sentence,
       done: false,
       deleted: false,
-      to_do_day: Date.today,
-      deadline: Date.today + 7.days,
+      to_do_day: Time.zone.today,
+      deadline: Time.zone.today + 7.days,
       task_project_id: project.id
     }
   end

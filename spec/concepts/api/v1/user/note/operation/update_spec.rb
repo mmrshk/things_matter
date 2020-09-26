@@ -30,9 +30,9 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
     let(:params) { { id: note.id, note_project_id: new_project.id } }
 
     it 'updates project' do
-      expect {
+      expect do
         execute_operation && note.reload
-      }.to change(note, :note_project_id).from(note.note_project_id).to(new_project.id)
+      end.to change(note, :note_project_id).from(note.note_project_id).to(new_project.id)
     end
 
     it 'returns user_account' do

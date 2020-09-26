@@ -20,7 +20,7 @@ module Api::V1
             end
 
             def valid_deadline?(deadline)
-              deadline >= Date.today
+              deadline >= Time.zone.today
             end
           end
 

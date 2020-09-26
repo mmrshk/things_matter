@@ -6,7 +6,7 @@ describe Api::V1::User::TaskProject::Operation::Create, type: :operation do
   let(:current_user) { create(:user_account) }
   let(:area) { create(:task_area, user_account: current_user) }
   let(:name) { FFaker::Lorem.word }
-  let(:deadline) { Date.today }
+  let(:deadline) { Time.zone.today }
 
   let(:params) { { name: name, task_area_id: area.id, deadline: deadline } }
 

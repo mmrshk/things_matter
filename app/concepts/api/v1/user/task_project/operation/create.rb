@@ -13,7 +13,7 @@ module Api::V1
 
         step Macro::Assign(to: 'result', path: %i[model user_account])
 
-        def init_model(ctx, params:, current_user:, **)
+        def init_model(ctx, current_user:, **)
           ctx[:model] = TaskProject.new(user_account_id: current_user.id)
         end
       end

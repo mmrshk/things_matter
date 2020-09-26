@@ -270,6 +270,11 @@ type Mutation {
   moveProjectInArea(input: MoveInput!): CompletionStatusType!
 
   """
+  Move project within area
+  """
+  moveProjectWithinArea(input: ProjectWithinAreaInput!): CompletionStatusType!
+
+  """
   Move task in project
   """
   moveTaskInProject(input: MoveInput!): CompletionStatusType!
@@ -588,6 +593,21 @@ type ProjectType {
   Project type (notes, tasks)
   """
   type: String!
+}
+
+"""
+Input for moving project within area
+"""
+input ProjectWithinAreaInput {
+  """
+  ID
+  """
+  areaId: ID!
+
+  """
+  ID
+  """
+  id: ID!
 }
 
 type Query {

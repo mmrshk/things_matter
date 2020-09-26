@@ -295,10 +295,6 @@ GEM
       rexml
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
-    ruby_jard (0.3.0)
-      byebug (>= 9.1, < 12.0)
-      pry (~> 0.13.0)
-      tty-screen (~> 0.8.1)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
     sexp_processor (4.15.0)
@@ -336,7 +332,6 @@ GEM
       railties (>= 4.0.0)
       trailblazer (>= 2.1.0.beta1, < 2.2.0)
       trailblazer-loader (>= 0.1.0)
-    tty-screen (0.8.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uber (0.1.0)
@@ -386,7 +381,6 @@ DEPENDENCIES
   rubocop (~> 0.75.1)
   rubocop-rails
   rubocop-rspec
-  ruby_jard
   spring
   spring-watcher-listen (~> 2.0.0)
   test-prof (~> 0.12)

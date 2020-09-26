@@ -70,7 +70,7 @@ describe Api::V1::Move::Task::Operation::WithinProject, type: :operation do
     end
   end
 
-  context 'Failure ' do
+  describe 'Failure ' do
     context 'when task not found' do
       let(:params) { { id: SecureRandom.uuid } }
 

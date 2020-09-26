@@ -5,8 +5,8 @@ FactoryBot.define do
     name { FFaker::Lorem.word }
     description { FFaker::Lorem.sentence }
 
-    to_do_day { Date.today }
-    deadline { Date.today + 7.days }
+    to_do_day { Time.zone.today }
+    deadline { Time.zone.today + 7.days }
 
     task_project
   end
