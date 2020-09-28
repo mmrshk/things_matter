@@ -20,5 +20,5 @@
 class Task < ApplicationRecord
   acts_as_list scope: :task_project
 
-  belongs_to :task_project
+  belongs_to :task_project, optional: true
 end

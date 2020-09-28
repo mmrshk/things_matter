@@ -19,7 +19,7 @@ module Api::V1
           ctx[:model] = NoteArea.find_by(id: params[:id]) || TaskArea.find_by(id: params[:id])
         end
 
-        def update_position!(ctx, model:, params:, **)
+        def update_position!(_ctx, model:, params:, **)
           model.update!(position: params[:position])
         end
 

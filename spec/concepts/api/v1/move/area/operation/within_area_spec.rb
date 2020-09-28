@@ -15,9 +15,9 @@ describe Api::V1::Move::Area::Operation::WithinArea, type: :operation do
       let(:params) { { id: second_area.id, position: 3 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_area.reload && third_area.reload && fourth_area.reload && second_area.reload
-        }.to change(second_area, :position).from(2).to(3).and(
+        end.to change(second_area, :position).from(2).to(3).and(
           change(third_area, :position).from(3).to(2)
         ).and(
           avoid_changing(first_area, :position)
@@ -39,9 +39,9 @@ describe Api::V1::Move::Area::Operation::WithinArea, type: :operation do
       let(:params) { { id: third_area.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_area.reload && third_area.reload && fourth_area.reload && second_area.reload
-        }.to change(third_area, :position).from(3).to(4).and(
+        end.to change(third_area, :position).from(3).to(4).and(
           change(fourth_area, :position).from(4).to(3)
         ).and(
           avoid_changing(first_area, :position)
@@ -63,9 +63,9 @@ describe Api::V1::Move::Area::Operation::WithinArea, type: :operation do
       let(:params) { { id: first_area.id, position: 4 } }
 
       it 'changes positions' do
-        expect {
+        expect do
           execute_operation && first_area.reload && third_area.reload && fourth_area.reload && second_area.reload
-        }.to change(first_area, :position).from(1).to(4).and(
+        end.to change(first_area, :position).from(1).to(4).and(
           change(fourth_area, :position).from(4).to(3)
         ).and(
           change(second_area, :position).from(2).to(1)
