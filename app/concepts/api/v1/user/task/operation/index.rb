@@ -2,10 +2,13 @@
 
 module Api::V1::User::Task::Operation
   class Index < Trailblazer::Operation
+    DAY_TODAY = Time.zone.today
+    NEXT_WEEK = Time.zone.today + 1.week
     TASK_FILTERS = {
-      today: { to_do_day: Time.zone.today },
+      today: { to_do_day: DAY_TODAY },
       trash: { deleted: true },
       logbook: { done: true },
+      upcoming: { to_do_day: DAY_TODAY..NEXT_WEEK },
       # someday: 'task_project_id IS NULL',
       anytime: { done: false }
     }.freeze

@@ -21,6 +21,21 @@ describe Api::V1::User::Task::Operation::Index, type: :operation do
     end
   end
 
+  context 'when upcoming filter' do
+    let!(:today_task) { create(:task, to_do_day: Time.zone.today, task_project: task_project) }
+    let!(:yesterday_task) { create(:task, to_do_day: Time.zone.today - 1, task_project: task_project) }
+    let!(:tomorrow_task) { create(:task, to_do_day: Time.zone.today + 1, task_project: task_project) }
+    let(:filter) { 'upcoming' }
+
+    it 'returns user_account' do
+      expect(execute_operation['result']).to eq([today_task, tomorrow_task])
+    end
+
+    it 'success operation' do
+      expect(execute_operation).to be_success
+    end
+  end
+
   context 'when trash filter' do
     let!(:today_task) { create(:task, to_do_day: Time.zone.today, task_project: task_project, deleted: true) }
     let!(:yesterday_task) { create(:task, to_do_day: Time.zone.today - 1, task_project: task_project) }
