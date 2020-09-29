@@ -18,11 +18,6 @@ module Types
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.name")
 
-    field :type,
-          String,
-          null: false,
-          description: I18n.t("#{I18N_PATH}.fields.type")
-
     field :deadline,
           GraphQL::Types::ISO8601Date,
           null: true,

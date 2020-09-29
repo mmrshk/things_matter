@@ -17,6 +17,11 @@ module Types
     field :tasks,
           resolver: Resolvers::Tasks,
           connection: true,
-          description: I18n.t('graphql.queries.today_tasks')
+          description: I18n.t('graphql.queries.tasks')
+
+    field :projects,
+          resolver: Resolvers::Projects,
+          connection: true,
+          description: I18n.t('graphql.queries.projects')
   end
 end
