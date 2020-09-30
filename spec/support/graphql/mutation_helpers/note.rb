@@ -48,6 +48,16 @@ module GraphQL
       )
     end
 
+    def user_note_default_mutation
+      %(
+        mutation userNoteDefault($input: NoteDefaultInput!) {
+          userNoteDefault(input: $input) {
+            completed
+          }
+        }
+      )
+    end
+
     def move_note_in_project_mutation
       %(
         mutation moveNoteInProject($input: MoveInput!) {
