@@ -320,6 +320,11 @@ type Mutation {
   userNoteCreate(input: NoteCreateInput!): UserAccountType!
 
   """
+  Make note default
+  """
+  userNoteDefault(input: NoteDefaultInput!): CompletionStatusType!
+
+  """
   Delete current user's Note
   """
   userNoteDelete(input: DeleteInput!): CompletionStatusType!
@@ -433,6 +438,16 @@ input NoteCreateInput {
   Project id (required)
   """
   noteProjectId: ID!
+}
+
+"""
+Input for making note default
+"""
+input NoteDefaultInput {
+  """
+  ID
+  """
+  id: ID!
 }
 
 """

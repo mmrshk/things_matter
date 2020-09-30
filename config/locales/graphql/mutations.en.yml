@@ -41,6 +41,8 @@ en:
             desc: Update current user's Note
           delete:
             desc: Delete current user's Note
+          default:
+            desc: Make note default
         area:
           create:
             desc: Add Area to current user's areas
