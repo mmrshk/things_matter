@@ -36,8 +36,12 @@ describe Api::V1::User::Note::Operation::Default, type: :operation do
   context 'when note id NOT exist' do
     let(:params) { { id: SecureRandom.uuid } }
 
-    it 'NOT deletes note' do
-      expect { execute_operation }.not_to change(Note, :count)
+    it 'NOT updates note' do
+      expect { execute_operation }.not_to change(note, :default)
+    end
+
+    it 'NOT updates default_note' do
+      expect { execute_operation }.not_to change(default_note, :default)
     end
 
     it 'failure operation' do
