@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'mutation userNoteDelete', type: :request do
+describe 'mutation userNoteDefault', type: :request do
   let(:current_user) { create(:user_account) }
   let(:project) { create(:note_project, user_account: current_user) }
   let(:note) { create(:note, note_project: project) }

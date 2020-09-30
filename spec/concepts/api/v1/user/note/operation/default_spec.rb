@@ -15,7 +15,7 @@ describe Api::V1::User::Note::Operation::Default, type: :operation do
     default_note
   end
 
-  context 'when user deletes note' do
+  context 'when user set note to default' do
     it 'updates note' do
       expect { execute_operation && note.reload }.to change(note, :default).from(false).to(true)
     end
