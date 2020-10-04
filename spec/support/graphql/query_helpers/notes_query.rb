@@ -2,16 +2,16 @@
 
 module GraphQL
   module QueryHelpers
-    def tasks_guery
+    def notes_guery
       %(
-        query tasks(
+        query notes(
           $after: String
           $before: String
           $first: Int
           $last: Int
-          $input: TaskFilterInput
+          $input: NoteFilterInput
         ) {
-          tasks(
+          notes(
             after: $after
             before: $before
             first: $first
@@ -29,12 +29,9 @@ module GraphQL
               cursor
               node {
                 id
+                default
                 description
                 name
-                done
-                deleted
-                deadline
-                toDoDay
               }
             }
           }

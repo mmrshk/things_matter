@@ -19,6 +19,11 @@ module Types
           connection: true,
           description: I18n.t('graphql.queries.tasks')
 
+    field :notes,
+          resolver: Resolvers::Notes,
+          connection: true,
+          description: I18n.t('graphql.queries.notes')
+
     field :projects,
           resolver: Resolvers::Projects,
           connection: true,

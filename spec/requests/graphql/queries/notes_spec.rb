@@ -1,36 +1,23 @@
 # frozen_string_literal: true
 
-describe 'tasks query', type: :request do
+describe 'notes query', type: :request do
   let!(:user_account) { create(:user_account) }
   let(:token) { generate_token(account_id: user_account.id) }
 
-  let(:task_project) { create(:task_project, with_tasks: true, user_account: user_account) }
+  let(:note_project) { create(:note_project, with_notes: true, user_account: user_account) }
 
-  before { task_project }
+  before { note_project }
 
   context 'when user account' do
-    context 'when without filter' do
+    context 'when without sort' do
       it 'returns all data' do
         authorized_graphql_post(
-          query: tasks_guery,
+          query: notes_guery,
           variables: {},
           auth_token: token
         )
 
-        expect(response).to match_schema(UserTask::TasksSchema)
-        expect(response.status).to be(200)
-      end
-    end
-
-    context 'when with filter' do
-      it 'returns today data' do
-        authorized_graphql_post(
-          query: tasks_guery,
-          variables: { input: { filter: 'TODAY' } },
-          auth_token: token
-        )
-
-        expect(response).to match_schema(UserTask::TasksSchema)
+        expect(response).to match_schema(UserNote::NotesSchema)
         expect(response.status).to be(200)
       end
     end
@@ -38,12 +25,25 @@ describe 'tasks query', type: :request do
     context 'when with sort' do
       it 'returns today data' do
         authorized_graphql_post(
-          query: tasks_guery,
+          query: notes_guery,
+          variables: { input: { sort: 'NAME' } },
+          auth_token: token
+        )
+
+        expect(response).to match_schema(UserNote::NotesSchema)
+        expect(response.status).to be(200)
+      end
+    end
+
+    context 'when with sort' do
+      it 'returns today data' do
+        authorized_graphql_post(
+          query: notes_guery,
           variables: { input: { sort: 'CREATED_AT', direction: 'DESC' } },
           auth_token: token
         )
 
-        expect(response).to match_schema(UserTask::TasksSchema)
+        expect(response).to match_schema(UserNote::NotesSchema)
         expect(response.status).to be(200)
       end
     end
@@ -52,7 +52,7 @@ describe 'tasks query', type: :request do
   context 'when no account' do
     it 'returns authentication error data' do
       graphql_post(
-        query: tasks_guery
+        query: notes_guery
       )
 
       expect(response).to match_schema(AuthenticationErrorSchema)
