@@ -3,4 +3,5 @@ en:
     queries:
       me: Get current user
       tasks: Get all tasks on user or filter them by today, trash, logbook, anytime
+      notes: Get all notes on user and sort them
       projects: Get all tasks on user or filter them by trash, logbook, anytime

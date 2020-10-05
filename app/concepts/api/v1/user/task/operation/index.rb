@@ -13,10 +13,22 @@ module Api::V1::User::Task::Operation
       anytime: { done: false }
     }.freeze
 
-    step :set_result
+    pass :set_collection
+    pass :filter_collection
+    pass :sort_collection
 
-    def set_result(ctx, filter:, current_user:, **)
-      ctx['result'] = filter ? current_user.tasks.where(TASK_FILTERS[filter.intern]) : current_user.tasks
+    step Macro::Assign(to: 'result', path: %i[collection])
+
+    def set_collection(ctx, current_user:, **)
+      ctx[:collection] = current_user.tasks.order(position: :asc)
+    end
+
+    def filter_collection(ctx, params:, **)
+      ctx[:collection] = ctx[:collection].where(TASK_FILTERS[params[:filter].intern]) if params[:filter]
+    end
+
+    def sort_collection(ctx, params:, **)
+      ctx[:collection] = ctx[:collection].reorder("#{params[:sort]} #{params[:direction]}") if params[:sort]
     end
   end
 end

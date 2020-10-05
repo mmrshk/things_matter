@@ -16,7 +16,17 @@ en:
         values:
           asc: Ascending ordering
           desc: Descending ordering
-      movie_sort_enum:
-        desc: Order field enum
+      task_filter:
+        desc: Task filter enum
         values:
-          title: Order by title
+          anytime: anytime
+          logbook: logbook
+          today: today
+          trash: trash
+          upcoming: upcoming
+      task_note_property_sort:
+        desc: Task and note enum for sorting
+        values:
+          created_at: created_at
+          name: name
+          updated_at: updated_at
