@@ -381,16 +381,16 @@ type NoteEdgeType {
 }
 
 """
-translation missing: en.graphql.inputs.user.note_filter_input.desc
+Input for sorting notes
 """
 input NoteFilterInput {
   """
-  translation missing: en.graphql.inputs.user.note_filter_input.args.direction
+  Sort direction
   """
   direction: DirectionEnum = ASC
 
   """
-  translation missing: en.graphql.inputs.user.note_filter_input.args.sort
+  Sort types
   """
   sort: TaskNotePropertySort
 }
@@ -642,7 +642,7 @@ type Query {
   me: UserAccountType!
 
   """
-  translation missing: en.graphql.queries.notes
+  Get all notes on user and sort them
   """
   notes(
     """
@@ -836,71 +836,71 @@ type TaskEdgeType {
 }
 
 """
-translation missing: en.graphql.enums.task_filter.desc
+Task filter enum
 """
 enum TaskFilter {
   """
-  translation missing: en.graphql.enums.task_filter.values.anytime
+  anytime
   """
   ANYTIME
 
   """
-  translation missing: en.graphql.enums.task_filter.values.logbook
+  logbook
   """
   LOGBOOK
 
   """
-  translation missing: en.graphql.enums.task_filter.values.today
+  today
   """
   TODAY
 
   """
-  translation missing: en.graphql.enums.task_filter.values.trash
+  trash
   """
   TRASH
 
   """
-  translation missing: en.graphql.enums.task_filter.values.upcoming
+  upcoming
   """
   UPCOMING
 }
 
 """
-translation missing: en.graphql.inputs.user.task_filter_input.desc
+Input for sorting tasks
 """
 input TaskFilterInput {
   """
-  translation missing: en.graphql.inputs.user.task_filter_input.args.direction
+  Sort direction
   """
   direction: DirectionEnum = ASC
 
   """
-  translation missing: en.graphql.inputs.user.task_filter_input.args.filter
+  Filter types
   """
   filter: TaskFilter
 
   """
-  translation missing: en.graphql.inputs.user.task_filter_input.args.sort
+  Sort types
   """
   sort: TaskNotePropertySort
 }
 
 """
-translation missing: en.graphql.enums.task_note_property_sort.desc
+Task and note enum for sorting
 """
 enum TaskNotePropertySort {
   """
-  translation missing: en.graphql.enums.task_note_property_sort.values.created_at
+  created_at
   """
   CREATED_AT
 
   """
-  translation missing: en.graphql.enums.task_note_property_sort.values.name
+  name
   """
   NAME
 
   """
-  translation missing: en.graphql.enums.task_note_property_sort.values.updated_at
+  updated_at
   """
   UPDATED_AT
 }
