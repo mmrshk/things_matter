@@ -29,7 +29,7 @@ module Api::V1
           if model.is_a?(TaskArea)
             model.task_projects.each { |task_project| task_project.update(task_area_id: nil) }
           else
-            model.note_projects.each { |note_project| note_project.update(task_area_id: nil) }
+            model.note_projects.each { |note_project| note_project.update(note_area_id: nil) }
           end
         end
 
