@@ -12,6 +12,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  position        :integer
+#  deleted         :boolean          default(FALSE)
+#  deleted_date    :date
 #
 
 class NoteProject < ApplicationRecord

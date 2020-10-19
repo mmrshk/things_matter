@@ -1,0 +1,4 @@
+trash_cleanup:
+  cron: "30 7 * * 1" # At 07:30 every week on Monday
+  class: "TrashCleanupWorker"
+  queue: default

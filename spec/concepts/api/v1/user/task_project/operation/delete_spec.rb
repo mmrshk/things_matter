@@ -12,7 +12,11 @@ describe Api::V1::User::TaskProject::Operation::Delete, type: :operation do
 
   context 'when user deletes project' do
     it 'deletes project' do
-      expect { execute_operation }.to change(TaskProject, :count).from(1).to(0)
+      expect do
+        execute_operation && project.reload
+      end.to change(project, :deleted).from(false).to(true).and(
+        change(project, :deleted_date).from(nil).to(Time.zone.today)
+      )
     end
 
     it 'returns success result' do

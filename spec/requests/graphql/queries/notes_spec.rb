@@ -22,7 +22,7 @@ describe 'notes query', type: :request do
       end
     end
 
-    context 'when with sort' do
+    context 'when with sort name' do
       it 'returns today data' do
         authorized_graphql_post(
           query: notes_guery,
@@ -35,7 +35,7 @@ describe 'notes query', type: :request do
       end
     end
 
-    context 'when with sort' do
+    context 'when with sort created_at' do
       it 'returns today data' do
         authorized_graphql_post(
           query: notes_guery,

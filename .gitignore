@@ -38,3 +38,9 @@ tags
 .idea/
 
 jard_errors.txt
+
+/config/credentials/environment.key
+
+/config/credentials/development.key
+
+/config/credentials/test.key

@@ -15,7 +15,7 @@ module Api::V1
         step :set_result
 
         def set_result(ctx, model:, **)
-          ctx['result'] = { completed: !!model.destroy } # rubocop:disable Style/DoubleNegation
+          ctx['result'] = { completed: model.update(deleted: true, deleted_date: Time.zone.today) }
         end
       end
     end

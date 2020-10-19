@@ -5,6 +5,7 @@ FactoryBot.define do
     name { FFaker::Lorem.word }
     description { FFaker::Lorem.sentence }
 
+    deleted_date { Time.zone.today }
     to_do_day { Time.zone.today }
     deadline { Time.zone.today + 7.days }
 

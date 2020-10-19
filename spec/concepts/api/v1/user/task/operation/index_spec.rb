@@ -102,7 +102,7 @@ describe Api::V1::User::Task::Operation::Index, type: :operation do
     end
   end
 
-  context 'sort' do
+  context 'when sort' do
     context 'when order by name' do
       let!(:today_task) { create(:task, task_project: task_project, name: 'A' + FFaker::Lorem.sentence) }
       let!(:yesterday_task) { create(:task, task_project: task_project, name: 'C' + FFaker::Lorem.sentence) }
