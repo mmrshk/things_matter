@@ -13,7 +13,11 @@ describe Api::V1::User::Note::Operation::Delete, type: :operation do
 
   context 'when user deletes note' do
     it 'deletes note' do
-      expect { execute_operation }.to change(Note, :count).from(1).to(0)
+      expect do
+        execute_operation && note.reload
+      end.to change(note, :deleted).from(false).to(true).and(
+        change(note, :deleted_date).from(nil).to(Time.zone.today)
+      )
     end
 
     it 'returns success result' do

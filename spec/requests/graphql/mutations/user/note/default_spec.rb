@@ -2,6 +2,7 @@
 
 describe 'mutation userNoteDefault', type: :request do
   let(:current_user) { create(:user_account) }
+  let(:variables) { { input: { id: note.id } } }
   let(:project) { create(:note_project, user_account: current_user) }
   let(:note) { create(:note, note_project: project) }
   let(:default_note) { create(:note, note_project: project, default: true) }
@@ -12,8 +13,6 @@ describe 'mutation userNoteDefault', type: :request do
     note
     default_note
   end
-
-  let(:variables) { { input: { id: note.id } } }
 
   context 'when success' do
     it 'returns updated note of current_user' do

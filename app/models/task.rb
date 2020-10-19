@@ -15,6 +15,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  position        :integer
+#  deleted_date    :date
 #
 
 class Task < ApplicationRecord

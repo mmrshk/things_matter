@@ -5,6 +5,7 @@ FactoryBot.define do
     name { FFaker::Lorem.word }
     description { FFaker::Lorem.sentence }
     default { false }
+    deleted { false }
 
     note_project
   end

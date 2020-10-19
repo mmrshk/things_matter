@@ -13,7 +13,11 @@ describe Api::V1::User::Task::Operation::Delete, type: :operation do
 
   context 'when user deletes task' do
     it 'deletes task' do
-      expect { execute_operation }.to change(Task, :count).from(1).to(0)
+      expect do
+        execute_operation && task.reload
+      end.to change(task, :deleted).from(false).to(true).and(
+        change(task, :deleted_date).from(nil).to(Time.zone.today)
+      )
     end
 
     it 'returns success result' do

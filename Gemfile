@@ -18,6 +18,13 @@ gem 'graphql', '1.9.14'
 gem 'graphql-errors'
 gem 'rack-cors'
 
+# Background jobs
+gem 'sidekiq'
+gem 'sidekiq-cron'
+
+# Error tracker
+gem 'sentry-raven'
+
 # Authorization
 gem 'action_policy-graphql', '~> 0.1'
 

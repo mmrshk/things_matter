@@ -24,7 +24,8 @@ FactoryBot.define do
 
     after(:create) do |area, evaluator|
       if evaluator.with_projects
-        create_list(:task_project, evaluator.project_count, task_area: area, user_account: area.user_account)
+        create_list(:task_project, evaluator.project_count, task_area: area, user_account: area.user_account,
+                                                            with_tasks: true, with_area: false)
       end
     end
   end

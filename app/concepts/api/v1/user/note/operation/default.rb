@@ -12,7 +12,7 @@ module Api::V1
           rule: :belongs_to_user_account?
         ), fail_fast: true
 
-        step Macro::Assign(to: :params, value: { default: true } )
+        step Macro::Assign(to: :params, value: { default: true })
 
         step Wrap(Shared::Steps::ActiveRecordTransaction) {
           step Rescue(ActiveRecord::ActiveRecordError, handler: :raise_error_handler) {
@@ -24,7 +24,7 @@ module Api::V1
 
         step :set_result
 
-        def update_note!(ctx, model:, **)
+        def update_note!(_ctx, model:, **)
           model.update!(default: true)
         end
 

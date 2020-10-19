@@ -13,10 +13,24 @@ module Api::V1
           rule: :belongs_to_user_account?
         ), fail_fast: true
 
-        step :set_result
+        step Wrap(Shared::Steps::ActiveRecordTransaction) {
+          step Rescue(ActiveRecord::ActiveRecordError, handler: :raise_error_handler) {
+            step :update_area_relationships
+
+            step :set_result
+          }
+        }
 
         def set_model(ctx, params:, **)
           ctx[:model] = TaskArea.find_by(id: params[:id]) || NoteArea.find_by(id: params[:id])
+        end
+
+        def update_area_relationships(ctx, model:, **)
+          if model.is_a?(TaskArea)
+            model.task_projects.each { |task_project| task_project.update(task_area_id: nil) }
+          else
+            model.note_projects.each { |note_project| note_project.update(note_area_id: nil) }
+          end
         end
 
         def set_result(ctx, model:, **)
