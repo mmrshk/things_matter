@@ -5,7 +5,7 @@ describe Api::V1::User::Task::Operation::Delete, type: :operation do
 
   let(:current_user) { create(:user_account) }
   let(:project) { create(:task_project, user_account: current_user) }
-  let(:task) { create(:task, task_project: project) }
+  let(:task) { create(:task, user_account: current_user, task_project: project) }
 
   let(:params) { { id: task.id } }
 
@@ -16,7 +16,7 @@ describe Api::V1::User::Task::Operation::Delete, type: :operation do
       expect do
         execute_operation && task.reload
       end.to change(task, :deleted).from(false).to(true).and(
-        change(task, :deleted_date).from(nil).to(Time.zone.today)
+        change(task, :deleted_date).from(task.deleted_date).to(Time.zone.today)
       )
     end
 

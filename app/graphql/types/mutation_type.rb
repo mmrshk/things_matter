@@ -14,25 +14,30 @@ module Types
     field :user_area_update, mutation: Mutations::User::Area::Update
     field :user_area_delete, mutation: Mutations::User::Area::Delete
 
-    # projects mutations
+    # task projects mutations
     field :user_task_project_create, mutation: Mutations::User::TaskProject::Create
     field :user_task_project_update, mutation: Mutations::User::TaskProject::Update
     field :user_task_project_delete, mutation: Mutations::User::TaskProject::Delete
+    # field :user_task_project_recover, mutation: Mutations::User::TaskProject::Recover
 
+    # note projects mutations
     field :user_note_project_create, mutation: Mutations::User::NoteProject::Create
     field :user_note_project_update, mutation: Mutations::User::NoteProject::Update
     field :user_note_project_delete, mutation: Mutations::User::NoteProject::Delete
+    # field :user_note_project_recover, mutation: Mutations::User::NoteProject::Recover
 
     # notes mutations
     field :user_note_create, mutation: Mutations::User::Note::Create
     field :user_note_update, mutation: Mutations::User::Note::Update
     field :user_note_delete, mutation: Mutations::User::Note::Delete
     field :user_note_default, mutation: Mutations::User::Note::Default
+    # field :user_note_recover, mutation: Mutations::User::Note::Recover
 
     # task mutations
     field :user_task_create, mutation: Mutations::User::Task::Create
     field :user_task_update, mutation: Mutations::User::Task::Update
     field :user_task_delete, mutation: Mutations::User::Task::Delete
+    field :user_task_recover, mutation: Mutations::User::Task::Recover
 
     # drag and drop
 

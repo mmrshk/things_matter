@@ -19,20 +19,20 @@ FactoryBot.define do
   factory :note_project do
     transient do
       with_notes { false }
-      with_deleted_notes { false }
       note_count { 2 }
+      is_deleted { false }
     end
 
     name { FFaker::Lorem.word }
     deadline { Time.zone.now + 1.day }
-    deleted_date { Time.zone.today }
 
     note_area
     user_account
 
     after(:create) do |project, evaluator|
       create_list(:note, evaluator.note_count, note_project: project) if evaluator.with_notes
-      create_list(:note, evaluator.note_count, note_project: project, deleted: true) if evaluator.with_deleted_notes
+
+      project.update(deleted: true, deleted_date: Time.zone.today) if evaluator.is_deleted
     end
   end
 end

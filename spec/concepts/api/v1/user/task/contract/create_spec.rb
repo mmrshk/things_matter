@@ -20,7 +20,8 @@ describe Api::V1::User::Task::Contract::Create, type: :contract do
       deleted: false,
       to_do_day: Time.zone.today,
       deadline: Time.zone.today + 7.days,
-      task_project_id: project.id
+      task_project_id: project.id,
+      user_account_id: user_account.id
     }
   end
 

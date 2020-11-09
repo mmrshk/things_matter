@@ -9,7 +9,7 @@ module Api::V1::User::Task::Operation
       trash: { deleted: true },
       logbook: { done: true },
       upcoming: { to_do_day: DAY_TODAY..NEXT_WEEK },
-      # someday: 'task_project_id IS NULL',
+      someday: 'task_project_id IS NULL',
       anytime: { done: false }
     }.freeze
 
@@ -20,7 +20,7 @@ module Api::V1::User::Task::Operation
     step Macro::Assign(to: 'result', path: %i[collection])
 
     def set_collection(ctx, current_user:, **)
-      ctx[:collection] = current_user.tasks.order(position: :asc)
+      ctx[:collection] = Task.where(user_account_id: current_user).order(position: :asc)
     end
 
     def filter_collection(ctx, params:, **)

@@ -17,9 +17,9 @@ FactoryBot.define do
       with_user_profile { false }
 
       with_note_areas { false }
-      note_areas_count { 2 }
-
       with_task_areas { false }
+
+      note_areas_count { 2 }
       task_areas_count { 2 }
     end
 
@@ -30,7 +30,6 @@ FactoryBot.define do
       account.user_profile = create(:user_profile, user_account: account) if evaluator.with_user_profile
 
       create_list(:note_area, evaluator.note_areas_count, user_account: account) if evaluator.with_note_areas
-
       create_list(:task_area, evaluator.task_areas_count, user_account: account) if evaluator.with_task_areas
     end
   end

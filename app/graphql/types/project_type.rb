@@ -35,7 +35,7 @@ module Types
 
     def notes
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |project_ids, loader|
-        Note.includes(:note_project).where(note_project_id: project_ids).each do |note|
+        Note.where(note_project_id: project_ids).each do |note|
           loader.call(object.id) { |memo| memo << note }
         end
       end
@@ -43,7 +43,7 @@ module Types
 
     def tasks
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |project_ids, loader|
-        Task.includes(:task_project).where(task_project_id: project_ids).each do |note|
+        Task.where(task_project_id: project_ids).each do |note|
           loader.call(object.id) { |memo| memo << note }
         end
       end

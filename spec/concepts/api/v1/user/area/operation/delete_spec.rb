@@ -14,11 +14,14 @@ describe Api::V1::User::Area::Operation::Delete, type: :operation do
     it 'changes relationships' do
       execute_operation
 
-      expect(area.task_projects.pluck(:task_area_id).uniq.first).to eq(nil)
+      expect(area.task_projects.pluck(:deleted).uniq.first).to eq(true)
+      expect(area.task_projects.pluck(:deleted_date).uniq.first).to eq(Time.zone.today)
     end
 
-    it 'deletes area' do
-      expect { execute_operation }.to change(TaskArea, :count).from(1).to(0)
+    it 'changes area' do
+      expect { execute_operation && area.reload }.to change(area, :deleted).from(false).to(true).and(
+        change(area, :deleted_date).from(area.deleted_date).to(Time.zone.today)
+      )
     end
 
     it 'returns success result' do

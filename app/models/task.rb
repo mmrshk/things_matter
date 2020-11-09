@@ -16,10 +16,12 @@
 #  updated_at      :datetime         not null
 #  position        :integer
 #  deleted_date    :date
+#  user_account_id :uuid
 #
 
 class Task < ApplicationRecord
   acts_as_list scope: :task_project
 
   belongs_to :task_project, optional: true
+  belongs_to :user_account
 end

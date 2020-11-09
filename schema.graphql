@@ -275,6 +275,11 @@ type Mutation {
   userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
 
   """
+  translation missing: en.graphql.mutations.user.task.recover.desc
+  """
+  userTaskRecover(input: TaskRecoverInput!): UserAccountType!
+
+  """
   Update current user's Task
   """
   userTaskUpdate(input: TaskUpdateInput!): UserAccountType!
@@ -951,6 +956,36 @@ input TaskProjectUpdateInput {
 }
 
 """
+translation missing: en.graphql.inputs.user.task_recover_input.desc
+"""
+input TaskRecoverInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  translation missing: en.graphql.inputs.user.task_recover_input.args.filter
+  """
+  taskLocation: TaskRecoverLocation
+}
+
+"""
+translation missing: en.graphql.enums.task_recover_location.desc
+"""
+enum TaskRecoverLocation {
+  """
+  translation missing: en.graphql.enums.task_recover_location.values.anytime
+  """
+  ANYTIME
+
+  """
+  translation missing: en.graphql.enums.task_recover_location.values.today
+  """
+  TODAY
+}
+
+"""
 Task type
 """
 type TaskType {
@@ -983,6 +1018,11 @@ type TaskType {
   Task name
   """
   name: String!
+
+  """
+  translation missing: en.graphql.types.task_type.task_project_id
+  """
+  taskProjectId: ID
 
   """
   Task to do day

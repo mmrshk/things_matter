@@ -10,6 +10,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  position        :integer
+#  deleted_date    :date
+#  deleted         :boolean          default(FALSE)
 #
 
 class TaskArea < ApplicationRecord
