@@ -14,7 +14,7 @@ module Types
       argument :task_location,
                Types::Enums::TaskRecoverLocation,
                required: false,
-               description: I18n.t("#{I18N_PATH}.args.filter")
+               description: I18n.t("#{I18N_PATH}.args.task_location")
     end
   end
 end

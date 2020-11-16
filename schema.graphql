@@ -451,7 +451,7 @@ input NoteProjectUpdateInput {
 }
 
 """
-translation missing: en.graphql.inputs.user.task_recover_input.desc
+Recover task from trash
 """
 input NoteRecoverInput {
   """
@@ -976,7 +976,7 @@ input TaskProjectUpdateInput {
 }
 
 """
-translation missing: en.graphql.inputs.user.task_recover_input.desc
+Recover task from trash
 """
 input TaskRecoverInput {
   """
@@ -985,22 +985,22 @@ input TaskRecoverInput {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.user.task_recover_input.args.filter
+  Location where to put task without project
   """
   taskLocation: TaskRecoverLocation
 }
 
 """
-translation missing: en.graphql.enums.task_recover_location.desc
+Recover Location for task enum
 """
 enum TaskRecoverLocation {
   """
-  translation missing: en.graphql.enums.task_recover_location.values.anytime
+  Anytime
   """
   ANYTIME
 
   """
-  translation missing: en.graphql.enums.task_recover_location.values.today
+  Today
   """
   TODAY
 }

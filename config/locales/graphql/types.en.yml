@@ -10,6 +10,7 @@ en:
           description: Task description
           to_do_day: Task to do day
           done: Task definition of done (for Logbook)
+          task_project_id: Task Project Id
       note_type:
         desc: Note type
         fields:
