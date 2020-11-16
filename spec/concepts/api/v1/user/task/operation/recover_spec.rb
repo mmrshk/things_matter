@@ -28,7 +28,7 @@ describe Api::V1::User::Task::Operation::Recover, type: :operation do
   end
 
   context 'when recovers task and project NOT exist' do
-    context 'whem task_location today' do
+    context 'when task_location today' do
       let(:task) { create(:task, user_account: current_user, without_task_project: true, is_deleted: true) }
       let(:params) { { id: task.id, task_location: 'today' } }
 
@@ -51,7 +51,7 @@ describe Api::V1::User::Task::Operation::Recover, type: :operation do
       end
     end
 
-    context 'whem task_location anytime' do
+    context 'when task_location anytime' do
       let(:params) { { id: task.id, task_location: 'anytime' } }
       let(:task) { create(:task, user_account: current_user, without_task_project: true, is_deleted: true, done: true) }
 

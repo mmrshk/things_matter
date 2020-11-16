@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_073900) do
+ActiveRecord::Schema.define(version: 2020_11_16_091014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -73,7 +73,9 @@ ActiveRecord::Schema.define(version: 2020_10_31_073900) do
     t.integer "position"
     t.boolean "deleted", default: false
     t.date "deleted_date"
+    t.uuid "user_account_id"
     t.index ["note_project_id"], name: "index_notes_on_note_project_id"
+    t.index ["user_account_id"], name: "index_notes_on_user_account_id"
   end
 
   create_table "schema_extensions", force: :cascade do |t|

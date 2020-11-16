@@ -26,7 +26,7 @@ module Api::V1
           ctx[:model] = TaskArea.find_by(id: params[:id]) || NoteArea.find_by(id: params[:id])
         end
 
-        def update_note_area_relationships(ctx, model:, **)
+        def update_note_area_relationships(_ctx, model:, **)
           return if model.is_a?(TaskArea)
 
           model.note_projects.each do |project|
@@ -38,7 +38,7 @@ module Api::V1
           end
         end
 
-        def update_task_area_relationships(ctx, model:, **)
+        def update_task_area_relationships(_ctx, model:, **)
           return if model.is_a?(NoteArea)
 
           model.task_projects.each do |project|

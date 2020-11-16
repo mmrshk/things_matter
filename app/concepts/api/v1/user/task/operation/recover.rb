@@ -2,7 +2,7 @@
 
 module Api::V1::User::Task::Operation
   class Recover < Trailblazer::Operation
-    TASK_LOCATION = { anytime: 'anytime', today: 'today' }
+    TASK_LOCATION = { anytime: 'anytime', today: 'today' }.freeze
 
     step Model(Task, :find_by), fail_fast: true
 
@@ -16,11 +16,11 @@ module Api::V1::User::Task::Operation
     pass :set_task_location
     step Macro::Assign(to: 'result', path: %i[model user_account])
 
-    def recover_task(ctx, model:, **)
+    def recover_task(_ctx, model:, **)
       model.update!(deleted: false, deleted_date: nil)
     end
 
-    def set_task_location(ctx, model:, params:, **)
+    def set_task_location(_ctx, model:, params:, **)
       return unless params[:task_location]
 
       if params[:task_location] == TASK_LOCATION[:anytime]

@@ -34,6 +34,8 @@ en:
             desc: Update current user's Task
           delete:
             desc: Delete current user's Task
+          recover:
+            desc: Recover current user's Task
         note:
           create:
             desc: Add Note to current user's project
@@ -43,6 +45,8 @@ en:
             desc: Delete current user's Note
           default:
             desc: Make note default
+          recover:
+            desc: Recover current user's Note
         area:
           create:
             desc: Add Area to current user's areas

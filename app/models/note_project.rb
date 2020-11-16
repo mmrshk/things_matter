@@ -22,5 +22,5 @@ class NoteProject < ApplicationRecord
   belongs_to :user_account
   belongs_to :note_area, optional: true
 
-  has_many :notes, dependent: :destroy
+  has_many :notes, dependent: :nullify
 end

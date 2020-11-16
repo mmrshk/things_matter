@@ -11,7 +11,8 @@ FactoryBot.define do
     default { false }
     deleted { false }
 
-    note_project
+    user_account
+    note_project { FactoryBot.create(:note_project, user_account: user_account) }
 
     after(:create) do |note, evaluator|
       note.update(deleted: true, deleted_date: Time.zone.today - 1.day) if evaluator.is_deleted

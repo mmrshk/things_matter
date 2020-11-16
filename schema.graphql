@@ -230,6 +230,11 @@ type Mutation {
   userNoteProjectUpdate(input: NoteProjectUpdateInput!): UserAccountType!
 
   """
+  Recover current user's Note
+  """
+  userNoteRecover(input: NoteRecoverInput!): UserAccountType!
+
+  """
   Update current user's Note
   """
   userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
@@ -275,7 +280,7 @@ type Mutation {
   userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
 
   """
-  translation missing: en.graphql.mutations.user.task.recover.desc
+  Recover current user's Task
   """
   userTaskRecover(input: TaskRecoverInput!): UserAccountType!
 
@@ -443,6 +448,21 @@ input NoteProjectUpdateInput {
   Area id (not required)
   """
   noteAreaId: ID
+}
+
+"""
+translation missing: en.graphql.inputs.user.task_recover_input.desc
+"""
+input NoteRecoverInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  ID
+  """
+  noteProjectId: ID
 }
 
 """

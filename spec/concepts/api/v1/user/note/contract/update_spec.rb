@@ -18,7 +18,8 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
       name: FFaker::Lorem.word,
       description: FFaker::Lorem.sentence,
       default: true,
-      note_project_id: new_project.id
+      note_project_id: new_project.id,
+      user_account_id: note.user_account.id
     }
   end
 

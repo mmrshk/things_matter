@@ -2,7 +2,9 @@
 
 class NotePolicy < ApplicationPolicy
   def belongs_to_user_account?
-    user_account? && record.note_project.user_account.id == user.id
+    user_account? && (
+      record.note_project ? record.note_project.user_account.id == user.id : record.user_account_id == user.id
+    )
   end
 
   def belongs_to_user_account_through_params?

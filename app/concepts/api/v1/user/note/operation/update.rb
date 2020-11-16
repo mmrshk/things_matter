@@ -12,11 +12,16 @@ module Api::V1
           rule: :belongs_to_user_account?
         ), fail_fast: true
 
+        step :extract_params
         step Trailblazer::Operation::Contract::Build(constant: ::Api::V1::User::Note::Contract::Update)
         step Trailblazer::Operation::Contract::Validate(), fail_fast: true
         step Trailblazer::Operation::Contract::Persist()
 
-        step Macro::Assign(to: 'result', path: %i[model note_project user_account])
+        step Macro::Assign(to: 'result', path: %i[model user_account])
+
+        def extract_params(ctx, current_user:, **)
+          ctx[:params] = ctx[:params].merge(user_account_id: current_user.id)
+        end
       end
     end
   end

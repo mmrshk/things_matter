@@ -31,7 +31,7 @@ module Types
     field :user_note_update, mutation: Mutations::User::Note::Update
     field :user_note_delete, mutation: Mutations::User::Note::Delete
     field :user_note_default, mutation: Mutations::User::Note::Default
-    # field :user_note_recover, mutation: Mutations::User::Note::Recover
+    field :user_note_recover, mutation: Mutations::User::Note::Recover
 
     # task mutations
     field :user_task_create, mutation: Mutations::User::Task::Create
