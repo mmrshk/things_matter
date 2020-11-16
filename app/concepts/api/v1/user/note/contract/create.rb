@@ -10,6 +10,7 @@ module Api::V1
         property :description
         property :default
         property :note_project_id
+        property :user_account_id
 
         validation do
           configure do
@@ -25,6 +26,7 @@ module Api::V1
 
           required(:default).filled(:bool?)
           required(:note_project_id).filled(:uuid_v4?, :project_existence?)
+          required(:user_account_id).filled(:uuid_v4?)
         end
       end
     end

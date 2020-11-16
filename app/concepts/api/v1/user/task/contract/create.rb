@@ -13,6 +13,7 @@ module Api::V1
         property :deadline
         property :to_do_day
         property :task_project_id
+        property :user_account_id
 
         validation do
           configure do
@@ -34,6 +35,7 @@ module Api::V1
           optional(:to_do_day).maybe(:date?, :valid_date?)
 
           required(:task_project_id).filled(:uuid_v4?, :project_existence?)
+          required(:user_account_id).filled(:uuid_v4?)
         end
       end
     end

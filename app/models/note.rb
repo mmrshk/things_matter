@@ -14,10 +14,12 @@
 #  position        :integer
 #  deleted         :boolean          default(FALSE)
 #  deleted_date    :date
+#  user_account_id :uuid
 #
 
 class Note < ApplicationRecord
   acts_as_list scope: :note_project
 
+  belongs_to :user_account
   belongs_to :note_project
 end

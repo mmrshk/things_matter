@@ -15,7 +15,8 @@ module Api::V1
 
         step Wrap(Shared::Steps::ActiveRecordTransaction) {
           step Rescue(ActiveRecord::ActiveRecordError, handler: :raise_error_handler) {
-            step :update_area_relationships
+            pass :update_note_area_relationships
+            pass :update_task_area_relationships
 
             step :set_result
           }
@@ -25,16 +26,32 @@ module Api::V1
           ctx[:model] = TaskArea.find_by(id: params[:id]) || NoteArea.find_by(id: params[:id])
         end
 
-        def update_area_relationships(ctx, model:, **)
-          if model.is_a?(TaskArea)
-            model.task_projects.each { |task_project| task_project.update(task_area_id: nil) }
-          else
-            model.note_projects.each { |note_project| note_project.update(note_area_id: nil) }
+        def update_note_area_relationships(_ctx, model:, **)
+          return if model.is_a?(TaskArea)
+
+          model.note_projects.each do |project|
+            project.update!(deleted: true, deleted_date: Time.zone.today)
+
+            project.notes.each do |note|
+              note.update!(deleted: true, deleted_date: Time.zone.today)
+            end
+          end
+        end
+
+        def update_task_area_relationships(_ctx, model:, **)
+          return if model.is_a?(NoteArea)
+
+          model.task_projects.each do |project|
+            project.update!(deleted: true, deleted_date: Time.zone.today)
+
+            project.tasks.each do |task|
+              task.update!(deleted: true, deleted_date: Time.zone.today)
+            end
           end
         end
 
         def set_result(ctx, model:, **)
-          ctx['result'] = { completed: !!model.destroy } # rubocop:disable Style/DoubleNegation
+          ctx['result'] = { completed: model.update!(deleted: true, deleted_date: Time.zone.today) }
         end
       end
     end

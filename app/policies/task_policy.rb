@@ -2,7 +2,9 @@
 
 class TaskPolicy < ApplicationPolicy
   def belongs_to_user_account?
-    user_account? && record.task_project.user_account.id == user.id
+    user_account? && (
+      record.task_project ? record.task_project.user_account.id == user.id : record.user_account_id == user.id
+    )
   end
 
   def belongs_to_user_account_through_params?

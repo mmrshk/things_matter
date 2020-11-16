@@ -20,21 +20,29 @@ FactoryBot.define do
     transient do
       with_area { true }
       with_tasks { false }
-      with_deleted_tasks { false }
+      with_today_tasks { false }
+      is_deleted { false }
       task_count { 2 }
     end
 
     name { FFaker::Lorem.word }
     deadline { Time.zone.now + 1.day }
-    deleted_date { Time.zone.today }
 
     user_account
 
     after(:create) do |project, evaluator|
       project.task_area_id = create(:task_area, user_account: project.user_account).id if evaluator.with_area
 
-      create_list(:task, evaluator.task_count, task_project: project) if evaluator.with_tasks
-      create_list(:task, evaluator.task_count, task_project: project, deleted: true) if evaluator.with_deleted_tasks
+      project.update(deleted: true, deleted_date: Time.zone.today) if evaluator.is_deleted
+
+      if evaluator.with_tasks
+        create_list(:task, evaluator.task_count, task_project: project, user_account: project.user_account)
+      end
+
+      if evaluator.with_today_tasks
+        create_list(:task, evaluator.task_count, task_project: project, user_account: project.user_account,
+                                                 to_do_day: Time.zone.today)
+      end
     end
   end
 end

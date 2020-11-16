@@ -77,5 +77,15 @@ module GraphQL
         }
       )
     end
+
+    def user_note_recover_mutation
+      %(
+        mutation userNoteRecover($input: NoteRecoverInput!) {
+          userNoteRecover(input: $input) {
+            id
+          }
+        }
+      )
+    end
   end
 end

@@ -12,6 +12,7 @@ module Api::V1
           rule: :belongs_to_user_account_through_params?
         ), fail_fast: true
 
+        step :extract_params
         step Wrap(Shared::Steps::ActiveRecordTransaction) {
           step Rescue(ActiveRecord::ActiveRecordError, handler: :raise_error_handler) {
             pass Shared::Steps::UpdateDefaultNote
@@ -22,7 +23,11 @@ module Api::V1
           }
         }
 
-        step Macro::Assign(to: 'result', path: %i[model note_project user_account])
+        step Macro::Assign(to: 'result', path: %i[model user_account])
+
+        def extract_params(ctx, current_user:, **)
+          ctx[:params] = ctx[:params].merge(user_account_id: current_user.id)
+        end
       end
     end
   end

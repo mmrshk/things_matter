@@ -15,7 +15,7 @@ describe Api::V1::User::TaskProject::Operation::Delete, type: :operation do
       expect do
         execute_operation && project.reload
       end.to change(project, :deleted).from(false).to(true).and(
-        change(project, :deleted_date).from(nil).to(Time.zone.today)
+        change(project, :deleted_date).from(project.deleted_date).to(Time.zone.today)
       )
     end
 

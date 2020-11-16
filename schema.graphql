@@ -230,6 +230,11 @@ type Mutation {
   userNoteProjectUpdate(input: NoteProjectUpdateInput!): UserAccountType!
 
   """
+  Recover current user's Note
+  """
+  userNoteRecover(input: NoteRecoverInput!): UserAccountType!
+
+  """
   Update current user's Note
   """
   userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
@@ -273,6 +278,11 @@ type Mutation {
   Update current user's Project
   """
   userTaskProjectUpdate(input: TaskProjectUpdateInput!): UserAccountType!
+
+  """
+  Recover current user's Task
+  """
+  userTaskRecover(input: TaskRecoverInput!): UserAccountType!
 
   """
   Update current user's Task
@@ -438,6 +448,21 @@ input NoteProjectUpdateInput {
   Area id (not required)
   """
   noteAreaId: ID
+}
+
+"""
+Recover task from trash
+"""
+input NoteRecoverInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  ID
+  """
+  noteProjectId: ID
 }
 
 """
@@ -951,6 +976,36 @@ input TaskProjectUpdateInput {
 }
 
 """
+Recover task from trash
+"""
+input TaskRecoverInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Location where to put task without project
+  """
+  taskLocation: TaskRecoverLocation
+}
+
+"""
+Recover Location for task enum
+"""
+enum TaskRecoverLocation {
+  """
+  Anytime
+  """
+  ANYTIME
+
+  """
+  Today
+  """
+  TODAY
+}
+
+"""
 Task type
 """
 type TaskType {
@@ -983,6 +1038,11 @@ type TaskType {
   Task name
   """
   name: String!
+
+  """
+  translation missing: en.graphql.types.task_type.task_project_id
+  """
+  taskProjectId: ID
 
   """
   Task to do day

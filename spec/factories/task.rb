@@ -2,13 +2,23 @@
 
 FactoryBot.define do
   factory :task do
+    transient do
+      without_task_project { false }
+      is_deleted { false }
+    end
+
     name { FFaker::Lorem.word }
     description { FFaker::Lorem.sentence }
-
-    deleted_date { Time.zone.today }
-    to_do_day { Time.zone.today }
+    to_do_day { Time.zone.today - 1.day }
     deadline { Time.zone.today + 7.days }
 
-    task_project
+    user_account
+    task_project { FactoryBot.create(:task_project, user_account: user_account) }
+
+    after(:create) do |task, evaluator|
+      task.update(task_project_id: nil) if evaluator.without_task_project
+
+      task.update(deleted: true, deleted_date: Time.zone.today - 1.day) if evaluator.is_deleted
+    end
   end
 end

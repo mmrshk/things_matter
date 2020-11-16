@@ -5,7 +5,7 @@ describe Api::V1::User::Task::Operation::Update, type: :operation do
 
   let(:current_user) { create(:user_account) }
   let(:project) { create(:task_project, user_account: current_user) }
-  let(:task) { create(:task, task_project: project) }
+  let(:task) { create(:task, task_project: project, user_account: current_user) }
 
   let(:name) { FFaker::Lorem.word }
   let(:description) { FFaker::Lorem.sentence }

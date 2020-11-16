@@ -1,6 +1,11 @@
 en:
   graphql:
     enums:
+      task_recover_location:
+        desc: Recover Location for task enum
+        values:
+          anytime: Anytime
+          today: Today
       area_type_enum:
         desc: Area type enum
         values:

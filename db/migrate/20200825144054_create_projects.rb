@@ -9,7 +9,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    create_table :note_projects, id: :uuid, default: -> { 'uuid_generate_v4()' }  do |t|
+    create_table :note_projects, id: :uuid, default: -> { 'uuid_generate_v4()' } do |t|
       t.string :name, default: ''
       t.date :deadline
       t.belongs_to :note_area, type: :uuid, foreign_key: true, null: true

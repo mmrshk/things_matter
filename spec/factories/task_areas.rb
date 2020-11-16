@@ -10,12 +10,15 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  position        :integer
+#  deleted_date    :date
+#  deleted         :boolean          default(FALSE)
 #
 FactoryBot.define do
   factory :task_area do
     transient do
       with_projects { false }
       project_count { 2 }
+      is_deleted { false }
     end
 
     name { FFaker::Lorem.word }
@@ -27,6 +30,8 @@ FactoryBot.define do
         create_list(:task_project, evaluator.project_count, task_area: area, user_account: area.user_account,
                                                             with_tasks: true, with_area: false)
       end
+
+      area.update(deleted: true, deleted_date: Time.zone.today) if evaluator.is_deleted
     end
   end
 end

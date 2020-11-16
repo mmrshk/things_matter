@@ -58,6 +58,7 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/concepts/**/*'
     - 'spec/requests/**/*'
+    - 'spec/services/**/*'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:

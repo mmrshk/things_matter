@@ -41,5 +41,10 @@ module Types
           GraphQL::Types::ISO8601Date,
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.to_do_day")
+
+    field :task_project_id,
+          ID,
+          null: true,
+          description: I18n.t("#{I18N_PATH}.task_project_id")
   end
 end

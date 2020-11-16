@@ -73,5 +73,15 @@ module GraphQL
         }
       )
     end
+
+    def user_task_recover_mutation
+      %(
+        mutation userTaskRecover($input: TaskRecoverInput!) {
+          userTaskRecover(input: $input) {
+            id
+          }
+        }
+      )
+    end
   end
 end
