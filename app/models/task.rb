@@ -24,4 +24,6 @@ class Task < ApplicationRecord
 
   belongs_to :task_project, optional: true
   belongs_to :user_account
+
+  has_many :task_images, class_name: 'Attachments::TaskImage', as: :attachable, dependent: :destroy
 end

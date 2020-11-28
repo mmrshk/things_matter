@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_091014) do
+ActiveRecord::Schema.define(version: 2020_11_24_154733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2020_11_16_091014) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "attachments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "attachable_id"
+    t.string "attachable_type"
+    t.string "type"
+    t.string "file"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", unique: true
+    t.index ["type"], name: "index_attachments_on_type"
   end
 
   create_table "note_areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
