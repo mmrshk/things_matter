@@ -4,6 +4,8 @@ FactoryBot.define do
   factory :note do
     transient do
       is_deleted { false }
+      with_image { false }
+      image_count { 1 }
     end
 
     name { FFaker::Lorem.word }
@@ -16,6 +18,8 @@ FactoryBot.define do
 
     after(:create) do |note, evaluator|
       note.update(deleted: true, deleted_date: Time.zone.today - 1.day) if evaluator.is_deleted
+
+      create_list(:note_image, evaluator.image_count, note: note) if evaluator.with_image
     end
   end
 end

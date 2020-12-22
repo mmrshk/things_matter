@@ -33,6 +33,11 @@ module Types
                ID,
                required: true,
                description: I18n.t("#{I18N_PATH}.args.project_id")
+
+      argument :task_images,
+               [Types::Inputs::ImageType],
+               required: false,
+               description: I18n.t("#{I18N_PATH}.args.task_images")
     end
   end
 end

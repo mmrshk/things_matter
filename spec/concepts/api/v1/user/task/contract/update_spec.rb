@@ -21,7 +21,12 @@ describe Api::V1::User::Task::Contract::Update, type: :contract do
       to_do_day: Time.zone.today,
       deadline: Time.zone.today + 7.days,
       task_project_id: project.id,
-      user_account_id: user_account.id
+      user_account_id: user_account.id,
+      task_images: [
+        signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+          filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+        ).signed_id
+      ]
     }
   end
 

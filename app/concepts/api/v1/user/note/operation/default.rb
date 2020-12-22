@@ -19,7 +19,7 @@ module Api::V1
             step ::Shared::Steps::UpdateDefaultNote
 
             step :update_note!
-          }
+          }, fail_fast: true
         }
 
         step :set_result

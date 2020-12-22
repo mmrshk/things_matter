@@ -11,4 +11,12 @@ module CustomPredicates
   predicate(:movie_exists?) do |value|
     Movie.exists?(id: value)
   end
+
+  predicate(:signed_blob_id?) do |signed_blob_id|
+    return false unless signed_blob_id.is_a? String
+
+    ActiveStorage.verifier.verify(signed_blob_id, purpose: :blob_id)
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    false
+  end
 end

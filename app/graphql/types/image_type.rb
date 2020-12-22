@@ -1,31 +1,19 @@
 # frozen_string_literal: true
 
-module Types
-  class ImageType < Base::Object
-    I18N_PATH = 'graphql.types.image_type'
+module Types::ImageType
+  include Types::Base::Interface
 
-    graphql_name 'ImageType'
+  graphql_name 'ImageType'
 
-    description I18n.t("#{I18N_PATH}.desc")
+  I18N_PATH = 'graphql.interfaces.image_type'
 
-    field :id,
-          String,
-          null: false,
-          description: I18n.t("#{I18N_PATH}.fields.id")
+  description I18n.t("#{I18N_PATH}.desc")
 
-    field :filepath,
-          String,
-          null: true,
-          description: I18n.t("#{I18N_PATH}.fields.filepath")
+  field :original_url, String, null: true, description: I18n.t("#{I18N_PATH}.fields.original_url")
 
-    def filepath
-      return nil unless object.blob
+  def original_url
+    return nil unless object.blob
 
-      Rails.application.routes.url_helpers.rails_blob_url(object.blob)
-    end
-
-    def id
-      object.blob.id
-    end
+    Rails.application.routes.url_helpers.rails_blob_url(object.blob)
   end
 end

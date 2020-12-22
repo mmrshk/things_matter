@@ -17,13 +17,35 @@ describe Api::V1::User::Note::Operation::Create, type: :operation do
       name: name,
       description: description,
       default: true,
-      note_project_id: project.id
+      note_project_id: project.id,
+      note_images: [
+        {
+          id: SecureRandom.uuid,
+          signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+            filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+          ).signed_id
+        },
+        {
+          id: SecureRandom.uuid,
+          signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+            filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+          ).signed_id
+        }
+      ]
     }
+  end
+
+  before do
+    allow_any_instance_of(ActiveStorage::Service::DiskService).to receive(:download_chunk).and_return('\x10\x00\x00')
   end
 
   context 'when user creates note' do
     it 'creates Note' do
       expect { execute_operation }.to change(Note, :count).from(0).to(1)
+    end
+
+    it 'creates 2 TaskImages' do
+      expect { execute_operation }.to change(NoteImage, :count).from(0).to(2)
     end
 
     it 'changes previous default Note' do
