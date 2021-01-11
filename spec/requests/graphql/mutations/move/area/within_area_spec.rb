@@ -49,9 +49,7 @@ describe 'mutation moveProjectInTask', type: :request do
     end
 
     context 'when raise ActiveRecord::ActiveRecordError' do
-      # rubocop:disable RSpec/AnyInstance
       before { allow_any_instance_of(TaskArea).to receive(:update!).and_raise(ActiveRecord::ActiveRecordError) }
-      # rubocop:enable RSpec/AnyInstance
 
       it 'returns execution error data' do
         authorized_graphql_post(

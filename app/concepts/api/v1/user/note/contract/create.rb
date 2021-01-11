@@ -46,7 +46,7 @@ module Api::V1
           note_images.append(note_image)
         end
 
-        def init_note_image(fragment, index)
+        def init_note_image(fragment, _index)
           note_image = NoteImage.new(
             id: fragment[:id],
             note: model

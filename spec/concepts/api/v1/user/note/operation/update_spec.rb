@@ -10,11 +10,11 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
   let(:description) { FFaker::Lorem.sentence }
 
   let(:params) do
-     {
-       id: note.id,
-       name: name,
-       description: description,
-       note_images: [
+    {
+      id: note.id,
+      name: name,
+      description: description,
+      note_images: [
         {
           id: note.note_images.first.id,
           signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
@@ -27,11 +27,11 @@ describe Api::V1::User::Note::Operation::Update, type: :operation do
             filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
           ).signed_id
         }
-       ]
-     }
-   end
+      ]
+    }
+  end
 
-   before do
+  before do
     allow_any_instance_of(ActiveStorage::Service::DiskService).to receive(:download_chunk).and_return('\x10\x00\x00')
 
     note

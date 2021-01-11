@@ -54,6 +54,12 @@ Style/SignalException:
     - 'app/concepts/**/*'
 
 # RSpec cops
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/concepts/**/*'
+    - 'spec/requests/**/*'
+    - 'spec/services/**/*'
+
 RSpec/ExampleLength:
   Exclude:
     - 'spec/concepts/**/*'

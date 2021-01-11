@@ -55,7 +55,7 @@ module Api::V1
           task_images.append(task_image)
         end
 
-        def init_task_image(fragment, index)
+        def init_task_image(fragment, _index)
           task_image = TaskImage.new(
             id: fragment[:id],
             task: model

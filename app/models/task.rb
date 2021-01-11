@@ -25,5 +25,5 @@ class Task < ApplicationRecord
   belongs_to :task_project, optional: true
   belongs_to :user_account
 
-  has_many :task_images
+  has_many :task_images, dependent: :destroy
 end

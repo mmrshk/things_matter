@@ -33,7 +33,7 @@ module Types
           description: I18n.t("#{I18N_PATH}.note_images")
 
     def images
-      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |task_ids, loader|
+      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |_task_ids, loader|
         ::NoteImage
           .with_attached_file
           .where(note_id: note_ids)

@@ -48,7 +48,9 @@ module Api::V1
         def extract_images_params(ctx, params:, **)
           return unless params[:task_images]
 
-          ctx[:params][:task_images] = ctx[:params][:task_images].select { |param| !param[:id].in?(ctx[:exist_images].pluck(:id)) }
+          ctx[:params][:task_images] = ctx[:params][:task_images].reject do |param|
+            param[:id].in?(ctx[:exist_images].pluck(:id))
+          end
         end
       end
     end
