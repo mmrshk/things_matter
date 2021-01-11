@@ -11,9 +11,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 
-gem 'paperclip'
-gem 'aws-sdk-s3', '~> 1'
-
 # API
 gem 'batch-loader'
 gem 'graphiql-rails'
