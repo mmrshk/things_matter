@@ -18,8 +18,19 @@ describe Api::V1::User::Task::Operation::Update, type: :operation do
       name: name,
       description: description,
       to_do_day: Time.zone.today + 1.day,
-      deadline: Time.zone.today + 6.days
+      deadline: Time.zone.today + 6.days,
+      task_images: [
+        signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+          filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+        ).signed_id
+      ]
     }
+  end
+
+  before do
+    allow_any_instance_of(ActiveStorage::Service::DiskService).to receive(:download_chunk).and_return('\x10\x00\x00')
+
+    task
   end
 
   context 'when user updates task' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_091014) do
+ActiveRecord::Schema.define(version: 2020_12_17_185408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2020_11_16_091014) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "attachments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "attachable_id"
+    t.string "attachable_type"
+    t.string "type"
+    t.string "file"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", unique: true
+    t.index ["type"], name: "index_attachments_on_type"
+  end
+
   create_table "note_areas", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
     t.uuid "user_account_id"
@@ -47,6 +58,14 @@ ActiveRecord::Schema.define(version: 2020_11_16_091014) do
     t.date "deleted_date"
     t.boolean "deleted", default: false
     t.index ["user_account_id"], name: "index_note_areas_on_user_account_id"
+  end
+
+  create_table "note_images", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "note_id"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_note_images_on_note_id"
   end
 
   create_table "note_projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -90,6 +109,14 @@ ActiveRecord::Schema.define(version: 2020_11_16_091014) do
     t.date "deleted_date"
     t.boolean "deleted", default: false
     t.index ["user_account_id"], name: "index_task_areas_on_user_account_id"
+  end
+
+  create_table "task_images", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "task_id"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_task_images_on_task_id"
   end
 
   create_table "task_projects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -142,10 +169,12 @@ ActiveRecord::Schema.define(version: 2020_11_16_091014) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "note_areas", "user_accounts"
+  add_foreign_key "note_images", "notes"
   add_foreign_key "note_projects", "note_areas"
   add_foreign_key "note_projects", "user_accounts"
   add_foreign_key "notes", "note_projects"
   add_foreign_key "task_areas", "user_accounts"
+  add_foreign_key "task_images", "tasks"
   add_foreign_key "task_projects", "task_areas"
   add_foreign_key "task_projects", "user_accounts"
   add_foreign_key "tasks", "task_projects"

@@ -19,7 +19,7 @@ module Api::V1
             pass :update_task_area_relationships
 
             step :set_result
-          }
+          }, fail_fast: true
         }
 
         def set_model(ctx, params:, **)

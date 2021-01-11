@@ -20,7 +20,7 @@ module Api::V1
             step Trailblazer::Operation::Contract::Build(constant: ::Api::V1::User::Note::Contract::Create)
             step Trailblazer::Operation::Contract::Validate(), fail_fast: true
             step Trailblazer::Operation::Contract::Persist()
-          }
+          }, fail_fast: true
         }
 
         step Macro::Assign(to: 'result', path: %i[model user_account])

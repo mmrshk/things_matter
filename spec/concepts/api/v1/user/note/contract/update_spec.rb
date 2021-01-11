@@ -19,7 +19,12 @@ describe Api::V1::User::Note::Contract::Update, type: :contract do
       description: FFaker::Lorem.sentence,
       default: true,
       note_project_id: new_project.id,
-      user_account_id: note.user_account.id
+      user_account_id: note.user_account.id,
+      note_images: [
+        signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+          filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+        ).signed_id
+      ]
     }
   end
 

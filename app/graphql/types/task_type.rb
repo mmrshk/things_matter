@@ -46,5 +46,21 @@ module Types
           ID,
           null: true,
           description: I18n.t("#{I18N_PATH}.task_project_id")
+
+    field :task_images,
+          [Types::ImageType],
+          null: true,
+          description: I18n.t("#{I18N_PATH}.task_images")
+
+    def images
+      BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |task_ids, loader|
+        ::TaskImage
+          .with_attached_file
+          .where(task_id: task_ids)
+          .each do |task_image|
+            loader.call(task_image.id) { |memo| memo << task_image.file }
+          end
+      end
+    end
   end
 end

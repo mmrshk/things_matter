@@ -15,6 +15,11 @@ module Api::V1
         property :task_project_id
         property :user_account_id
 
+        collection :task_images, populator: :populate_task_images! do
+          property :id
+          property :signed_blob_id, virtual: true
+        end
+
         validation do
           configure do
             predicates(::CustomPredicates)
@@ -28,6 +33,13 @@ module Api::V1
             end
           end
 
+          optional(:product_images).each do
+            schema do
+              required(:id).filled(:uuid_v4?)
+              required(:signed_blob_id).maybe(:str?, :signed_blob_id?)
+            end
+          end
+
           optional(:name).maybe(:str?)
           optional(:description).maybe(:str?)
 
@@ -36,6 +48,22 @@ module Api::V1
 
           required(:task_project_id).filled(:uuid_v4?, :project_existence?)
           required(:user_account_id).filled(:uuid_v4?)
+        end
+
+        def populate_task_images!(fragment:, index:, **)
+          task_image = init_task_image(fragment, index)
+          task_images.append(task_image)
+        end
+
+        def init_task_image(fragment, _index)
+          task_image = TaskImage.new(
+            id: fragment[:id],
+            task: model
+          )
+
+          task_image.file.attach(fragment[:signed_blob_id])
+
+          task_image
         end
       end
     end

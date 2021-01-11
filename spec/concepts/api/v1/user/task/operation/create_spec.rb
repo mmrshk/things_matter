@@ -16,13 +16,35 @@ describe Api::V1::User::Task::Operation::Create, type: :operation do
       description: description,
       to_do_day: Time.zone.today + 1.day,
       deadline: Time.zone.today + 7.days,
-      task_project_id: project.id
+      task_project_id: project.id,
+      task_images: [
+        {
+          id: SecureRandom.uuid,
+          signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+            filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+          ).signed_id
+        },
+        {
+          id: SecureRandom.uuid,
+          signed_blob_id: ActiveStorage::Blob.create_before_direct_upload!(
+            filename: 'test.jpg', byte_size: 10, checksum: 'checksum'
+          ).signed_id
+        }
+      ]
     }
+  end
+
+  before do
+    allow_any_instance_of(ActiveStorage::Service::DiskService).to receive(:download_chunk).and_return('\x10\x00\x00')
   end
 
   context 'when user creates task' do
     it 'creates Task' do
       expect { execute_operation }.to change(Task, :count).from(0).to(1)
+    end
+
+    it 'creates 2 TaskImages' do
+      expect { execute_operation }.to change(TaskImage, :count).from(0).to(2)
     end
 
     it 'returns user_account' do

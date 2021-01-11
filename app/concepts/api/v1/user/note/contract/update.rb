@@ -12,6 +12,11 @@ module Api::V1
         property :note_project_id
         property :user_account_id
 
+        collection :note_images, populator: :populate_note_images! do
+          property :id
+          property :signed_blob_id, virtual: true
+        end
+
         validation do
           configure do
             option :form
@@ -22,11 +27,34 @@ module Api::V1
             end
           end
 
+          optional(:product_images).each do
+            schema do
+              required(:id).filled(:uuid_v4?)
+              required(:signed_blob_id).maybe(:str?, :signed_blob_id?)
+            end
+          end
+
           optional(:name).maybe(:str?)
           optional(:description).maybe(:str?)
           optional(:note_project_id).maybe(:uuid_v4?, :project_existence?)
           optional(:default).maybe(:bool?)
           required(:user_account_id).filled(:uuid_v4?)
+        end
+
+        def populate_note_images!(fragment:, index:, **)
+          note_image = init_note_image(fragment, index)
+          note_images.append(note_image)
+        end
+
+        def init_note_image(fragment, _index)
+          note_image = NoteImage.new(
+            id: fragment[:id],
+            note: model
+          )
+
+          note_image.file.attach(fragment[:signed_blob_id])
+
+          note_image
         end
       end
     end
