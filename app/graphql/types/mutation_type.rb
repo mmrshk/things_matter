@@ -39,6 +39,16 @@ module Types
     field :user_task_delete, mutation: Mutations::User::Task::Delete
     field :user_task_recover, mutation: Mutations::User::Task::Recover
 
+    # task tag
+    field :user_task_tag_create, mutation: Mutations::User::Task::Tag::Create
+    field :user_task_tag_update, mutation: Mutations::User::Task::Tag::Update
+    field :user_task_tag_delete, mutation: Mutations::User::Task::Tag::Delete
+
+    # note tag
+    field :user_note_tag_create, mutation: Mutations::User::Note::Tag::Create
+    field :user_note_tag_update, mutation: Mutations::User::Note::Tag::Update
+    field :user_note_tag_delete, mutation: Mutations::User::Note::Tag::Delete
+
     # drag and drop
 
     # task

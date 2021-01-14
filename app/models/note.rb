@@ -24,4 +24,5 @@ class Note < ApplicationRecord
   belongs_to :note_project
 
   has_many :note_images, dependent: :destroy
+  has_many :note_tags, dependent: :destroy
 end

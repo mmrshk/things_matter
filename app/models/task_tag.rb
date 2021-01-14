@@ -1,19 +1,13 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: task_images
+# Table name: task_tags
 #
 #  id         :uuid             not null, primary key
 #  task_id    :uuid
-#  position   :integer          default(0), not null
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class TaskImage < ApplicationRecord
-  acts_as_list scope: :task
-
+class TaskTag < ApplicationRecord
   belongs_to :task
-
-  has_one_attached :file
 end
