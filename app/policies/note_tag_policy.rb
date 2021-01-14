@@ -2,7 +2,7 @@
 
 class NoteTagPolicy < ApplicationPolicy
   def belongs_to_user_account_through_params?
-    user_account? && note_id_exists?(id: record)
+    user_account? && note_id_exists?(note_id: record)
   end
 
   def belongs_to_user_account?
@@ -11,7 +11,7 @@ class NoteTagPolicy < ApplicationPolicy
 
   private
 
-  def note_id_exists?(id: id)
-    Note.exists?(id: id, user_account_id: user.id)
+  def note_id_exists?(note_id:)
+    Note.exists?(id: note_id, user_account_id: user.id)
   end
 end

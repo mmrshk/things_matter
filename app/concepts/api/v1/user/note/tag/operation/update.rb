@@ -4,7 +4,7 @@ module Api::V1
   module User::Note::Tag
     module Operation
       class Update < Api::V1::ApplicationOperation
-        step Model(NoteTag, :find_by),  fail_fast: true
+        step Model(NoteTag, :find_by), fail_fast: true
 
         step Macro::Policy(
           policy: NoteTagPolicy,

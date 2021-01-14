@@ -2,7 +2,7 @@
 
 class TaskTagPolicy < ApplicationPolicy
   def belongs_to_user_account_through_params?
-    user_account? && task_id_exists?(id: record)
+    user_account? && task_id_exists?(task_id: record)
   end
 
   def belongs_to_user_account?
@@ -11,7 +11,7 @@ class TaskTagPolicy < ApplicationPolicy
 
   private
 
-  def task_id_exists?(id: id)
-    Task.exists?(id: id, user_account_id: user.id)
+  def task_id_exists?(task_id:)
+    Task.exists?(id: task_id, user_account_id: user.id)
   end
 end

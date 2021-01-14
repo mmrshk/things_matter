@@ -68,7 +68,7 @@ module Types
       end
     end
 
-    def images
+    def task_tags
       BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |task_ids, loader|
         ::TaskTag.where(task_id: task_ids).each do |task_tag|
           loader.call(task_tag.task_id) { |memo| memo << task_tag }

@@ -4,7 +4,7 @@ module Api::V1
   module User::Task::Tag
     module Operation
       class Update < Api::V1::ApplicationOperation
-        step Model(TaskTag, :find_by),  fail_fast: true
+        step Model(TaskTag, :find_by), fail_fast: true
 
         step Macro::Policy(
           policy: TaskTagPolicy,
