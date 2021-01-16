@@ -1120,12 +1120,12 @@ type TaskTagType {
   id: ID!
 
   """
-  translation missing: en.graphql.types.task_tag_type.fields.name
+  Name
   """
   name: String!
 
   """
-  translation missing: en.graphql.types.task_tag_type.fields.task_id
+  Task Id
   """
   taskId: ID!
 }
@@ -1180,12 +1180,12 @@ type TaskType {
   name: String!
 
   """
-  translation missing: en.graphql.types.task_type.task_project_id
+  Task Project Id
   """
   taskProjectId: ID
 
   """
-  translation missing: en.graphql.types.task_type.task_tags
+  Task Tags
   """
   taskTags: [TaskTagType!]
 

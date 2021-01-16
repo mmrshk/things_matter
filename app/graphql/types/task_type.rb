@@ -45,17 +45,17 @@ module Types
     field :task_project_id,
           ID,
           null: true,
-          description: I18n.t("#{I18N_PATH}.task_project_id")
+          description: I18n.t("#{I18N_PATH}.fields.task_project_id")
 
     field :task_images,
           [Types::ImageType],
           null: true,
-          description: I18n.t("#{I18N_PATH}.task_images")
+          description: I18n.t("#{I18N_PATH}.fields.task_images")
 
     field :task_tags,
           [TaskTagType],
           null: true,
-          description: I18n.t("#{I18N_PATH}.task_tags")
+          description: I18n.t("#{I18N_PATH}.fields.task_tags")
 
     def images
       BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |task_ids, loader|

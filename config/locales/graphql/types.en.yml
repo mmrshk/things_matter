@@ -3,7 +3,7 @@ en:
     types:
       task_tag_type:
         desc: TaskTag type
-        args:
+        fields:
           name: Name
           task_id: Task Id
       task_type:
