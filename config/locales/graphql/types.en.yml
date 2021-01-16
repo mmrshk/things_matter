@@ -36,6 +36,7 @@ en:
           type: Project type (notes, tasks)
           notes: Project notes
           tasks: Project tasks
+          task_tags: Uniq task tags (to get names)
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"
