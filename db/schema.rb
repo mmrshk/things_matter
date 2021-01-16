@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_185408) do
+ActiveRecord::Schema.define(version: 2021_01_12_112841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 2020_12_17_185408) do
     t.index ["user_account_id"], name: "index_note_projects_on_user_account_id"
   end
 
+  create_table "note_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "note_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_note_tags_on_note_id"
+  end
+
   create_table "notes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
     t.text "description"
@@ -133,6 +141,14 @@ ActiveRecord::Schema.define(version: 2020_12_17_185408) do
     t.index ["user_account_id"], name: "index_task_projects_on_user_account_id"
   end
 
+  create_table "task_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "task_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_task_tags_on_task_id"
+  end
+
   create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", default: ""
     t.text "description"
@@ -172,11 +188,13 @@ ActiveRecord::Schema.define(version: 2020_12_17_185408) do
   add_foreign_key "note_images", "notes"
   add_foreign_key "note_projects", "note_areas"
   add_foreign_key "note_projects", "user_accounts"
+  add_foreign_key "note_tags", "notes"
   add_foreign_key "notes", "note_projects"
   add_foreign_key "task_areas", "user_accounts"
   add_foreign_key "task_images", "tasks"
   add_foreign_key "task_projects", "task_areas"
   add_foreign_key "task_projects", "user_accounts"
+  add_foreign_key "task_tags", "tasks"
   add_foreign_key "tasks", "task_projects"
   add_foreign_key "user_profiles", "user_accounts"
 end

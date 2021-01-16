@@ -72,7 +72,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  # gem 'ruby_jard'
   gem 'test-prof', '~> 0.12'
 end
 

@@ -1,6 +1,11 @@
 en:
   graphql:
     types:
+      task_tag_type:
+        desc: TaskTag type
+        fields:
+          name: Name
+          task_id: Task Id
       task_type:
         desc: Task type
         fields:
@@ -11,6 +16,7 @@ en:
           to_do_day: Task to do day
           done: Task definition of done (for Logbook)
           task_project_id: Task Project Id
+          task_tags: Task Tags
       note_type:
         desc: Note type
         fields:
@@ -30,6 +36,7 @@ en:
           type: Project type (notes, tasks)
           notes: Project notes
           tasks: Project tasks
+          task_tags: Uniq task tags (to get names)
       connection_base_type:
         node_ids: 'List of connected node identifiers'
         total_count: "Total # of objects returned from query"

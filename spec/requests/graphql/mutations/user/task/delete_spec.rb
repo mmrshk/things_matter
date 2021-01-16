@@ -9,7 +9,7 @@ describe 'mutation userTaskDelete', type: :request do
   let(:variables) { { input: { id: task.id } } }
 
   context 'when success' do
-    it 'returns updated task of current_user' do
+    it 'returns competed status' do
       authorized_graphql_post(
         query: user_task_delete_mutation,
         variables: variables,
@@ -22,7 +22,7 @@ describe 'mutation userTaskDelete', type: :request do
   end
 
   context 'when failed' do
-    context 'when note not found' do
+    context 'when task not found' do
       let(:variables) { { input: { id: SecureRandom.uuid } } }
 
       it 'returns execution error data' do

@@ -129,6 +129,21 @@ An ISO 8601-encoded datetime
 scalar ISO8601DateTime
 
 """
+Type for image
+"""
+input ImageInputType {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Signed blob id (required)
+  """
+  signedBlobId: String!
+}
+
+"""
 Commom move input
 """
 input MoveInput {
@@ -235,6 +250,21 @@ type Mutation {
   userNoteRecover(input: NoteRecoverInput!): UserAccountType!
 
   """
+  Add Tag to Note
+  """
+  userNoteTagCreate(input: NoteTagCreateInput!): CompletionStatusType!
+
+  """
+  Delete Tag from Note
+  """
+  userNoteTagDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
+  Update Tag for Note
+  """
+  userNoteTagUpdate(input: NoteTagUpdateInput!): CompletionStatusType!
+
+  """
   Update current user's Note
   """
   userNoteUpdate(input: NoteUpdateInput!): UserAccountType!
@@ -283,6 +313,21 @@ type Mutation {
   Recover current user's Task
   """
   userTaskRecover(input: TaskRecoverInput!): UserAccountType!
+
+  """
+  Add Tag to Task
+  """
+  userTaskTagCreate(input: TaskTagCreateInput!): CompletionStatusType!
+
+  """
+  Delete Tag from Task
+  """
+  userTaskTagDelete(input: DeleteInput!): CompletionStatusType!
+
+  """
+  Update Tag for Task
+  """
+  userTaskTagUpdate(input: TaskTagUpdateInput!): CompletionStatusType!
 
   """
   Update current user's Task
@@ -358,6 +403,11 @@ input NoteCreateInput {
   Note name (not required)
   """
   name: String
+
+  """
+  Note images (not required)
+  """
+  noteImages: [ImageInputType!]
 
   """
   Project id (required)
@@ -466,6 +516,36 @@ input NoteRecoverInput {
 }
 
 """
+Note Tag create
+"""
+input NoteTagCreateInput {
+  """
+  Name (required)
+  """
+  name: String!
+
+  """
+  Note Id (required)
+  """
+  noteId: ID!
+}
+
+"""
+Note Tag update
+"""
+input NoteTagUpdateInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Name
+  """
+  name: String!
+}
+
+"""
 Note type
 """
 type NoteType {
@@ -513,6 +593,11 @@ input NoteUpdateInput {
   Note name (not required)
   """
   name: String
+
+  """
+  Note images (not required)
+  """
+  noteImages: [ImageInputType!]
 
   """
   Project id (not required)
@@ -638,6 +723,11 @@ type ProjectType {
   Project notes
   """
   notes: [NoteType!]!
+
+  """
+  Uniq task tags (to get names)
+  """
+  taskTags(id: ID): [TaskTagType!]!
 
   """
   Project tasks
@@ -835,6 +925,11 @@ input TaskCreateInput {
   name: String
 
   """
+  Task Images (not required)
+  """
+  taskImages: [ImageInputType!]
+
+  """
   Project id (required)
   """
   taskProjectId: ID!
@@ -1006,6 +1101,56 @@ enum TaskRecoverLocation {
 }
 
 """
+Task Tag create
+"""
+input TaskTagCreateInput {
+  """
+  Name (required)
+  """
+  name: String!
+
+  """
+  Task Id (required)
+  """
+  taskId: ID!
+}
+
+"""
+TaskTag type
+"""
+type TaskTagType {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Name
+  """
+  name: String!
+
+  """
+  Task Id
+  """
+  taskId: ID!
+}
+
+"""
+Task Tag update
+"""
+input TaskTagUpdateInput {
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Name
+  """
+  name: String!
+}
+
+"""
 Task type
 """
 type TaskType {
@@ -1040,9 +1185,14 @@ type TaskType {
   name: String!
 
   """
-  translation missing: en.graphql.types.task_type.task_project_id
+  Task Project Id
   """
   taskProjectId: ID
+
+  """
+  Task Tags
+  """
+  taskTags: [TaskTagType!]
 
   """
   Task to do day
@@ -1073,6 +1223,11 @@ input TaskUpdateInput {
   Task name (not required)
   """
   name: String
+
+  """
+  Task Images (not required)
+  """
+  taskImages: [ImageInputType!]
 
   """
   Project id (not required)

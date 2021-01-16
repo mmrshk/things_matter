@@ -6,6 +6,7 @@
 #
 #  id         :uuid             not null, primary key
 #  task_id    :uuid
+#  position   :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -33,6 +33,12 @@ module Types
           null: false,
           description: I18n.t("#{I18N_PATH}.fields.tasks")
 
+    field :task_tags,
+          [Types::TaskTagType],
+          null: false,
+          description: I18n.t("#{I18N_PATH}.fields.task_tags"),
+          resolver: Resolvers::TaskTags
+
     def notes
       BatchLoader::GraphQL.for(object.id).batch(default_value: [], cache: false) do |project_ids, loader|
         Note.where(note_project_id: project_ids).each do |note|
