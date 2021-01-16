@@ -725,6 +725,11 @@ type ProjectType {
   notes: [NoteType!]!
 
   """
+  translation missing: en.graphql.types.project_type.fields.task_tags
+  """
+  taskTags(id: ID): [TaskTagType!]!
+
+  """
   Project tasks
   """
   tasks: [TaskType!]!

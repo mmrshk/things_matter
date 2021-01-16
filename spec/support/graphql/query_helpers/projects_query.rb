@@ -10,6 +10,7 @@ module GraphQL
           $first: Int
           $last: Int
           $filter: String
+          $id: ID
         ) {
           projects(
             after: $after
@@ -31,6 +32,9 @@ module GraphQL
                 id
                 name
                 deadline
+                taskTags(id: $id) {
+                  name
+                }
               }
             }
           }
