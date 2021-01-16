@@ -129,7 +129,7 @@ An ISO 8601-encoded datetime
 scalar ISO8601DateTime
 
 """
-translation missing: en.graphql.inputs.image_type.desc
+Type for image
 """
 input ImageInputType {
   """
@@ -138,7 +138,7 @@ input ImageInputType {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.image_type.args.signed_blob_id
+  Signed blob id (required)
   """
   signedBlobId: String!
 }
@@ -250,17 +250,17 @@ type Mutation {
   userNoteRecover(input: NoteRecoverInput!): UserAccountType!
 
   """
-  translation missing: en.graphql.mutations.user.note.tag.create.desc
+  Add Tag to Note
   """
   userNoteTagCreate(input: NoteTagCreateInput!): CompletionStatusType!
 
   """
-  translation missing: en.graphql.mutations.user.note.tag.delete.desc
+  Delete Tag from Note
   """
   userNoteTagDelete(input: DeleteInput!): CompletionStatusType!
 
   """
-  translation missing: en.graphql.mutations.user.note.tag.update.desc
+  Update Tag for Note
   """
   userNoteTagUpdate(input: NoteTagUpdateInput!): CompletionStatusType!
 
@@ -315,17 +315,17 @@ type Mutation {
   userTaskRecover(input: TaskRecoverInput!): UserAccountType!
 
   """
-  translation missing: en.graphql.mutations.user.task.tag.create.desc
+  Add Tag to Task
   """
   userTaskTagCreate(input: TaskTagCreateInput!): CompletionStatusType!
 
   """
-  translation missing: en.graphql.mutations.user.task.tag.delete.desc
+  Delete Tag from Task
   """
   userTaskTagDelete(input: DeleteInput!): CompletionStatusType!
 
   """
-  translation missing: en.graphql.mutations.user.task.tag.update.desc
+  Update Tag for Task
   """
   userTaskTagUpdate(input: TaskTagUpdateInput!): CompletionStatusType!
 
@@ -405,7 +405,7 @@ input NoteCreateInput {
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.note_create_input.args.note_images
+  Note images (not required)
   """
   noteImages: [ImageInputType!]
 
@@ -516,22 +516,22 @@ input NoteRecoverInput {
 }
 
 """
-translation missing: en.graphql.inputs.user.note_tag_create_input.desc
+Note Tag create
 """
 input NoteTagCreateInput {
   """
-  translation missing: en.graphql.inputs.user.note_tag_create_input.args.name
+  Name (required)
   """
   name: String!
 
   """
-  translation missing: en.graphql.inputs.user.note_tag_create_input.args.note_id
+  Note Id (required)
   """
   noteId: ID!
 }
 
 """
-translation missing: en.graphql.inputs.user.note_tag_update_input.desc
+Note Tag update
 """
 input NoteTagUpdateInput {
   """
@@ -540,7 +540,7 @@ input NoteTagUpdateInput {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.user.note_tag_update_input.args.name
+  Name
   """
   name: String!
 }
@@ -595,7 +595,7 @@ input NoteUpdateInput {
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.note_update_input.args.note_images
+  Note images (not required)
   """
   noteImages: [ImageInputType!]
 
@@ -920,7 +920,7 @@ input TaskCreateInput {
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.task_create_input.args.task_images
+  Task Images (not required)
   """
   taskImages: [ImageInputType!]
 
@@ -1096,22 +1096,22 @@ enum TaskRecoverLocation {
 }
 
 """
-translation missing: en.graphql.inputs.user.task_tag_create_input.desc
+Task Tag create
 """
 input TaskTagCreateInput {
   """
-  translation missing: en.graphql.inputs.user.task_tag_create_input.args.name
+  Name (required)
   """
   name: String!
 
   """
-  translation missing: en.graphql.inputs.user.task_tag_create_input.args.task_id
+  Task Id (required)
   """
   taskId: ID!
 }
 
 """
-translation missing: en.graphql.types.task_tag_type.desc
+TaskTag type
 """
 type TaskTagType {
   """
@@ -1125,13 +1125,13 @@ type TaskTagType {
   name: String!
 
   """
-  translation missing: en.graphql.types.task_tag_type.task_project_id
+  translation missing: en.graphql.types.task_tag_type.fields.task_id
   """
   taskId: ID!
 }
 
 """
-translation missing: en.graphql.inputs.user.task_tag_update_input.desc
+Task Tag update
 """
 input TaskTagUpdateInput {
   """
@@ -1140,7 +1140,7 @@ input TaskTagUpdateInput {
   id: ID!
 
   """
-  translation missing: en.graphql.inputs.user.task_tag_update_input.args.name
+  Name
   """
   name: String!
 }
@@ -1220,7 +1220,7 @@ input TaskUpdateInput {
   name: String
 
   """
-  translation missing: en.graphql.inputs.user.task_update_input.args.task_images
+  Task Images (not required)
   """
   taskImages: [ImageInputType!]
 

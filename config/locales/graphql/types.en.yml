@@ -1,6 +1,11 @@
 en:
   graphql:
     types:
+      task_tag_type:
+        desc: TaskTag type
+        args:
+          name: Name
+          task_id: Task Id
       task_type:
         desc: Task type
         fields:
@@ -11,6 +16,7 @@ en:
           to_do_day: Task to do day
           done: Task definition of done (for Logbook)
           task_project_id: Task Project Id
+          task_tags: Task Tags
       note_type:
         desc: Note type
         fields:

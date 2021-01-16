@@ -20,6 +20,6 @@ module Types
     field :task_id,
           ID,
           null: false,
-          description: I18n.t("#{I18N_PATH}.task_project_id")
+          description: I18n.t("#{I18N_PATH}.fields.task_id")
   end
 end

@@ -28,6 +28,13 @@ en:
             desc: Move task within project
       user:
         task:
+          tag:
+            create:
+              desc: Add Tag to Task
+            delete:
+              desc: Delete Tag from Task
+            update:
+              desc: Update Tag for Task
           create:
             desc: Add Task to current user's project
           update:
@@ -37,6 +44,13 @@ en:
           recover:
             desc: Recover current user's Task
         note:
+          tag:
+            create:
+              desc: Add Tag to Note
+            delete:
+              desc: Delete Tag from Note
+            update:
+              desc: Update Tag for Note
           create:
             desc: Add Note to current user's project
           update:
